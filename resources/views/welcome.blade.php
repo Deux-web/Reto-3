@@ -9,7 +9,7 @@
 
         <!--Añadimos el css generado con webpack-->
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
-
+        <link href="{{secure_asset('css/app.css')}}" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -106,5 +106,6 @@
         </div>
 
         <script src="{{asset('js/app.js')}}"></script> <!--Añadimos el js generado con webpack, donde se encuentra nuestro componente vuejs-->
+        <script src="{{secure_asset('js/app.js')}}"></script> <!--Añadimos el js generado con webpack, donde se encuentra nuestro componente vuejs-->
     </body>
 </html>
