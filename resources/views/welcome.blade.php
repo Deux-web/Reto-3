@@ -2,9 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Reto 3</title>
+
+        <!--Añadimos el css generado con webpack-->
+        <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -84,6 +88,10 @@
                     Laravel
                 </div>
 
+                <div id="app" class="content"><!--La equita id debe ser app, como hemos visto en app.js-->
+                    <example-component></example-component><!--Añadimos nuestro componente vuejs-->
+                </div>
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -96,5 +104,7 @@
                 </div>
             </div>
         </div>
+
+        <script src="{{asset('js/app.js')}}"></script> <!--Añadimos el js generado con webpack, donde se encuentra nuestro componente vuejs-->
     </body>
 </html>
