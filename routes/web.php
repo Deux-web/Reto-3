@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/incidencias', function (){
+    return view('view_incidencias');
+});
