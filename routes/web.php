@@ -11,13 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function (){
+    return redirect()->route('incidencias.index');
 });
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/incidencias', function (){
-    return view('view_incidencias');
-});
+Route::get('/incidencias', 'CocheController@index')->name('incidencias.index')->middleware('auth');

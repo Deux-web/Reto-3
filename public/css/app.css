@@ -2032,7 +2032,7 @@ pre code {
 
 .table-hover tbody tr:hover {
   color: #212529;
-  background-color: green;
+  background-color: #ffedbd;
 }
 
 .table-primary,
@@ -2214,16 +2214,16 @@ pre code {
 .table-active,
 .table-active > th,
 .table-active > td {
-  background-color: green;
+  background-color: #ffedbd;
 }
 
 .table-hover .table-active:hover {
-  background-color: #006700;
+  background-color: #ffe6a4;
 }
 
 .table-hover .table-active:hover > td,
 .table-hover .table-active:hover > th {
-  background-color: #006700;
+  background-color: #ffe6a4;
 }
 
 .table .thead-dark th {
