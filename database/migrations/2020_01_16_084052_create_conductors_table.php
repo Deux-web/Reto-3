@@ -21,7 +21,7 @@ class CreateConductorsTable extends Migration
             $table->string('apellido_p');
             $table->string('apellido_s');
             $table->boolean('titular');
-            $table->date('fecha_nac');
+            $table->string('fecha_nac');
             $table->date('fecha_carnet');
             $table->string('direccion');
             $table->string('telefono');
