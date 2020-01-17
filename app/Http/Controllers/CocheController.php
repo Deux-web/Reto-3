@@ -14,7 +14,8 @@ class CocheController extends Controller
      */
     public function index()
     {
-        //
+        $coches = Coche::all();
+        return view('view_incidencias', ['coches' => $coches]);
     }
 
     /**
@@ -30,7 +31,7 @@ class CocheController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +42,7 @@ class CocheController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Coche  $coche
+     * @param \App\Coche $coche
      * @return \Illuminate\Http\Response
      */
     public function show(Coche $coche)
@@ -52,7 +53,7 @@ class CocheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Coche  $coche
+     * @param \App\Coche $coche
      * @return \Illuminate\Http\Response
      */
     public function edit(Coche $coche)
@@ -63,8 +64,8 @@ class CocheController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Coche  $coche
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Coche $coche
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Coche $coche)
@@ -75,7 +76,7 @@ class CocheController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Coche  $coche
+     * @param \App\Coche $coche
      * @return \Illuminate\Http\Response
      */
     public function destroy(Coche $coche)
