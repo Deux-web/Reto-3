@@ -22,8 +22,8 @@ class ConductorTableSeeder extends Seeder
                 'apellido_p' => $faker->lastName,
                 'apellido_s' => $faker->lastName,
                 'titular' => '1',
-                'fecha_nac' => $faker->year('2002'),
-                'fecha_carnet' => $faker->date('Y-m-d', '31/12/2002'),
+                'fecha_nac' => $faker->numberBetween(1945, 2002),
+                'fecha_carnet' => $faker->date('Y-m-d'),
                 'direccion' => $faker->address,
                 'telefono' => '6' . $faker->randomNumber(8),
                 'email' => $faker->email
@@ -36,8 +36,8 @@ class ConductorTableSeeder extends Seeder
                 'apellido_p' => $faker->lastName,
                 'apellido_s' => $faker->lastName,
                 'titular' => '0',
-                'fecha_nac' => $faker->year('2002'),
-                'fecha_carnet' => $faker->date('Y-m-d', '31/12/2002'),
+                'fecha_nac' => $faker->numberBetween(1945, 2002),
+                'fecha_carnet' => $faker->date('Y-m-d'),
                 'direccion' => $faker->address,
                 'telefono' => '6' . $faker->randomNumber(8),
                 'email' => $faker->email

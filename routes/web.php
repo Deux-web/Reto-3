@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 //INCIDENCIAS
 
-Route::get('/incidencias','IncidenciaController@index')->name('incidencia.index')->middleware('auth');
+Route::get('/incidencias','CocheController@index')->name('incidencia.index')->middleware('auth');
 
 Route::get('incidencias/create','IncidenciaController@create')->name('incidencia.create')->middleware('auth');
 
@@ -43,4 +43,3 @@ Route::get('/usuarios/{id}/edit','UserController@edit')->name('usuario.edit')->m
 Route::post('/usuarios/{id}','UserController@update')->name('usuario.update')->middleware('auth');
 
 Auth::routes();
-
