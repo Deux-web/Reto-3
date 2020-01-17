@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Conductor extends Model
 {
     public function coches(){
-        return $this->belongsToMany('App\Coche','conductor_coche','conductor_id','coche_id');
+        return $this->belongsToMany('App\Coche');
     }
 
     public function incidencias(){
