@@ -1,13 +1,7 @@
 @extends('layout_html')
 @section('head')
     <title>Todas las incidencias</title>
-    <script src="https://kit.fontawesome.com/122a23edb6.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-        }
-    </style>
+
 @endsection
 @section('contenido')
     <div>
