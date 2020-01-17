@@ -21,11 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('apellido_p');
-            $table->string('apellido_s');
-            $table->string('rol');
-            $table->string('usuario');
-            $table->boolean('habilitado');
+            $table->string('apellido_p')->nullable();
+            $table->string('apellido_s')->nullable();
+            $table->string('rol')->nullable();
+            $table->string('usuario')->nullable();
+            $table->boolean('habilitado')->nullable();
         });
     }
 
