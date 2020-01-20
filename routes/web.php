@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return redirect()->route('incidencia.index');
 });
+Route::get('/home', function (){
+   return redirect()->route('incidencia.index');
+});
 
 //INCIDENCIAS
 

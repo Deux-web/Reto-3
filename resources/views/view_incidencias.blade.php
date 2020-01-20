@@ -6,7 +6,7 @@
 @section('contenido')
     <div>
         <div class="mt-2 row ml-2 mr-2">
-            <a href="" class="btn btn-primary col-md-3 col-10 ml-auto mr-auto ml-md-0 mr-md-0 mb-1"
+            <a href="{{route('incidencia.create')}}" class="btn btn-primary col-md-3 col-10 ml-auto mr-auto ml-md-0 mr-md-0 mb-1"
                style="font-size: 125%;">Nueva
                 incidencia</a>
             <form
