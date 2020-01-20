@@ -24,13 +24,13 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('view_crear_incidencia');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class IncidenciaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Incidencia  $incidencia
+     * @param \App\Incidencia $incidencia
      * @return \Illuminate\Http\Response
      */
     public function show(Incidencia $incidencia)
@@ -52,7 +52,7 @@ class IncidenciaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Incidencia  $incidencia
+     * @param \App\Incidencia $incidencia
      * @return \Illuminate\Http\Response
      */
     public function edit(Incidencia $incidencia)
@@ -63,8 +63,8 @@ class IncidenciaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Incidencia  $incidencia
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Incidencia $incidencia
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Incidencia $incidencia)
@@ -75,7 +75,7 @@ class IncidenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Incidencia  $incidencia
+     * @param \App\Incidencia $incidencia
      * @return \Illuminate\Http\Response
      */
     public function destroy(Incidencia $incidencia)
