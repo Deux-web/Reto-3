@@ -5,7 +5,7 @@ window.onload = function () {
     /* ==================================== */
 
     //var patron_texto = new RegExp("/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\\s]*)+$/");
-    var patron_texto = new RegExp("^[a-z,A-Z]*$");
+    var patron_texto = new RegExp("^[a-zA-Z]*$");
     var patron_telefono = new RegExp("/^(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}$/");
 
     $("#crear").click(function (e) {
