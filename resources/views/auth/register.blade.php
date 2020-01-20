@@ -16,14 +16,14 @@
 
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" id="form_registro">
                         @csrf
 
                         <div class="form-group row">
                             <label for="tipo_usuario" class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="tipo_usuario" onchange="location.reload()">
+                                <select class="form-control" id="tipo_usuario">
                                     <option disabled selected> -- Seleccione un tipo de usuario -- </option>
                                     <option value="operador"> Operador</option>
                                     <option value="tecnico"> Técnico</option>
