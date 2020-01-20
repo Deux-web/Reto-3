@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/mapa',function () {
+  return view('mapa');
+});
+
 Route::get('/', function () {
     return redirect()->route('incidencia.index');
 });
