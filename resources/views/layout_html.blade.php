@@ -19,20 +19,30 @@
             crossorigin="anonymous"></script>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{secure_asset('css/app.css')}}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/122a23edb6.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+        header{
+            z-index: 100;
+        }
+        footer{
+            z-index: 100;
+        }
+    </style>
     @yield('head')
 </head>
 <body style="height: 100vh;">
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{route('incidencias.index')}}">
+        <a class="navbar-brand" href="{{route('incidencia.index')}}">
             <img src="{{asset('images/road-tech-assistance.png')}}" width="100"
                  class="d-inline-block align-top" alt="">
         </a>
         <div class="row">
             @guest
-                <div class="col-12">
-                    <a class="btn btn-primary float-right" href="{{ route('login') }}">Login</a>
-                </div>
             @else
                 <span class="text-primary col-12 float-right text-right">Bienvenido, {{ Auth::user()->name }}</span>
                 <div class="col-12">

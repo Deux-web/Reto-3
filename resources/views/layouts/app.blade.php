@@ -23,7 +23,7 @@
 <div id="app">
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{route('incidencias.index')}}">
+            <a class="navbar-brand" href="{{route('incidencia.index')}}">
                 <img src="{{asset('images/road-tech-assistance.png')}}" width="100"
                      class="d-inline-block align-top" alt="">
             </a>
