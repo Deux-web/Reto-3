@@ -18,7 +18,7 @@ class CreateIncidenciasTable extends Migration
             $table->timestamps();
             $table->string('tipo');
             $table->string('titulo');
-            $table->text('descripcion');
+            $table->text('descripcion')->nullable();
             $table->string('direccion');
             $table->string('estado');
             $table->string('tipo_resolucion');
@@ -26,11 +26,11 @@ class CreateIncidenciasTable extends Migration
             $table->boolean('taxi');
             $table->string('estado_conductor');
             $table->string('operador');
-            $table->date('fecha_resolucion');
+            $table->date('fecha_resolucion')->nullable();
             $table->unsignedBigInteger('id_conductor');
             $table->unsignedBigInteger('id_coche');
             $table->unsignedBigInteger('id_centro');
-            $table->unsignedBigInteger('id_tecnico');
+            $table->unsignedBigInteger('id_tecnico')->nullable();
         });
     }
 
