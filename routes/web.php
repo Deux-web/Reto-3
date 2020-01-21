@@ -26,6 +26,10 @@ Route::get('incidencias/create','IncidenciaController@create')->name('incidencia
 
 Route::post('/incidencias','IncidenciaController@store')->name('incidencia.store')->middleware('auth');
 
+Route::get('/incidencias/estadisticas',function (){
+    return view('view_estadisticas');
+})->name('incidencia.estadisticas')->middleware('auth');
+
 Route::get('incidencias/{id}','IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
 Route::get('incidencias/{id}','IncidenciaController@edit')->name('incidencia.edit')->middleware('auth');
