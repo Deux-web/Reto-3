@@ -6,7 +6,8 @@
 @section('contenido')
     <div>
         <div class="mt-2 row ml-2 mr-2">
-            <a href="{{route('incidencia.create')}}" class="btn btn-primary col-md-3 col-10 ml-auto mr-auto ml-md-0 mr-md-0 mb-1"
+            <a href="{{route('incidencia.create')}}"
+               class="btn btn-primary col-md-3 col-10 ml-auto mr-auto ml-md-0 mr-md-0 mb-1"
                style="font-size: 125%;">Nueva
                 incidencia</a>
             <form
@@ -21,21 +22,31 @@
             <table class="mt-3 table table-striped table-hover">
                 <thead class="bg-dark text-white">
                 <tr>
-                    <th scope="col">Cod. Incidencia</th>
-                    <th scope="col">Título</th>
-                    <th scope="col">Hora apertura</th>
-                    <th scope="col">Cliente</th>
+                    <th scope="col">id</th>
+                    <th scope="col">Afectado</th>
                     <th scope="col">Contacto</th>
+                    <th scope="col">Tecnico asignado</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Lugar</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha de creación</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($coches as $coche)
-                    <tr>
-                        <td>{{$coche->matricula}}</td>
-                        <td>{{$coche->marca}}</td>
-                        <td>{{$coche->modelo}}</td>
-                        <td>{{$coche->anyo}}</td>
-                        <td>{{$coche->color}}</td>
+                @foreach($incidencias as $incidencia)
+                    <tr onclick="window.location='{{ route('incidencia.show', $incidencia->id) }}'">
+                        <td>{{$incidencia->id}}</td>
+                        <td>{{ \App\Conductor::find($incidencia->id_conductor)->nombre . ' ' . \App\Conductor::find($incidencia->id_conductor)->apellido_p}}</td>
+                        <td>{{ \App\Conductor::find($incidencia->id_conductor)->telefono . ' ' . \App\Conductor::find($incidencia->id_conductor)->email}}</td>
+                        <td>{{ \App\Tecnico::find($incidencia->id_tecnico)->nombre .' ' . \App\Tecnico::find($incidencia->id)->apellido_p }}</td>
+                        <td>{{$incidencia->tipo}}</td>
+                        <td>
+                            @foreach(explode(',',$incidencia->direccion) as $lugar)
+                                {{$lugar}}
+                            @endforeach
+                        </td>
+                        <td>{{$incidencia->estado}}</td>
+                        <td{{$incidencia->created_at}}></td>
                     </tr>
                 @endforeach
                 </tbody>

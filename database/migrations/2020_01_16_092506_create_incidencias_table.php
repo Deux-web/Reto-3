@@ -20,9 +20,9 @@ class CreateIncidenciasTable extends Migration
             $table->string('titulo');
             $table->text('descripcion')->nullable();
             $table->string('direccion');
-            $table->string('estado');
-            $table->string('tipo_resolucion');
-            $table->text('mensaje_resolucion');
+            $table->string('estado')->default('ACTIVA');;
+            $table->string('tipo_resolucion')->nullable();
+            $table->text('mensaje_resolucion')->nullable();
             $table->boolean('taxi');
             $table->string('estado_conductor');
             $table->string('operador');

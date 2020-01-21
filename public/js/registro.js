@@ -9,7 +9,6 @@ window.onload = function () {
     var patron_telefono = new RegExp("/^(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}$/");
 
     $("#crear").click(function (e) {
-        e.preventDefault();
         var tipo_usuario = $("#tipo_usuario").val();
         var nombre = $("#nombre").val();
         var apellido = $("#apellido").val();
