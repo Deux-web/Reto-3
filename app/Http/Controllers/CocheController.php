@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CocheController extends Controller
 {
+    public function search(Request $request)
+    {
+        $coches = Coche::orderBy('id', 'DESC')->paginate(5);
+
+        return response()->json($coches);
+    }
     /**
      * Display a listing of the resource.
      *

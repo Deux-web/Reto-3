@@ -23,6 +23,7 @@ Route::get('/home', function (){
 });
 
 //INCIDENCIAS
+Route::get('/api/incidencias','CocheController@search')->name('incidencia.search');
 
 Route::get('/incidencias','CocheController@index')->name('incidencia.index')->middleware('auth');
 

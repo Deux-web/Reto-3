@@ -1948,9 +1948,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      coches: [],
+      url: '/api/incidencias',
+      pagination: []
+    };
+  },
+  created: function created() {
+    this.getCoches();
+  },
+  methods: {
+    getCoches: function getCoches() {
+      var _this = this;
+
+      var $this = this;
+      axios.get(this.url).then(function (res) {
+        _this.coches = res.data.data;
+        console.log(res.data);
+        $this.makePagination(res.data);
+      });
+    },
+    makePagination: function makePagination(data) {
+      var pagination = {
+        current_page: data.current_page,
+        last_page: data.last_page,
+        next_page_url: data.next_page_url,
+        prev_page_url: data.prev_page_url
+      };
+      this.pagination = pagination;
+    },
+    fetchPaginateCoches: function fetchPaginateCoches(url) {
+      this.url = url;
+      this.getCoches();
+    }
   }
 });
 
@@ -37326,28 +37376,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
+    _c("table", { staticClass: "mt-3 table table-striped table-hover" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.coches, function(coche) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(coche.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(coche.matricula))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(coche.modelo))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(coche.marca))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(coche.id))])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "pagination" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { disabled: !_vm.pagination.prev_page_url },
+          on: {
+            click: function($event) {
+              return _vm.fetchPaginateCoches(_vm.pagination.prev_page_url)
+            }
+          }
+        },
+        [_vm._v("Anterior\n        ")]
+      ),
+      _vm._v(" "),
+      _c("span", [
+        _vm._v(
+          "Page " +
+            _vm._s(_vm.pagination.current_page) +
+            " of " +
+            _vm._s(_vm.pagination.last_page)
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { disabled: !_vm.pagination.next_page_url },
+          on: {
+            click: function($event) {
+              return _vm.fetchPaginateCoches(_vm.pagination.next_page_url)
+            }
+          }
+        },
+        [_vm._v("Siguiente\n        ")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("thead", { staticClass: "bg-dark text-white" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cod. Incidencia")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Título")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hora apertura")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cliente")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Contacto")])
       ])
     ])
   }
