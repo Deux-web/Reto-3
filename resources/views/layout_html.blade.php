@@ -78,5 +78,6 @@
         <a href="https://github.com/deux-web" target="_blank"> Deux </a>
     </div>
 </footer>
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
