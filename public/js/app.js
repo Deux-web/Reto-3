@@ -1966,24 +1966,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      coches: [],
+      incidencias: [],
       url: '/api/incidencias',
       pagination: []
     };
   },
   created: function created() {
-    this.getCoches();
+    this.getIncidencias();
   },
   methods: {
-    getCoches: function getCoches() {
+    getIncidencias: function getIncidencias() {
       var _this = this;
 
       var $this = this;
       axios.get(this.url).then(function (res) {
-        _this.coches = res.data.data;
+        _this.incidencias = res.data.data;
         console.log(res.data);
         $this.makePagination(res.data);
       });
@@ -1997,9 +2005,9 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.pagination = pagination;
     },
-    fetchPaginateCoches: function fetchPaginateCoches(url) {
+    fetchPaginateIncidencias: function fetchPaginateIncidencias(url) {
       this.url = url;
-      this.getCoches();
+      this.getIncidencias();
     }
   }
 });
@@ -37382,17 +37390,23 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.coches, function(coche) {
+        _vm._l(_vm.incidencias, function(incidencia) {
           return _c("tr", [
-            _c("td", [_vm._v(_vm._s(coche.id))]),
+            _c("td", [_vm._v(_vm._s(incidencia.id))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(coche.matricula))]),
+            _c("td", [_vm._v(_vm._s(incidencia.id_conductor))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(coche.modelo))]),
+            _c("td", [_vm._v(_vm._s(incidencia.id_conductor))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(coche.marca))]),
+            _c("td", [_vm._v(_vm._s(incidencia.id_tecnico))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(coche.id))])
+            _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(incidencia.direccion))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(incidencia.estado))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(incidencia.created_at))])
           ])
         }),
         0
@@ -37407,7 +37421,7 @@ var render = function() {
           attrs: { disabled: !_vm.pagination.prev_page_url },
           on: {
             click: function($event) {
-              return _vm.fetchPaginateCoches(_vm.pagination.prev_page_url)
+              return _vm.fetchPaginateIncidencias(_vm.pagination.prev_page_url)
             }
           }
         },
@@ -37430,7 +37444,7 @@ var render = function() {
           attrs: { disabled: !_vm.pagination.next_page_url },
           on: {
             click: function($event) {
-              return _vm.fetchPaginateCoches(_vm.pagination.next_page_url)
+              return _vm.fetchPaginateIncidencias(_vm.pagination.next_page_url)
             }
           }
         },
@@ -37448,13 +37462,19 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cod. Incidencia")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Título")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Afectado")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Hora apertura")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Contacto")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cliente")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tecnico Asignado")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Contacto")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Lugar")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha de creacion")])
       ])
     ])
   }

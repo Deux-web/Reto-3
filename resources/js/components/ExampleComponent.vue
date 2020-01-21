@@ -4,28 +4,36 @@
             <thead class="bg-dark text-white">
             <tr>
                 <th scope="col">Cod. Incidencia</th>
-                <th scope="col">Título</th>
-                <th scope="col">Hora apertura</th>
-                <th scope="col">Cliente</th>
+                <th scope="col">Afectado</th>
                 <th scope="col">Contacto</th>
+                <th scope="col">Tecnico Asignado</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Lugar</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de creacion</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr v-for="coche in coches">
-                <td>{{coche.id}}</td>
-                <td>{{coche.matricula}}</td>
-                <td>{{coche.modelo}}</td>
-                <td>{{coche.marca}}</td>
-                <td>{{coche.id}}</td>
+            <tr v-for="incidencia in incidencias">
+                <td>{{incidencia.id}}</td>
+                <td>{{incidencia.id_conductor}}</td>
+                <td>{{incidencia.id_conductor}}</td>
+                <td>{{incidencia.id_tecnico}}</td>
+                <td>{{incidencia.tipo}}</td>
+                <td>{{incidencia.direccion}}</td>
+                <td>{{incidencia.estado}}</td>
+                <td>{{incidencia.created_at}}</td>
+
             </tr>
             </tbody>
         </table>
         <div class="pagination">
-            <button class="btn btn-primary" v-on:click="fetchPaginateCoches(pagination.prev_page_url)"
+            <button class="btn btn-primary" v-on:click="fetchPaginateIncidencias(pagination.prev_page_url)"
                     :disabled="!pagination.prev_page_url">Anterior
             </button>
             <span>Page {{pagination.current_page}} of {{pagination.last_page}}</span>
-            <button class="btn btn-primary" v-on:click="fetchPaginateCoches(pagination.next_page_url)"
+            <button class="btn btn-primary" v-on:click="fetchPaginateIncidencias(pagination.next_page_url)"
                     :disabled="!pagination.next_page_url">Siguiente
             </button>
         </div>
@@ -36,19 +44,19 @@
     export default {
         data() {
             return {
-                coches: [],
+                incidencias: [],
                 url: '/api/incidencias',
                 pagination: []
             }
         },
         created() {
-            this.getCoches()
+            this.getIncidencias()
         },
         methods: {
-            getCoches() {
+            getIncidencias() {
                 let $this = this;
                 axios.get(this.url).then(res => {
-                    this.coches = res.data.data;
+                    this.incidencias = res.data.data;
                     console.log(res.data)
                     $this.makePagination(res.data)
 
@@ -64,9 +72,9 @@
 
                 this.pagination = pagination;
             },
-            fetchPaginateCoches(url){
+            fetchPaginateIncidencias(url){
                 this.url=url;
-                this.getCoches()
+                this.getIncidencias()
             }
         }
     }
