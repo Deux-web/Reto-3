@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
+    public function search(Request $request)
+    {
+        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(5);
+
+        return response()->json($incidencias);
+    }
     /**
      * Display a listing of the resource.
      *

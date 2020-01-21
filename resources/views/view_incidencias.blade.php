@@ -17,22 +17,7 @@
                 <input type="submit" value="Buscar" class="btn btn-primary col-3" style="font-size: 125%">
             </form>
         </div>
-
-        <div class="pl-2 pr-2 overflow">
-            <table class="mt-3 table table-striped table-hover">
-                <thead class="bg-dark text-white">
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Afectado</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Tecnico asignado</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Lugar</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Fecha de creación</th>
-                </tr>
-                </thead>
-                <tbody>
+              <!--
                 @foreach($incidencias as $incidencia)
                     <tr onclick="window.location='{{ route('incidencia.show', $incidencia->id) }}'">
                         <td>{{$incidencia->id}}</td>
@@ -49,21 +34,10 @@
                         <td{{$incidencia->created_at}}></td>
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+                -->
+
+        <div id="app">
+            <incidencias-component></incidencias-component>
         </div>
     </div>
 @endsection
