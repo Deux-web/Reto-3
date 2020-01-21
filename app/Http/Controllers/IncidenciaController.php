@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Centro;
+use App\Conductor;
 use App\Incidencia;
+use App\Tecnico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
@@ -20,7 +24,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        //
+        $incidencias = Incidencia::all();
+        return view('view_incidencias', ['incidencias' => $incidencias]);
     }
 
     /**
@@ -50,9 +55,14 @@ class IncidenciaController extends Controller
      * @param \App\Incidencia $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidencia $incidencia)
+    public function show($id)
     {
-        //
+        $incidencia = Incidencia::find($id);
+        $conductor = Conductor::find($incidencia->id_conductor);
+        $tecnico = Tecnico::find($incidencia->id_tecnico);
+        $centro = Centro::find($incidencia->id_centro);
+        $user = Auth::user();
+        return view('view_incidencia', ['incidencia' => $incidencia, 'tecnico' => $tecnico, 'conductor' => $conductor, 'centro' => $centro, 'user' => $user]);
     }
 
     /**
