@@ -19,7 +19,7 @@
         </div>
 
         <div id="app">
-            <example-component></example-component>
+            <incidencias-component></incidencias-component>
         </div>
     </div>
 @endsection
