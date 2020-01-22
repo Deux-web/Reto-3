@@ -1992,7 +1992,6 @@ __webpack_require__.r(__webpack_exports__);
       var $this = this;
       axios.get(this.url).then(function (res) {
         _this.incidencias = res.data.data;
-        console.log(res.data);
         $this.makePagination(res.data);
       });
     },
@@ -2008,6 +2007,9 @@ __webpack_require__.r(__webpack_exports__);
     fetchPaginateIncidencias: function fetchPaginateIncidencias(url) {
       this.url = url;
       this.getIncidencias();
+    },
+    verIncidencia: function verIncidencia(id) {
+      location.href = '/incidencias/' + id;
     }
   }
 });
@@ -37391,23 +37393,57 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.incidencias, function(incidencia) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(incidencia.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.id_conductor))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.id_conductor))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.id_tecnico))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.direccion))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.estado))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(incidencia.created_at))])
-          ])
+          return _c(
+            "tr",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.verIncidencia(incidencia.id)
+                }
+              }
+            },
+            [
+              _c("td", [_vm._v(_vm._s(incidencia.id))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    incidencia.id_conductor.nombre +
+                      " " +
+                      incidencia.id_conductor.apellido_p
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    incidencia.id_conductor.telefono +
+                      " " +
+                      incidencia.id_conductor.email
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    incidencia.id_tecnico.nombre +
+                      " " +
+                      incidencia.id_tecnico.apellido_p
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(incidencia.direccion))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(incidencia.estado))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(incidencia.created_at))])
+            ]
+          )
         }),
         0
       )
