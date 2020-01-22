@@ -17,6 +17,24 @@
                 <input type="submit" value="Buscar" class="btn btn-primary col-3" style="font-size: 125%">
             </form>
         </div>
+              <!--
+                @foreach($incidencias as $incidencia)
+                    <tr onclick="window.location='{{ route('incidencia.show', $incidencia->id) }}'">
+                        <td>{{$incidencia->id}}</td>
+                        <td>{{ \App\Conductor::find($incidencia->id_conductor)->nombre . ' ' . \App\Conductor::find($incidencia->id_conductor)->apellido_p}}</td>
+                        <td>{{ \App\Conductor::find($incidencia->id_conductor)->telefono . ' ' . \App\Conductor::find($incidencia->id_conductor)->email}}</td>
+                        <td>{{ \App\Tecnico::find($incidencia->id_tecnico)->nombre .' ' . \App\Tecnico::find($incidencia->id)->apellido_p }}</td>
+                        <td>{{$incidencia->tipo}}</td>
+                        <td>
+                            @foreach(explode(',',$incidencia->direccion) as $lugar)
+                                {{$lugar}}
+                            @endforeach
+                        </td>
+                        <td>{{$incidencia->estado}}</td>
+                        <td{{$incidencia->created_at}}></td>
+                    </tr>
+                @endforeach
+                -->
 
         <div id="app">
             <incidencias-component></incidencias-component>
