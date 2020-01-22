@@ -3,6 +3,7 @@
     <title>Crear incidencia</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/crear_incidencia.js')}}"></script>
+    <link href="{{asset('css/mapa.css')}}" rel="stylesheet">
 @endsection
 @section('contenido')
     <div>
@@ -96,51 +97,7 @@
                     <h4 class="d-inline"><label for="rb_interurbano">Interurbano</label></h4>
                 </div>
             </div>
-            <div class="form-group row no-gutters p-3" id="div_interurbano" style="border: 1px solid #7e7e7e">
-                <div class="col-lg-6">
-                    <label for="provincia" class="col-12 mr-3 pl-1"><strong>Provincia</strong></label>
-                    <select name="provincia" id="provincia" class="col-lg-10 col-12 pr-3 form-control mr-3 my-1">
-                        <option disabled selected>Seleccione provincia</option>
-                        <option value="araba">Araba</option>
-                        <option value="bizkaia">Bizkaia</option>
-                        <option value="gipuzkoa">Gipuzkoa</option>
-                        <option value="nafarroa">Nafarroa</option>
-                    </select>
-                    <label for="tipovia" class="col-12 mr-3 pl-1"><strong>Tipo de vía</strong></label>
-                    <select name="tipovia" id="tipovia" class="pr-3 form-control col-lg-10 col-12 mr-3 my-1">
-                        <option disabled selected>Seleccione tipo de vía</option>
-                        <option value="autopista">Autopista</option>
-                        <option value="autovia">Autovía</option>
-                        <option value="interes_general">Interes general</option>
-                        <option value="autonomica">Autonómicas</option>
-                        <option value="complementaria">Complementaria</option>
-                        <option value="comarcal">Comarcal</option>
-                    </select>
-                    <div class="col-12 row">
-                        <label for="carretera" class="col-5 pl-1"><strong>Carretera</strong></label>
-                        <label for="km" class="col-5 pl-1"><strong>KM</strong></label>
-                        <input type="text" name="" id="carretera" class="form-control col-4 p-1 my-1"
-                               placeholder="Carretera">
-                        <input type="number" name="" id="km" class="form-control col-4 p-1 my-1 offset-1"
-                               placeholder="KM">
-                    </div>
-
-                    <div class="row no-gutters">
-                        <label for="direccion_sentido" class="col-12 pl-1"><strong>Dirección /
-                                Sentido</strong></label>
-                        <input type="text" id="direccion_sentido" class="form-control col-lg-10 col-12 p-1 my-1">
-                        <label for="proximidad" class="col-12"><strong>Proximidad</strong></label>
-                        <input type="text" name="proximidad" id="proximidad"
-                               class="form-control col-lg-10 col-12 p-1 my-1">
-                    </div>
-                    <input type="button" value="Buscar en el mapa" id="buscar_mapa_inturbano"
-                           class="btn btn-primary col-lg-10 col-12 mt-2">
-                </div>
-                <div class="col-lg-6 mt-3 d-flex justify-content-center" id="mapa">
-                    <img src="{{URL::asset('images/mapa_ejemplo.png')}}" alt="" width="75%" class="rounded-sm">
-                </div>
-            </div>
-            <div id="div_urbano" class="form-group d-none p-3 row no-gutters" style="border: 1px solid #7e7e7e">
+            <div class="form-group row no-gutters p-3" style="border: 1px solid #7e7e7e">
                 <div class="col-lg-6">
                     <label for="provincia" class="col-12 mr-3 pl-1"><strong>Provincia</strong></label>
                     <select name="provincia" id="provincia" class="col-10 pr-3 form-control mr-3 my-1">
@@ -150,17 +107,50 @@
                         <option value="gipuzkoa">Gipuzkoa</option>
                         <option value="nafarroa">Nafarroa</option>
                     </select>
-                    <label for="localidad" class="col-12 mr-3 pl-1"><strong>Localidad</strong></label>
-                    <input type="text" name="localidad" id="localidad" class="form-control col-10">
-                    <label for="calle"><strong>Calle</strong></label>
-                    <input type="text" name="calle" id="calle" class="form-control col-10">
-                    <label for="portal"><strong>Portal</strong></label>
-                    <input type="text" name="portal" id="portal" class="form-control col-10">
-                    <input type="button" value="Buscar en el mapa" id="buscar_mapa_inturbano"
-                           class="btn btn-primary col-10 mt-2">
+                    <div class="" id="div_interurbanoInputs">
+                        <label for="tipovia" class="col-12 mr-3 pl-1"><strong>Tipo de vía</strong></label>
+                        <select name="tipovia" id="tipovia" class="pr-3 form-control col-lg-10 col-12 mr-3 my-1">
+                            <option disabled selected>Seleccione tipo de vía</option>
+                            <option value="autopista">Autopista</option>
+                            <option value="autovia">Autovía</option>
+                            <option value="interes_general">Interes general</option>
+                            <option value="autonomica">Autonómicas</option>
+                            <option value="complementaria">Complementaria</option>
+                            <option value="comarcal">Comarcal</option>
+                        </select>
+                        <div class="col-12 row">
+                            <label for="carretera" class="col-5 pl-1"><strong>Carretera</strong></label>
+                            <label for="km" class="col-5 pl-1"><strong>KM</strong></label>
+                            <input type="text" name="" id="carretera" class="form-control col-4 p-1 my-1"
+                                   placeholder="Carretera">
+                            <input type="number" name="" id="km" class="form-control col-4 p-1 my-1 offset-1"
+                                   placeholder="KM">
+                        </div>
+
+                        <div class="row no-gutters">
+                            <label for="direccion_sentido" class="col-12 pl-1"><strong>Dirección /
+                                    Sentido</strong></label>
+                            <input type="text" id="direccion_sentido" class="form-control col-lg-10 col-12 p-1 my-1">
+                            <label for="proximidad" class="col-12"><strong>Proximidad</strong></label>
+                            <input type="text" name="proximidad" id="proximidad"
+                                   class="form-control col-lg-10 col-12 p-1 my-1">
+                        </div>
+                    </div>
+                    <div class="" id="div_urbanoInputs">
+                        <label for="localidad" class="col-12 mr-3 pl-1"><strong>Localidad</strong></label>
+                        <input type="text" name="localidad" id="localidad" class="form-control col-10">
+                        <label for="calle"><strong>Calle</strong></label>
+                        <input type="text" name="calle" id="calle" class="form-control col-10">
+                        <label for="portal"><strong>Portal</strong></label>
+                        <input type="text" name="portal" id="portal" class="form-control col-10">
+                    </div>
                 </div>
                 <div class="col-lg-6 mt-3 d-flex justify-content-center" id="mapa">
-                    <img src="{{URL::asset('images/mapa_ejemplo.png')}}" alt="" width="75%" class="rounded-sm">
+                    <div id="floating-panel" class="d-none d-lg-block">
+                        <input id="address" type="textbox" class="" value="">
+                        <input id="submit" type="button" value="Buscar" class="btn btn-primary">
+                    </div>
+                    <div id="map"></div>
                 </div>
             </div>
             <div class="form-group row no-gutters">

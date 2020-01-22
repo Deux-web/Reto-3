@@ -1,8 +1,7 @@
 window.onload = function () {
-    console.log('holi');
     let div_otros = $('#esp_otros');
-    let div_interurbano = $('#div_interurbano');
-    let div_urbano = $('#div_urbano');
+    let div_interurbano = $('#div_interurbanoInputs');
+    let div_urbano = $('#div_urbanoInputs');
 
     let select_tipoaveria = $('#tipoaveria');
     let rb_urbano = $('#rb_urbano');
@@ -31,11 +30,11 @@ window.onload = function () {
 
     function urbano_interurbano() {
         if (rb_urbano.is(':checked')) {
-            div_interurbano.removeClass('d-flex').addClass('d-none');
-            div_urbano.removeClass('d-none').addClass('d-flex');
+            div_interurbano.removeClass('d-block').addClass('d-none');
+            div_urbano.removeClass('d-none').addClass('d-block');
         } else {
-            div_interurbano.removeClass('d-none').addClass('d-flex');
-            div_urbano.removeClass('d-flex').addClass('d-none');
+            div_interurbano.removeClass('d-none').addClass('d-block');
+            div_urbano.removeClass('d-block').addClass('d-none');
         }
     }
 };
