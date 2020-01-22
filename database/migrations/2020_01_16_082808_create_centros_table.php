@@ -14,7 +14,7 @@ class CreateCentrosTable extends Migration
     public function up()
     {
         Schema::create('centros', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id')->primary();
             $table->timestamps();
             $table->string('nombre');
             $table->string('direccion');
