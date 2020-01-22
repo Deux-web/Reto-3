@@ -14,8 +14,9 @@ class CocheTableSeeder extends Seeder
         $faker = \Faker\Factory::create('es_ES');
         $faker->addProvider(new \Faker\Provider\Fakecar($faker));
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             DB::table('coches')->insert([
+                'id' => $i,
                 'matricula' => $faker->vehicleRegistration(),
                 'marca' => $faker->vehicleBrand,
                 'modelo' => $faker->vehicleModel,
