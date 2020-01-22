@@ -26,11 +26,11 @@
 <body style="height: 100vh;">
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{route('incidencia.index')}}">
+        <a class="navbar-brand mr-0" href="{{route('incidencia.index')}}">
             <img src="{{asset('images/road-tech-assistance.png')}}" width="100"
                  class="d-inline-block align-top" alt="">
         </a>
-        <div class="row">
+        <div class="row no-gutters">
             @guest
             @else
                 <span class="text-primary col-12 float-right text-right">Bienvenido, {{ Auth::user()->name }}</span>

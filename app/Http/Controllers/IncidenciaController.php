@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Centro;
+use App\Comentario;
 use App\Conductor;
 use App\Incidencia;
 use App\Tecnico;
@@ -17,6 +18,7 @@ class IncidenciaController extends Controller
 
         return response()->json($incidencias);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,8 +63,9 @@ class IncidenciaController extends Controller
         $conductor = Conductor::find($incidencia->id_conductor);
         $tecnico = Tecnico::find($incidencia->id_tecnico);
         $centro = Centro::find($incidencia->id_centro);
+        $comentarios = Comentario::all()->where('id_incidencia', $incidencia->id);
         $user = Auth::user();
-        return view('view_incidencia', ['incidencia' => $incidencia, 'tecnico' => $tecnico, 'conductor' => $conductor, 'centro' => $centro, 'user' => $user]);
+        return view('view_incidencia', ['incidencia' => $incidencia, 'tecnico' => $tecnico, 'conductor' => $conductor, 'centro' => $centro, 'user' => $user, 'comentarios' => $comentarios]);
     }
 
     /**
