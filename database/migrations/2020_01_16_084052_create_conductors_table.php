@@ -14,7 +14,7 @@ class CreateConductorsTable extends Migration
     public function up()
     {
         Schema::create('conductors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id')->primary();
             $table->timestamps();
             $table->string('dni')->unique();
             $table->string('nombre');

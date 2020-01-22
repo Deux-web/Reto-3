@@ -14,9 +14,11 @@ class ConductorTableSeeder extends Seeder
         $faker = \Faker\Factory::create('es_ES');
         $faker->addProvider(new Faker\Provider\es_ES\Person($faker));
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
 
             DB::table('conductors')->insert([
+                'id' => $i,
+
                 'dni' => $faker->dni,
                 'nombre' => $faker->firstName,
                 'apellido_p' => $faker->lastName,
@@ -29,8 +31,9 @@ class ConductorTableSeeder extends Seeder
                 'email' => $faker->email
             ]);
         }
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             DB::table('conductors')->insert([
+                'id' => $i+50,
                 'dni' => $faker->dni,
                 'nombre' => $faker->firstName,
                 'apellido_p' => $faker->lastName,
