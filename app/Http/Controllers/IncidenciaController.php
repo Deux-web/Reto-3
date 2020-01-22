@@ -9,13 +9,19 @@ use App\Incidencia;
 use App\Tecnico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
     public function search(Request $request)
     {
         $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(5);
-
+        foreach ($incidencias as $incidencia){
+            $cliente=Conductor::find($incidencia->id_conductor);
+            $incidencia->id_conductor=$cliente;
+            $tecnico=Tecnico::find($incidencia->id_tecnico);
+            $incidencia->id_tecnico=$tecnico;
+        }
         return response()->json($incidencias);
     }
 

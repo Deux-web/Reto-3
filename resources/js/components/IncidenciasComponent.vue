@@ -15,11 +15,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="incidencia in incidencias">
+            <tr v-for="incidencia in incidencias" v-on:click="verIncidencia(incidencia.id)">
                 <td>{{incidencia.id}}</td>
-                <td>{{incidencia.id_conductor}}</td>
-                <td>{{incidencia.id_conductor}}</td>
-                <td>{{incidencia.id_tecnico}}</td>
+                <td>{{incidencia.id_conductor.nombre+' '+incidencia.id_conductor.apellido_p}}</td>
+                <td>{{incidencia.id_conductor.telefono+' '+incidencia.id_conductor.email}}</td>
+                <td>{{incidencia.id_tecnico.nombre+' '+incidencia.id_tecnico.apellido_p}}</td>
                 <td>{{incidencia.tipo}}</td>
                 <td>{{incidencia.direccion}}</td>
                 <td>{{incidencia.estado}}</td>
@@ -57,7 +57,6 @@
                 let $this = this;
                 axios.get(this.url).then(res => {
                     this.incidencias = res.data.data;
-                    console.log(res.data)
                     $this.makePagination(res.data)
 
                 })
@@ -75,7 +74,10 @@
             fetchPaginateIncidencias(url){
                 this.url=url;
                 this.getIncidencias()
-            }
+            },
+            verIncidencia(id){
+                location.href='/incidencias/'+id;
+            },
         }
     }
 </script>
