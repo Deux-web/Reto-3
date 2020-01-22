@@ -79,5 +79,9 @@
     </div>
 </footer>
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/mapa.js')}}"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{\Config::get('services')['google']['maps']['api-key']}}&callback=initMap">
+</script>
 </body>
 </html>
