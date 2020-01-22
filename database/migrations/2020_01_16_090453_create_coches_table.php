@@ -14,7 +14,7 @@ class CreateCochesTable extends Migration
     public function up()
     {
         Schema::create('coches', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id')->primary();
             $table->timestamps();
             $table->string('matricula')->unique();
             $table->string('marca');
