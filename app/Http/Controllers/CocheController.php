@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Coche;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CocheController extends Controller
 {
@@ -12,10 +13,11 @@ class CocheController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($matricula)
     {
-        $coches = Coche::all();
-        return view('view_incidencias', ['coches' => $coches]);
+        $coche = Coche::where('matricula',$matricula)->first();
+        $conductores = $coche->conductores;
+        return response()->json($conductores);
     }
 
     /**

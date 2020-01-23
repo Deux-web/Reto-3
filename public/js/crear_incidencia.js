@@ -37,4 +37,16 @@ window.onload = function () {
             div_urbano.removeClass('d-block').addClass('d-none');
         }
     }
+
+    $("#buscarConductor").click(function axaj() {
+        axios.get('/coches/'+$("#matricula").val())
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    });
 };

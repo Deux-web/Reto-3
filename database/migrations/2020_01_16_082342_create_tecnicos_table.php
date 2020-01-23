@@ -23,7 +23,7 @@ class CreateTecnicosTable extends Migration
             $table->string('telefono')->unique();;
             $table->string('estado');
             $table->boolean('habilitado');
-            $table->unsignedBigInteger('id_centro');
+            $table->unsignedBigInteger('centro_id');
         });
     }
 

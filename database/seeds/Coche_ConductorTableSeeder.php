@@ -15,15 +15,15 @@ class Coche_ConductorTableSeeder extends Seeder
 
         for ($i = 1; $i <= 50; $i++) {
             DB::table('coche_conductor')->insert([
-                'id_conductor' => $i,
-                'id_coche' => $i,
+                'conductor_id' => $i,
+                'coche_id' => $i,
             ]);
         }
 
         for ($i = 51; $i <= 150; $i++) {
             DB::table('coche_conductor')->insert([
-                'id_conductor' => $i,
-                'id_coche' => $faker->numberBetween(1, 50),
+                'conductor_id' => $i,
+                'coche_id' => $faker->numberBetween(1, 50),
             ]);
         }
     }
