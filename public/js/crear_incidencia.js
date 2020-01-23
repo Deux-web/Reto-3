@@ -43,6 +43,7 @@ window.onload = function () {
             .then(function (response) {
                 // handle success
                 console.log(response);
+                $('#tablaConductores').children().remove();
                 $.each(response.data, function (index) {
                     if (response.data[index].titular == 1) {
                         $('#tablaConductores').append(
