@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         //Llamamos a la vista
         $centros = Centro::all();
-        return view('view_registo_usuarios',['centros' => $centros]);
+        return view('view_registro_usuarios',['centros' => $centros]);
     }
 
     /**
@@ -39,8 +39,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //Prueba crear usuarios
-        Post::create($request->all());
-        return redirect('');
+        User::create($request->all());
+        return redirect(view('view_registro_usuarios'));
     }
 
     /**
