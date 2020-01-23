@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{secure_asset('css/app.css')}}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{URL::asset('images/road-tech-assistance.ico')}}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{URL::asset('images/road-tech-assistance.ico')}}" type="image/x-icon" sizes="16x16">
     <script src="https://kit.fontawesome.com/122a23edb6.js" crossorigin="anonymous"></script>
     <style>
         body {

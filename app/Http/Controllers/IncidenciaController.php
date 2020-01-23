@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Centro;
+use App\Coche;
 use App\Comentario;
 use App\Conductor;
 use App\Incidencia;

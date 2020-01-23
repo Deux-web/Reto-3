@@ -1,7 +1,8 @@
 @extends('layout_html')
 @section('head')
     <title>Todas las incidencias</title>
-
+    <script src="{{URL::asset('js/app.js')}}"></script>
+    <script src="{{URL::asset('js/incidencias.js')}}"></script>
 @endsection
 @section('contenido')
     <div>
