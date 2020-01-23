@@ -1973,7 +1973,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2010,6 +2009,20 @@ __webpack_require__.r(__webpack_exports__);
     },
     verIncidencia: function verIncidencia(id) {
       location.href = '/incidencias/' + id;
+    },
+    dividirDireccion: function dividirDireccion(incidencia) {
+      var direccion_array = incidencia.split(',');
+      var direccion_string = '';
+
+      if (direccion_array.length > 5) {
+        // interurbano
+        direccion_string += direccion_array[1] + ' ' + direccion_array[3] + ' KM:' + direccion_array[4] + ' ' + direccion_array[5];
+      } else {
+        //urbano
+        direccion_string += direccion_array[1] + ' ' + direccion_array[2] + ' ' + direccion_array[3] + ' ' + direccion_array[4];
+      }
+
+      return direccion_string;
     }
   }
 });
@@ -37387,18 +37400,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
-    _c("table", { staticClass: "mt-3 table table-striped table-hover" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.incidencias, function(incidencia) {
-          return _c(
-            "tr",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.verIncidencia(incidencia.id)
+    _c(
+      "table",
+      {
+        staticClass: "mt-3 table table-striped table-hover",
+        attrs: { id: "tabla_incidencias" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.incidencias, function(incidencia) {
+            return _c(
+              "tr",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.verIncidencia(incidencia.id)
+                  }
                 }
               }
             },
@@ -37432,22 +37452,26 @@ var render = function() {
                       " " +
                       incidencia.tecnico_id.apellido_p
                   )
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(incidencia.direccion))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(incidencia.estado))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(incidencia.created_at))])
-            ]
-          )
-        }),
-        0
-      )
-    ]),
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(_vm.dividirDireccion(incidencia.direccion)))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(incidencia.estado))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(incidencia.created_at.substring(0, 16)))
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "pagination" }, [
       _c(
@@ -37496,21 +37520,35 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-dark text-white" }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cod. Incidencia")]),
+        _c("th", { attrs: { scope: "col", id: "th_cod" } }, [
+          _vm._v("Cod. Incidencia")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Afectado")]),
+        _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
+          _vm._v("Afectado")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Contacto")]),
+        _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
+          _vm._v("Contacto")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tecnico Asignado")]),
+        _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
+          _vm._v("Tecnico Asignado")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo")]),
+        _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [_vm._v("Tipo")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Lugar")]),
+        _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
+          _vm._v("Lugar")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Estado")]),
+        _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
+          _vm._v("Estado")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha de creacion")])
+        _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
+          _vm._v("Fecha de creacion")
+        ])
       ])
     ])
   }
@@ -49788,7 +49826,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49808,7 +49846,7 @@ component.options.__file = "resources/js/components/IncidenciasComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./IncidenciasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IncidenciasComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
