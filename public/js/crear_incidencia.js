@@ -39,10 +39,33 @@ window.onload = function () {
     }
 
     $("#buscarConductor").click(function axaj() {
-        axios.get('/coches/'+$("#matricula").val())
+        axios.get('/coches/' + $("#matricula").val())
             .then(function (response) {
                 // handle success
                 console.log(response);
+                $.each(response.data, function (index) {
+                    if (response.data[index].titular == 1) {
+                        $('#tablaConductores').append(
+                            '<tr>' +
+                            '<td>' + response.data[index].dni + '</td>' +
+                            '<td>' + response.data[index].nombre + '</td>' +
+                            '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
+                            '<td>Si</td>' +
+                            '<td>' + response.data[index].telefono + '</td>' +
+                            '<td><input type="radio" name="afectado"></td>' +
+                            '</tr>')
+                    } else {
+                        $('#tablaConductores').append(
+                            '<tr>' +
+                            '<td>' + response.data[index].dni + '</td>' +
+                            '<td>' + response.data[index].nombre + '</td>' +
+                            '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
+                            '<td>No</td>' +
+                            '<td>' + response.data[index].telefono + '</td>' +
+                            '<td><input type="radio" name="afectado"></td>' +
+                            '</tr>')
+                    }
+                })
             })
             .catch(function (error) {
                 // handle error

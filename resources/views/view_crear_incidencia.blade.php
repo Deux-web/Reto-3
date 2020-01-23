@@ -47,23 +47,15 @@
                         <th scope="col">Afectado</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
+                    <tbody id="tablaConductores">
+                    <!--<tr>
                         <td>72852975S</td>
                         <td>Jon</td>
                         <td>Santos Barata</td>
                         <td>Sí</td>
                         <td>688844408</td>
                         <td><input type="radio" name="afectado"></td>
-                    </tr>
-                    <tr>
-                        <td>72852976Q</td>
-                        <td>Amaia</td>
-                        <td>Santos Barata</td>
-                        <td>No</td>
-                        <td>666555888</td>
-                        <td><input type="radio" name="afectado"></td>
-                    </tr>
+                    </tr>-->
                     </tbody>
                 </table>
                 <div class="ml-lg-4 col-lg-2 d-none d-lg-block">
