@@ -62,6 +62,10 @@ Route::post('/usuarios/{id}','UserController@update')->name('usuario.update')->m
 
 //COCHES
 
-Route::get('/coches/{matricula}','CocheController@index')->name('coche.index');
+Route::get('/coches/{matricula}','CocheController@show')->name('coche.show');
+
+//CENTROS
+
+Route::get('/centros/{id}','CentroController@show')->name('centro.show');
 
 Auth::routes();

@@ -13,11 +13,9 @@ class CocheController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($matricula)
+    public function index()
     {
-        $coche = Coche::where('matricula',$matricula)->first();
-        $conductores = $coche->conductores;
-        return response()->json($conductores);
+        //
     }
 
     /**
@@ -47,9 +45,11 @@ class CocheController extends Controller
      * @param \App\Coche $coche
      * @return \Illuminate\Http\Response
      */
-    public function show(Coche $coche)
+    public function show($matricula)
     {
-        //
+        $coche = Coche::where('matricula',$matricula)->first();
+        $conductores = $coche->conductores;
+        return response()->json($conductores);
     }
 
     /**
