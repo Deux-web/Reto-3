@@ -23,7 +23,7 @@ class TecnicoTableSeeder extends Seeder
                 'telefono' => '6' . $faker->randomNumber(8),
                 'estado' =>$faker->randomElement(['Fuera de trabajo','Disponible','Ocupado']),
                 'habilitado'=>$faker->boolean,
-                'id_centro'=>$faker->numberBetween(1,7),
+                'centro_id'=>$faker->numberBetween(1,7),
             ]);
         }
     }

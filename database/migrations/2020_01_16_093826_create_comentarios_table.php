@@ -18,7 +18,7 @@ class CreateComentariosTable extends Migration
             $table->timestamps();
             $table->text('mensaje');
             $table->string('autor');
-            $table->unsignedBigInteger('id_incidencia');
+            $table->unsignedBigInteger('incidencia_id');
         });
     }
 

@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             CocheTableSeeder::class,
             ConductorTableSeeder::class,
             Coche_ConductorTableSeeder::class,
+            UsersTableSeeder::class,
+            IncidenciasTableSeeder::class,
         ]);
     }
 }

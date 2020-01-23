@@ -3,6 +3,7 @@
     <title>Crear incidencia</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/crear_incidencia.js')}}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('css/mapa.css')}}" rel="stylesheet">
 @endsection
 @section('contenido')
@@ -15,7 +16,7 @@
                     <div class="form-group row no-gutters">
                         <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
                                placeholder="0000-NNN ó NN-0000-N" required>
-                        <input type="button" class="btn btn-primary ml-3 " value="Comprobar">
+                        <input type="button" class="btn btn-primary ml-3 "  id="buscarConductor" value="Comprobar">
                     </div>
                 </div>
                 <div class="col-lg-3 col-5">

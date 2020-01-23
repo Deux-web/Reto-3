@@ -37420,37 +37420,37 @@ var render = function() {
                     return _vm.verIncidencia(incidencia.id)
                   }
                 }
-              },
-              [
-                _c("td", [_vm._v(_vm._s(incidencia.id))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.id_conductor.nombre +
-                        " " +
-                        incidencia.id_conductor.apellido_p
-                    )
+              }
+            },
+            [
+              _c("td", [_vm._v(_vm._s(incidencia.id))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    incidencia.conductor_id.nombre +
+                      " " +
+                      incidencia.conductor_id.apellido_p
                   )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.id_conductor.telefono +
-                        " " +
-                        incidencia.id_conductor.email
-                    )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    incidencia.conductor_id.telefono +
+                      " " +
+                      incidencia.conductor_id.email
                   )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.id_tecnico.nombre +
-                        " " +
-                        incidencia.id_tecnico.apellido_p
-                    )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    incidencia.tecnico_id.nombre +
+                      " " +
+                      incidencia.tecnico_id.apellido_p
                   )
                 ]),
                 _vm._v(" "),
@@ -49826,7 +49826,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49846,7 +49846,7 @@ component.options.__file = "resources/js/components/IncidenciasComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./IncidenciasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IncidenciasComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

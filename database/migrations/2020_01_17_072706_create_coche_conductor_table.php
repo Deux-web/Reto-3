@@ -15,8 +15,8 @@ class CreateCocheConductorTable extends Migration
     {
         Schema::create('coche_conductor', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('id_coche')->unsigned();
-            $table->bigInteger('id_conductor')->unsigned();
+            $table->bigInteger('coche_id')->unsigned();
+            $table->bigInteger('conductor_id')->unsigned();
         });
     }
 

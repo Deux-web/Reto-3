@@ -27,10 +27,10 @@ class CreateIncidenciasTable extends Migration
             $table->string('estado_conductor');
             $table->string('operador');
             $table->date('fecha_resolucion')->nullable();
-            $table->unsignedBigInteger('id_conductor');
-            $table->unsignedBigInteger('id_coche');
-            $table->unsignedBigInteger('id_centro');
-            $table->unsignedBigInteger('id_tecnico')->nullable();
+            $table->unsignedBigInteger('conductor_id');
+            $table->unsignedBigInteger('coche_id');
+            $table->unsignedBigInteger('centro_id');
+            $table->unsignedBigInteger('tecnico_id')->nullable();
         });
     }
 
