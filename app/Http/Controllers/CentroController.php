@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Centro;
+use App\Tecnico;
 use Illuminate\Http\Request;
 
 class CentroController extends Controller
@@ -44,9 +45,11 @@ class CentroController extends Controller
      * @param  \App\Centro  $centro
      * @return \Illuminate\Http\Response
      */
-    public function show(Centro $centro)
+    public function show($id)
     {
-        //
+        $centro=Centro::find($id);
+        $tecnicos=Tecnico::where('centro_id','=',$centro->id)->orderBy('estado')->get();
+        return response()->json($tecnicos);
     }
 
     /**

@@ -48,14 +48,6 @@
                     </tr>
                     </thead>
                     <tbody id="tablaConductores">
-                    <!--<tr>
-                        <td>72852975S</td>
-                        <td>Jon</td>
-                        <td>Santos Barata</td>
-                        <td>Sí</td>
-                        <td>688844408</td>
-                        <td><input type="radio" name="afectado"></td>
-                    </tr>-->
                     </tbody>
                 </table>
                 <div class="ml-lg-4 col-lg-2 d-none d-lg-block">
@@ -151,13 +143,9 @@
                     <div class="row no-gutters">
                         <h3 class="col-12"><label for="centro">Centro</label></h3>
                         <select name="centro" id="centro" class="form-control col-10 mb-2 mb-lg-0">
-                            <option value="agurain">Agurain</option>
-                            <option value="basauri">Basauri</option>
-                            <option value="basauri">Durango</option>
-                            <option value="basauri">Usurbil</option>
-                            <option value="basauri">Azkoitia</option>
-                            <option value="basauri">Baranyain</option>
-                            <option value="basauri">Tafalla</option>
+                            @foreach($centros as $centro)
+                            <option value="{{$centro->id}}">{{$centro->nombre}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -170,26 +158,7 @@
                             <th scope="col">Seleccionar</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>Javier Alcalde</td>
-                            <td>Libre</td>
-                            <td><input type="radio" name="tecnico" id="t1"></td>
-                        <tr>
-                            <td>Daniel Sevilla</td>
-                            <td>Libre</td>
-                            <td><input type="radio" name="tecnico" id="t1"></td>
-                        </tr>
-                        <tr>
-                            <td>Ugaitz Umazabal</td>
-                            <td>Ocupado</td>
-                            <td><input type="radio" name="tecnico" id="t1" disabled></td>
-                        </tr>
-                        <tr>
-                            <td>Sergio Medinabeitia</td>
-                            <td>Fuera del trabajo</td>
-                            <td><input type="radio" name="tecnico" id="t1" disabled></td>
-                        </tr>
+                        <tbody id="tablaTecnicos">
                         </tbody>
                     </table>
                 </div>

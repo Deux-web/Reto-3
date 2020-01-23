@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Centro;
 use App\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,8 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('view_crear_incidencia');
+        $centros=Centro::all();
+        return view('view_crear_incidencia',['centros'=>$centros]);
     }
 
     /**
