@@ -14,7 +14,6 @@
                         <h3 class="col-12 text-center mt-2">Creación de usuario</h3>
                     </div>
 
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('usuario.store') }}" id="form_registro">
                             @csrf
@@ -24,7 +23,7 @@
                                     usuario</label>
 
                                 <div class="col-md-6">
-                                    <select name="rol" class="form-control" id="tipo_usuario">
+                                    <select name="rol" class="form-control" id="rol" autofocus>
                                         <option disabled selected> - Seleccione un tipo de usuario -</option>
                                         <option value="OPERADOR"> Operador</option>
                                         <option value="TECNICO"> Técnico</option>
@@ -33,12 +32,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
                                 <div class="col-md-6">
-                                    <input id="nombre" type="text"
-                                           class="form-control" name="nombre"
-                                           required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                    <div id="texto_name" class="form-control-feedback text-danger d-none">Nombre no válido</div>
+
                                 </div>
                             </div>
 
@@ -48,6 +47,8 @@
                                 <div class="col-md-6">
                                     <input id="apellido" type="text"
                                            class="form-control" name="apellido_p" required autofocus>
+                                    <div id="texto_apellido_p" class="form-control-feedback text-danger d-none">Apellido no válido</div>
+
                                 </div>
                             </div>
 
@@ -57,6 +58,19 @@
                                 <div class="col-md-6">
                                     <input id="apellido2" type="text"
                                            class="form-control" name="apellido_s" required autofocus>
+                                    <div id="texto_apellido_s" class="form-control-feedback text-danger d-none">Apellido no válido</div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
+
+                                <div class="col-md-6">
+                                    <input id="usuario" type="text"
+                                           class="form-control" name="usuario" required autofocus>
+                                    <div id="texto_usuario" class="form-control-feedback text-danger d-none">Usuario no válido</div>
+
                                 </div>
                             </div>
 
@@ -67,6 +81,8 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control" name="email" required>
+                                    <div id="texto_email" class="form-control-feedback text-danger d-none">Email no válido</div>
+
                                 </div>
                             </div>
 
@@ -87,6 +103,7 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                            name="password_confirmation" required>
+                                    <div id="texto_pass" class="form-control-feedback text-danger d-none">Las contraseñas no coinciden</div>
                                 </div>
                             </div>
                             <div class="tecnico d-none">
@@ -105,9 +122,11 @@
                                         <select class="form-control" id="centro">
                                             <option disabled selected>- Seleccione un centro -</option>
                                             @foreach($centros as $centro)
-                                                <option value="{{$centro->id}}">{{$centro->id}}</option>
+                                                <option value="{{$centro->id}}">{{$centro->nombre}}</option>
                                             @endforeach
                                         </select>
+                                        <div id="texto_centro" class="form-control-feedback text-danger d-none">Seleccione un centro</div>
+
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +134,7 @@
 
 
                                 <div class="col-md-6 offset-md-4">
-                                    <input id="limpiar_form" type="reset" class="btn btn-primary" name="limpiar_form">
+                                    <input id="limpiar_form" type="reset" class="btn btn-primary" name="limpiar_form" onclick="validarFormulario();">
                                     <input type="submit" class="btn btn-primary" id="crear" value="Crear Usuario">
                                 </div>
                             </div>
