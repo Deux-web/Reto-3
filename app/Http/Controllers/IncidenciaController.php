@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Centro;
-use App\Comentario;
-use App\Conductor;
+
 use App\Incidencia;
-use App\Tecnico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
@@ -17,10 +13,10 @@ class IncidenciaController extends Controller
     {
         $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(5);
         foreach ($incidencias as $incidencia){
-            $cliente=Conductor::find($incidencia->id_conductor);
-            $incidencia->id_conductor=$cliente;
-            $tecnico=Tecnico::find($incidencia->id_tecnico);
-            $incidencia->id_tecnico=$tecnico;
+            $cliente=$incidencia->conductor;
+            $incidencia->conductor_id=$cliente;
+            $tecnico=$incidencia->tecnico;
+            $incidencia->tecnico_id=$tecnico;
         }
         return response()->json($incidencias);
     }
@@ -66,10 +62,10 @@ class IncidenciaController extends Controller
     public function show($id)
     {
         $incidencia = Incidencia::find($id);
-        $conductor = Conductor::find($incidencia->id_conductor);
-        $tecnico = Tecnico::find($incidencia->id_tecnico);
-        $centro = Centro::find($incidencia->id_centro);
-        $comentarios = Comentario::all()->where('id_incidencia', $incidencia->id);
+        $conductor = $incidencia->conductor;
+        $tecnico = $incidencia->tecnico;
+        $centro = $incidencia->centro;
+        $comentarios = $incidencia->comentarios;
         $user = Auth::user();
         return view('view_incidencia', ['incidencia' => $incidencia, 'tecnico' => $tecnico, 'conductor' => $conductor, 'centro' => $centro, 'user' => $user, 'comentarios' => $comentarios]);
     }

@@ -59,4 +59,8 @@ Route::get('/usuarios/{id}/edit','UserController@edit')->name('usuario.edit')->m
 
 Route::post('/usuarios/{id}','UserController@update')->name('usuario.update')->middleware('auth');
 
+//COCHES
+
+Route::get('/coches/{matricula}','CocheController@index')->name('coche.index');
+
 Auth::routes();
