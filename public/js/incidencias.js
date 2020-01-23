@@ -9,39 +9,46 @@ window.onload = function () {
     let th_estado = $('#th_estado');
     let th_fechacreacion = $('#th_fechacreacion');
 
-    th_cod.on('click',function () {
-       sortTable(0);
+    let columnas = [th_cod, th_afectado, th_contacto, th_tecnicoasignado, th_tipo, th_lugar, th_estado, th_fechacreacion];
+    columnas.forEach(value => {
+        value.css('user-select', 'none');
+    });
+    let nombres_columnas = ['Cod. Incidencia', 'Afectado', 'Contacto', 'Tecnico Asignado', 'Tipo', 'Lugar', 'Estado', 'Fecha de creacion'];
+
+    th_cod.on('click', function (event) {
+        sortTable(0, event);
     });
 
-    th_afectado.on('click',function () {
-        sortTable(1);
+    th_afectado.on('click', function (event) {
+        sortTable(1, event);
     });
 
-    th_contacto.on('click',function () {
-        sortTable(2);
+    th_contacto.on('click', function (event) {
+        sortTable(2, event);
     });
 
-    th_tecnicoasignado.on('click',function () {
-        sortTable(3);
+    th_tecnicoasignado.on('click', function (event) {
+        sortTable(3, event);
     });
 
-    th_tipo.on('click',function () {
-        sortTable(4);
+    th_tipo.on('click', function (event) {
+        sortTable(4, event);
     });
 
-    th_lugar.on('click',function () {
-        sortTable(5);
+    th_lugar.on('click', function (event) {
+        sortTable(5, event);
     });
 
-    th_estado.on('click',function () {
-        sortTable(6);
+    th_estado.on('click', function (event) {
+        sortTable(6, event);
     });
 
-    th_fechacreacion.on('click',function () {
-        sortTable(7);
+    th_fechacreacion.on('click', function (event) {
+        sortTable(7, event);
     });
 
-    function sortTable(n) {
+    function sortTable(n, event) {
+        resetearNombres();
         let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = $('#tabla_incidencias');
         switching = true;
@@ -54,11 +61,15 @@ window.onload = function () {
                 x = rows[i].getElementsByTagName("td")[n];
                 y = rows[i + 1].getElementsByTagName("td")[n];
                 if (dir === "asc") {
+                    let columna = $('#' + event.target.id);
+                    columna.text(nombres_columnas[n] + ' ↑');
                     if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                         shouldSwitch = true;
                         break;
                     }
                 } else if (dir === "desc") {
+                    let columna = $('#' + event.target.id);
+                    columna.text(nombres_columnas[n] + ' ↓');
                     if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                         shouldSwitch = true;
                         break;
@@ -76,5 +87,11 @@ window.onload = function () {
                 }
             }
         }
+    }
+
+    function resetearNombres() {
+        columnas.forEach((value, index) => {
+            value.text(nombres_columnas[index]);
+        })
     }
 };

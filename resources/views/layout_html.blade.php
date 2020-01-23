@@ -52,7 +52,7 @@
     </nav>
 </header>
 @yield('contenido')
-<footer class="footer font-small pt-3 bg-dark text-white position-relative" style="bottom: 0;">
+<footer class="footer font-small pt-3 bg-dark text-white" style="bottom: 0;">
     <div class="container">
         <ul class="list-unstyled list-inline text-center mb-0">
             <li class="list-inline-item">
