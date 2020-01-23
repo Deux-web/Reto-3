@@ -27,6 +27,7 @@ Route::get('/api/incidencias','IncidenciaController@search')->name('incidencia.s
 
 Route::get('/incidencias','IncidenciaController@index')->name('incidencia.index')->middleware('auth');
 
+
 Route::get('/incidencias/create','IncidenciaController@create')->name('incidencia.create')->middleware('auth');
 
 Route::post('/incidencias','IncidenciaController@store')->name('incidencia.store')->middleware('auth');
