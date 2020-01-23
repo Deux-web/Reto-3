@@ -45,8 +45,13 @@ Route::post('/incidencias/{id}','IncidenciaController@update')->name('incidencia
 
 Route::get('/usuarios','UserController@index')->name('usuario.index')->middleware('auth');
 
-Route::get('/usuarios/create',function () {
+/*Route::get('/usuarios/create',function () {
     return redirect()->route('register');})->name('usuario.create');
+*/
+//prueba insertar usuario
+Route::post('/usuarios', 'UserController@store')->name('usuario.store')->middleware('auth');
+
+Route::get('/usuarios/create','UserController@create')->name('usuario.create')->middleware('auth');
 
 Route::get('/usuarios/{id}','UserController@show')->name('usuario.show')->middleware('auth');
 
