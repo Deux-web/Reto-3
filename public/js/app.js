@@ -37408,9 +37408,9 @@ var render = function() {
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    incidencia.id_conductor.nombre +
+                    incidencia.conductor_id.nombre +
                       " " +
-                      incidencia.id_conductor.apellido_p
+                      incidencia.conductor_id.apellido_p
                   )
                 )
               ]),
@@ -37418,9 +37418,9 @@ var render = function() {
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    incidencia.id_conductor.telefono +
+                    incidencia.conductor_id.telefono +
                       " " +
-                      incidencia.id_conductor.email
+                      incidencia.conductor_id.email
                   )
                 )
               ]),
@@ -37428,9 +37428,9 @@ var render = function() {
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    incidencia.id_tecnico.nombre +
+                    incidencia.tecnico_id.nombre +
                       " " +
-                      incidencia.id_tecnico.apellido_p
+                      incidencia.tecnico_id.apellido_p
                   )
                 )
               ]),

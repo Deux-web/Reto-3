@@ -17,9 +17,9 @@
             <tbody>
             <tr v-for="incidencia in incidencias" v-on:click="verIncidencia(incidencia.id)">
                 <td>{{incidencia.id}}</td>
-                <td>{{incidencia.id_conductor.nombre+' '+incidencia.id_conductor.apellido_p}}</td>
-                <td>{{incidencia.id_conductor.telefono+' '+incidencia.id_conductor.email}}</td>
-                <td>{{incidencia.id_tecnico.nombre+' '+incidencia.id_tecnico.apellido_p}}</td>
+                <td>{{incidencia.conductor_id.nombre+' '+incidencia.conductor_id.apellido_p}}</td>
+                <td>{{incidencia.conductor_id.telefono+' '+incidencia.conductor_id.email}}</td>
+                <td>{{incidencia.tecnico_id.nombre+' '+incidencia.tecnico_id.apellido_p}}</td>
                 <td>{{incidencia.tipo}}</td>
                 <td>{{incidencia.direccion}}</td>
                 <td>{{incidencia.estado}}</td>
