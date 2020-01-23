@@ -52,7 +52,27 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $incidencia= new Incidencia();
+
+        if (request('tipo')=='otros'){
+            $incidencia->tipo=request('tipo_otros');
+        }
+        else{
+            $incidencia->tipo = request('tipo');
+        }
+        $incidencia->titulo= request('titulo');
+        $incidencia->descripcion('descripcion');
+        if (request('zona')=='interurbana'){
+            $zona=request('zona');
+            $provincia=request('provincia');
+            $tipovia=request('tipovia');
+            $carretera=request('carretera');
+            $km=request('km');
+            $direccion_sentido=request('direccion_sentido');
+            $proximidad=request('proximidad');
+            $incidencia->direccion=$zona.','.$provincia.','.$tipovia.',';
+        }
+        return $request;
     }
 
     /**

@@ -51,7 +51,7 @@ window.onload = function () {
                             '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                             '<td>Si</td>' +
                             '<td>' + response.data[index].telefono + '</td>' +
-                            '<td><input type="radio" name="afectado"></td>' +
+                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
                             '</tr>')
                     } else {
                         $('#tablaConductores').append(
@@ -61,7 +61,7 @@ window.onload = function () {
                             '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                             '<td>No</td>' +
                             '<td>' + response.data[index].telefono + '</td>' +
-                            '<td><input type="radio" name="afectado"></td>' +
+                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
                             '</tr>')
                     }
                 })
@@ -82,7 +82,7 @@ window.onload = function () {
                                 '<tr>' +
                                 '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                                 '<td>' + response.data[index].estado + '</td>' +
-                                '<td><input type="radio" name="tecnico"  disabled id="' + response.data[index].id + '"></td>'+
+                                '<td><input type="radio" name="tecnico_id"  disabled id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>'+
                                 '</tr>')
                         }
                         else{
@@ -90,7 +90,7 @@ window.onload = function () {
                                 '<tr>' +
                                 '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                                 '<td>' + response.data[index].estado + '</td>' +
-                                '<td><input type="radio" name="tecnico" id="' + response.data[index].id + '"></td>' +
+                                '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>' +
                                 '</tr>'
                             )
                         }

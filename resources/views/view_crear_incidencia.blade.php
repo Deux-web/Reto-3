@@ -16,12 +16,12 @@
                     <div class="form-group row no-gutters">
                         <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
                                placeholder="0000-NNN ó NN-0000-N" required>
-                        <input type="button" class="btn btn-primary ml-3 "  id="buscarConductor" value="Comprobar">
+                        <input type="button" class="btn btn-primary ml-3 " id="buscarConductor" value="Comprobar">
                     </div>
                 </div>
                 <div class="col-lg-3 col-5">
                     <h3><label for="tipoaveria">Tipo de avería</label></h3>
-                    <select name="tipoaveria" id="tipoaveria" class="form-control" required>
+                    <select name="tipo" id="tipoaveria" class="form-control" required>
                         <option disabled selected>Seleccione tipo de avería</option>
                         <option value="fallo_coche">Fallo del coche</option>
                         <option value="pinchazo">Pinchazo</option>
@@ -31,7 +31,7 @@
                 </div>
                 <div id="esp_otros" class="d-none col-lg-3 ml-3">
                     <h3><label for="otros">Especifica avería</label></h3>
-                    <input type="text" name="" id="otros" class="form-control p-1">
+                    <input type="text" name="tipo_otros" id="otros" class="form-control p-1">
                 </div>
             </div>
             <div class="form-group row no-gutters">
@@ -50,11 +50,6 @@
                     <tbody id="tablaConductores">
                     </tbody>
                 </table>
-                <div class="ml-lg-4 col-lg-2 d-none d-lg-block">
-                    <img class="rounded-lg"
-                         src="https://www.actualidadmotor.com/wp-content/uploads/2019/03/fiat-multipla-techo-830x460.jpg"
-                         alt="" width="100%">
-                </div>
             </div>
             <div class="form-group row no-gutters">
                 <h3 class="col-12 mb-0"><label for="titulo">Título:</label></h3>
@@ -76,9 +71,9 @@
                 </div>
                 <div class="col-lg-4 col-12">
                     <h4 class="d-inline"><label for="rb_urbano" class="ml-lg-5 mt-1 mt-lg-0">Urbano</label></h4>
-                    <input class="ml-2 mr-2" type="radio" name="zona" id="rb_urbano">
+                    <input class="ml-2 mr-2" type="radio" name="zona" id="rb_urbano" value="Urbana">
                     <h4 class="d-inline">/</h4>
-                    <input class="ml-2 mr-2" type="radio" name="zona" id="rb_interurbano" checked>
+                    <input class="ml-2 mr-2" type="radio" name="zona" id="rb_interurbano" value="Interurbana" checked>
                     <h4 class="d-inline"><label for="rb_interurbano">Interurbano</label></h4>
                 </div>
             </div>
@@ -106,16 +101,17 @@
                         <div class="col-12 row">
                             <label for="carretera" class="col-5 pl-1"><strong>Carretera</strong></label>
                             <label for="km" class="col-5 pl-1"><strong>KM</strong></label>
-                            <input type="text" name="" id="carretera" class="form-control col-4 p-1 my-1"
+                            <input type="text" name="carretera" id="carretera" class="form-control col-4 p-1 my-1"
                                    placeholder="Carretera">
-                            <input type="number" name="" id="km" class="form-control col-4 p-1 my-1 offset-1"
+                            <input type="number" name="km" id="km" class="form-control col-4 p-1 my-1 offset-1"
                                    placeholder="KM">
                         </div>
 
                         <div class="row no-gutters">
                             <label for="direccion_sentido" class="col-12 pl-1"><strong>Dirección /
                                     Sentido</strong></label>
-                            <input type="text" id="direccion_sentido" class="form-control col-lg-10 col-12 p-1 my-1">
+                            <input type="text" id="direccion_sentido" name="direccion_sentido"
+                                   class="form-control col-lg-10 col-12 p-1 my-1">
                             <label for="proximidad" class="col-12"><strong>Proximidad</strong></label>
                             <input type="text" name="proximidad" id="proximidad"
                                    class="form-control col-lg-10 col-12 p-1 my-1">
@@ -130,6 +126,7 @@
                         <input type="text" name="portal" id="portal" class="form-control col-10">
                     </div>
                 </div>
+                <!------------------MAPA----------------->
                 <div class="col-lg-6 mt-3 d-flex justify-content-center" id="mapa">
                     <div id="floating-panel" class="d-none d-lg-block">
                         <input id="address" type="textbox" class="" value="">
@@ -144,7 +141,7 @@
                         <h3 class="col-12"><label for="centro">Centro</label></h3>
                         <select name="centro" id="centro" class="form-control col-10 mb-2 mb-lg-0">
                             @foreach($centros as $centro)
-                            <option value="{{$centro->id}}">{{$centro->nombre}}</option>
+                                <option value="{{$centro->id}}">{{$centro->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
