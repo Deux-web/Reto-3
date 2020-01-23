@@ -1,6 +1,6 @@
 @extends('layout_html')
 @section('head')
-    <title>Incidencia {{$incidencia->id}} - {{$incidencia->estado}} - {{$user->rol}}</title>
+    <title>Inc. {{$incidencia->id}} - {{$incidencia->estado}} - {{$user->rol}}</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/incidencia.js')}}"></script>
 @endsection
@@ -138,11 +138,13 @@
                             <h4 class="mb-0"><label for="taller">Taller</label></h4>
                             <input type="text" name="taller" id="taller" class="form-control mb-1">
                             <h4 class="mb-0"><label for="textarea_res_taller">Mensaje de resolución</label></h4>
-                            <textarea name="textarea_res_taller" id="textarea_res_taller" rows="4" class="form-control" style="resize: none;" placeholder="La incidencia ha sido resuelta..."></textarea>
+                            <textarea name="textarea_res_taller" id="textarea_res_taller" rows="4" class="form-control"
+                                      style="resize: none;" placeholder="La incidencia ha sido resuelta..."></textarea>
                         </div>
                         <div class="d-none form-group" id="res_insitu">
                             <h4 class="mb-0"><label for="textarea_res_insitu">Mensaje de resolución</label></h4>
-                            <textarea name="textarea_res_insitu" id="textarea_res_insitu" rows="4" class="form-control" style="resize: none;" placeholder="La incidencia ha sido resuelta..."></textarea>
+                            <textarea name="textarea_res_insitu" id="textarea_res_insitu" rows="4" class="form-control"
+                                      style="resize: none;" placeholder="La incidencia ha sido resuelta..."></textarea>
                         </div>
                         <input type="submit" value="Resolver incidencia" class="btn btn-primary w-100">
                     </form>
@@ -158,18 +160,25 @@
                     <h1>Lugar del incidente</h1>
                     @php
                         $lugar = explode(',',$incidencia->direccion);
-                        $urbano_interurbano = $lugar[0];
-                        $provincia = $lugar[1];
-                        $tipovia = $lugar[2];
-                        $carretera = $lugar[3];
-                        $km = $lugar[4];
-                        $sentido = $lugar[5];
-                        $proximidades = $lugar[6];
+                            $urbano_interurbano = $lugar[0];
+                            $provincia = $lugar[1];
+                        if (sizeof($lugar)>5){
+                            $tipovia = $lugar[2];
+                            $carretera = $lugar[3];
+                            $km = $lugar[4];
+                            $sentido = $lugar[5];
+                            $proximidades = $lugar[6];
+                        }
+                        else{
+                            $localidad = $lugar[2];
+                            $calle = $lugar[3];
+                            $numero = $lugar[4];
+                        }
                     @endphp
                     <div class="row">
                         <div class="col-6 mb-2">
                             <h3 class="mb-0"><label for="urbano_interurbano">Zona</label></h3>
-                            @if($urbano_interurbano == 'iu')
+                            @if(sizeof($lugar)>5)
                                 <input type="text" class="form-control" value="Interurbano" id="urbano_interurbano"
                                        disabled>
                             @else
@@ -182,25 +191,38 @@
                             <input type="text" name="provincia_m" id="provincia_m" class="form-control"
                                    value="{{$provincia}}" disabled>
                         </div>
-                        <div class="col-6 mb-2">
-                            <h3 class="mb-0"><label for="tipo_via">Tipo de vía</label></h3>
-                            <input type="text" name="tipo_via" id="tipo_via" class="form-control"
-                                   value="{{$tipovia}}" disabled>
-                        </div>
-                        <div class="col-6 mb-2">
-                            <h3 class="mb-0"><label for="carretera">Carretera</label></h3>
-                            <input type="text" name="provincia_m" id="carretera" class="form-control"
-                                   value="{{$carretera}}" disabled>
-                        </div>
-                        <div class="col-4 mb-2">
-                            <h3 class="mb-0"><label for="km">KM</label></h3>
-                            <input type="text" name="km" id="km" class="form-control" value="{{$km}}" disabled>
-                        </div>
-                        <div class="col-8 mb-2">
-                            <h3 class="mb-0"><label for="proximidades">Proximidades</label></h3>
-                            <input type="text" name="provincia_m" id="proximidades" class="form-control"
-                                   value="{{$proximidades}}" disabled>
-                        </div>
+                        @if(sizeof($lugar)>5)
+                            <div class="col-6 mb-2">
+                                <h3 class="mb-0"><label for="tipo_via">Tipo de vía</label></h3>
+                                <input type="text" name="tipo_via" id="tipo_via" class="form-control"
+                                       value="{{$tipovia}}" disabled>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <h3 class="mb-0"><label for="carretera">Carretera</label></h3>
+                                <input type="text" name="provincia_m" id="carretera" class="form-control"
+                                       value="{{$carretera}}" disabled>
+                            </div>
+                            <div class="col-4 mb-2">
+                                <h3 class="mb-0"><label for="km">KM</label></h3>
+                                <input type="text" name="km" id="km" class="form-control" value="{{$km}}" disabled>
+                            </div>
+                            <div class="col-8 mb-2">
+                                <h3 class="mb-0"><label for="proximidades">Proximidades</label></h3>
+                                <input type="text" name="provincia_m" id="proximidades" class="form-control"
+                                       value="{{$proximidades}}" disabled>
+                            </div>
+                        @else
+                            <div class="col-4 mb-2">
+                                <h3 class="mb-0"><label for="localidad">Localidad</label></h3>
+                                <input type="text" name="localidad" id="localidad" class="form-control"
+                                       value="{{$localidad}}" disabled>
+                            </div>
+                            <div class="col-8 mb-2">
+                                <h3 class="mb-0"><label for="direccion">Dirección</label></h3>
+                                <input type="text" name="direccion" id="direccion" class="form-control"
+                                       value="{{$calle . ' ' . $numero}}" disabled>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -220,8 +242,9 @@
                     </div>
                 </div>
             </form>
-            <div class="px-3 py-1 border rounded-sm bg-white">
-                @foreach($comentarios as $comentario)
+
+            @forelse($comentarios as $comentario)
+                <div class="px-3 py-1 border rounded-sm bg-white">
                     <div class="row">
                         <div class="col-9 py-2">
                             <h4>Mensaje</h4>
@@ -233,8 +256,14 @@
                             <span class="comentario">{{$comentario->autor}}</span>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @empty
+                <div>
+                    <div class="col-12 py-2 row">
+                        <h5>No hay comentarios !</h5>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection

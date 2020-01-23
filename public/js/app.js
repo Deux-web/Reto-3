@@ -1973,6 +1973,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37403,11 +37406,54 @@ var render = function() {
     _c(
       "table",
       {
-        staticClass: "mt-3 table table-striped table-hover",
+        staticClass: "mt-3 table table-striped table-hover pb-5",
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _vm._m(0),
+        _c("thead", { staticClass: "bg-dark text-white" }, [
+          _c("tr", [
+            _c(
+              "th",
+              {
+                attrs: { scope: "col", id: "th_cod" },
+                on: {
+                  click: function($event) {
+                    return _vm.sort("id")
+                  }
+                }
+              },
+              [_vm._v("Cod. Incidencia")]
+            ),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
+              _vm._v("Afectado")
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
+              _vm._v("Contacto")
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
+              _vm._v("Tecnico Asignado")
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [
+              _vm._v("Tipo")
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
+              _vm._v("Lugar")
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
+              _vm._v("Estado")
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
+              _vm._v("Fecha de creacion")
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37462,9 +37508,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(incidencia.estado))]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(incidencia.created_at.substring(0, 16)))
-                ])
+                _c("td", [_vm._v(_vm._s(incidencia.created_at))])
               ]
             )
           }),
@@ -37473,86 +37517,56 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
     _c("div", { staticClass: "pagination" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { disabled: !_vm.pagination.prev_page_url },
-          on: {
-            click: function($event) {
-              return _vm.fetchPaginateIncidencias(_vm.pagination.prev_page_url)
+      _c("div", { staticClass: "d-block mx-auto" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { disabled: !_vm.pagination.prev_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateIncidencias(
+                  _vm.pagination.prev_page_url
+                )
+              }
             }
-          }
-        },
-        [_vm._v("Anterior\n        ")]
-      ),
-      _vm._v(" "),
-      _c("span", [
-        _vm._v(
-          "Page " +
-            _vm._s(_vm.pagination.current_page) +
-            " of " +
-            _vm._s(_vm.pagination.last_page)
+          },
+          [_vm._v("Anterior\n        ")]
+        ),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Page " +
+              _vm._s(_vm.pagination.current_page) +
+              " of " +
+              _vm._s(_vm.pagination.last_page)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { disabled: !_vm.pagination.next_page_url },
+            on: {
+              click: function($event) {
+                return _vm.fetchPaginateIncidencias(
+                  _vm.pagination.next_page_url
+                )
+              }
+            }
+          },
+          [_vm._v("Siguiente\n        ")]
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { disabled: !_vm.pagination.next_page_url },
-          on: {
-            click: function($event) {
-              return _vm.fetchPaginateIncidencias(_vm.pagination.next_page_url)
-            }
-          }
-        },
-        [_vm._v("Siguiente\n        ")]
-      )
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-dark text-white" }, [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col", id: "th_cod" } }, [
-          _vm._v("Cod. Incidencia")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
-          _vm._v("Afectado")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
-          _vm._v("Contacto")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
-          _vm._v("Tecnico Asignado")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [_vm._v("Tipo")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
-          _vm._v("Lugar")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
-          _vm._v("Estado")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
-          _vm._v("Fecha de creacion")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

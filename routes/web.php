@@ -27,6 +27,7 @@ Route::get('/api/incidencias','IncidenciaController@search')->name('incidencia.s
 
 Route::get('/incidencias','IncidenciaController@index')->name('incidencia.index')->middleware('auth');
 
+
 Route::get('/incidencias/create','IncidenciaController@create')->name('incidencia.create')->middleware('auth');
 
 Route::post('/incidencias','IncidenciaController@store')->name('incidencia.store')->middleware('auth');
@@ -61,6 +62,10 @@ Route::post('/usuarios/{id}','UserController@update')->name('usuario.update')->m
 
 //COCHES
 
-Route::get('/coches/{matricula}','CocheController@index')->name('coche.index');
+Route::get('/coches/{matricula}','CocheController@show')->name('coche.show');
+
+//CENTROS
+
+Route::get('/centros/{id}','CentroController@show')->name('centro.show');
 
 Auth::routes();
