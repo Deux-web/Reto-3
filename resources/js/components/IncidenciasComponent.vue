@@ -18,7 +18,8 @@
                 <td>{{incidencia.id}}</td>
                 <td>{{incidencia.conductor_id.nombre+' '+incidencia.conductor_id.apellido_p}}</td>
                 <td>{{incidencia.conductor_id.telefono+' '+incidencia.conductor_id.email}}</td>
-                <td>{{incidencia.tecnico_id.nombre+' '+incidencia.tecnico_id.apellido_p}}</td>
+                <td v-if="incidencia.tecnico_id !== null">{{incidencia.tecnico_id.nombre+' '+incidencia.tecnico_id.apellido_p}}</td>
+                <td v-else class="text-danger">Sin técnico asignado</td>
                 <td>{{incidencia.tipo}}</td>
                 <td>{{dividirDireccion(incidencia.direccion)}}</td>
                 <td>{{incidencia.estado}}</td>

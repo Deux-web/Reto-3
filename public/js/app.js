@@ -1976,6 +1976,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37410,50 +37411,7 @@ var render = function() {
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _c("thead", { staticClass: "bg-dark text-white" }, [
-          _c("tr", [
-            _c(
-              "th",
-              {
-                attrs: { scope: "col", id: "th_cod" },
-                on: {
-                  click: function($event) {
-                    return _vm.sort("id")
-                  }
-                }
-              },
-              [_vm._v("Cod. Incidencia")]
-            ),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
-              _vm._v("Afectado")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
-              _vm._v("Contacto")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
-              _vm._v("Tecnico Asignado")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [
-              _vm._v("Tipo")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
-              _vm._v("Lugar")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
-              _vm._v("Estado")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
-              _vm._v("Fecha de creacion")
-            ])
-          ])
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37490,15 +37448,19 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.tecnico_id.nombre +
-                        " " +
-                        incidencia.tecnico_id.apellido_p
-                    )
-                  )
-                ]),
+                incidencia.tecnico_id !== null
+                  ? _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          incidencia.tecnico_id.nombre +
+                            " " +
+                            incidencia.tecnico_id.apellido_p
+                        )
+                      )
+                    ])
+                  : _c("td", { staticClass: "text-danger" }, [
+                      _vm._v("Sin técnico asignado")
+                    ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
                 _vm._v(" "),
@@ -37566,7 +37528,46 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-dark text-white" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col", id: "th_cod" } }, [
+          _vm._v("Cod. Incidencia")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
+          _vm._v("Afectado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
+          _vm._v("Contacto")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
+          _vm._v("Tecnico Asignado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [_vm._v("Tipo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
+          _vm._v("Lugar")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
+          _vm._v("Estado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
+          _vm._v("Fecha de creacion")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

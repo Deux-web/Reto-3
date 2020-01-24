@@ -75,4 +75,12 @@ Route::get('/coches/{matricula}','CocheController@show')->name('coche.show');
 
 Route::get('/centros/{id}','CentroController@show')->name('centro.show');
 
+//COMENTARIOS
+
+Route::post('/incidencias/{incidencia_id}/comentarios','ComentarioController@store')->name('comentario.store');
+
+//TECNICOS
+
+Route::post('/tecnicos/{id}','TecnicoController@update')->name('tecnico.update');
+
 Auth::routes();

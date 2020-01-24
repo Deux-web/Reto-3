@@ -50,6 +50,7 @@ class IncidenciasTableSeeder extends Seeder
             'centro_id' => 3,
             'tecnico_id' => 3,
         ]);
+
         for ($i = 0; $i < 60; $i++) {
             DB::table('incidencias')->insert([
                 'tipo' => 'Fallo del coche',
@@ -77,7 +78,7 @@ class IncidenciasTableSeeder extends Seeder
             'coche_id' => 23,
             'centro_id' => 2,
             'tecnico_id' => 3,
-            'tipo_resolucion'=> 'INSITU',
+            'tipo_resolucion'=> 'In situ',
             'estado'=>'RESUELTA'
         ]);
         DB::table('incidencias')->insert([
@@ -92,8 +93,9 @@ class IncidenciasTableSeeder extends Seeder
             'coche_id' => 23,
             'centro_id' => 2,
             'tecnico_id' => 3,
-            'tipo_resolucion'=> 'TALLER',
+            'tipo_resolucion'=> 'Taller',
             'estado'=>'RESUELTA'
         ]);
+
     }
 }

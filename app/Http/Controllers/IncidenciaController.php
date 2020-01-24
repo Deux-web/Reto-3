@@ -30,8 +30,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();
-        return view('view_incidencias', ['incidencias' => $incidencias]);
+        $user = Auth::user();
+        return view('view_incidencias', ['user' => $user]);
     }
 
     /**
@@ -41,7 +41,6 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-
         $centros = Centro::all();
         return view('view_crear_incidencia', ['centros' => $centros]);
     }
@@ -56,13 +55,14 @@ class IncidenciaController extends Controller
     {
         $incidencia = new Incidencia();
 
+
         if (request('tipo') == 'Otros') {
             $incidencia->tipo = request('tipo_otros');
         } else {
             $incidencia->tipo = request('tipo');
         }
         $incidencia->titulo = request('titulo');
-        $incidencia->descripcion=request('descripcion');
+        $incidencia->descripcion = request('descripcion');
         if (request('zona') == 'Interurbana') {
             $zona = request('zona');
             $provincia = request('provincia');
@@ -93,8 +93,12 @@ class IncidenciaController extends Controller
         $incidencia->coche_id = $coche->id;
         $incidencia->centro_id = request('centro');
         $incidencia->tecnico_id = request('tecnico_id');
+        $tecnico = $incidencia->tecnico;
+        $tecnico->estado = 'Ocupado';
 
+        $tecnico->save();
         $incidencia->save();
+
 
         return redirect(route('incidencia.index'));
     }
@@ -134,9 +138,38 @@ class IncidenciaController extends Controller
      * @param \App\Incidencia $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incidencia $incidencia)
+    public function update(Request $request, $id)
     {
-        //
+        $incidencia = Incidencia::find($id);
+        if ($incidencia->estado == 'ACTIVA') {
+            $incidencia->estado = 'PENDIENTE';
+
+            $incidencia->save();
+
+            return redirect(route('incidencia.show', $incidencia->id));
+        } else {
+            $tipo_resolucion = request('tipo_res');
+            $incidencia->tipo_resolucion = $tipo_resolucion;
+            if ($tipo_resolucion == 'In situ') {
+                $incidencia->mensaje_resolucion = request('textarea_res_insitu');
+            } else {
+                $taller = request('taller');
+                $mensaje = request('textarea_res_taller');
+                $mensaje_resolucion = $taller . ',' . $mensaje;
+                $incidencia->mensaje_resolucion = $mensaje_resolucion;
+            }
+            $incidencia->fecha_resolucion = date('Y-m-d');
+            $incidencia->estado = 'RESUELTA';
+
+            $incidencia->save();
+
+            $tecnico = $incidencia->tecnico;
+            $tecnico->estado = 'Disponible';
+
+            $tecnico->save();
+
+            return redirect(route('incidencia.index'));
+        }
     }
 
     /**

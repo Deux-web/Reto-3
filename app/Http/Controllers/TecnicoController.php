@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Incidencia;
 use App\Tecnico;
 use Illuminate\Http\Request;
 
@@ -67,9 +68,21 @@ class TecnicoController extends Controller
      * @param  \App\Tecnico  $tecnico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tecnico $tecnico)
+    public function update(Request $request, $id)
     {
-        //
+        $tecnico=Tecnico::find($id);
+
+        if (request('estado')=='Voy de camino'){
+            $tecnico->estado='Ocupado';
+        }
+        $tecnico->save();
+
+        $incidencia = Incidencia::find(request('incidencia_id'));
+        $incidencia->estado = 'PENDIENTE';
+
+        $incidencia->save();
+
+        return redirect(route('incidencia.show', $incidencia->id));
     }
 
     /**
