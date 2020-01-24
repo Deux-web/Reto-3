@@ -1,5 +1,4 @@
 window.onload = function () {
-    $("#buscarConductor").removeClass('disabled');
     comprobarMatricula();
     //-----------------------------
     let div_otros = $('#esp_otros');
