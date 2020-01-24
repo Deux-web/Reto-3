@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-        @elseif($incidencia->tecnico->id==$tecnico->id)
+        @elseif($incidencia->tecnico->email==$user->email)
             <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                 @if($incidencia->estado === 'ACTIVA')
                     <form action="{{route('tecnico.update',$tecnico->id)}}" method="POST">

@@ -4,12 +4,11 @@ window.onload = function () {
     comprobarNombre();
     comprobarApellido();
     comprobarApellido2();
-    comprobarUsuario();
     comprobarTelefono();
     comprobarPassword();
     comprobarEmail();
 
-    
+
 
     /*
         $("#crear").click(function (e) {
@@ -191,26 +190,6 @@ function comprobarApellido2(){
             $("#apellido2").addClass('is-invalid');
             $("#texto_apellido_s").addClass("d-block");
             $("#texto_apellido_s").removeClass("d-none");
-        }
-    });
-}
-//Comprueba que el usuario este comuesto por letras
-function comprobarUsuario(){
-    $("#usuario").focusout(function (event) {
-        var usuario = $("#usuario").val();
-
-        var regex = /^[a-zA-Z ]{2,30}$/;
-
-        if (regex.test(usuario)) {
-            $("#usuario").removeClass('is-invalid');
-            $("#usuario").addClass('is-valid');
-            $("#texto_usuario").addClass("d-none");
-            $("#texto_usuario").removeClass("d-block");
-        } else {
-            $("#usuario").removeClass('is-valid');
-            $("#usuario").addClass('is-invalid');
-            $("#texto_usuario").addClass("d-block");
-            $("#texto_usuario").removeClass("d-none");
         }
     });
 }
