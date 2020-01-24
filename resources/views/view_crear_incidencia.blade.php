@@ -14,8 +14,9 @@
                 <div class="col-lg-4 col-6">
                     <h3><label for="matricula">Matrícula</label></h3>
                     <div class="form-group row no-gutters">
+
                         <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
-                               placeholder="0000-NNN ó NN-0000-N" required>
+                               placeholder="AAA-000 / 0000-BBB " autofocus required>
                         <input type="button" class="btn btn-primary ml-3 " id="buscarConductor" value="Comprobar">
                     </div>
                 </div>
@@ -23,10 +24,10 @@
                     <h3><label for="tipoaveria">Tipo de avería</label></h3>
                     <select name="tipo" id="tipoaveria" class="form-control" required>
                         <option disabled selected>Seleccione tipo de avería</option>
-                        <option value="fallo_coche">Fallo del coche</option>
-                        <option value="pinchazo">Pinchazo</option>
-                        <option value="golpe">golpe</option>
-                        <option value="otros">Otros</option>
+                        <option value="Fallo del coche">Fallo del coche</option>
+                        <option value="Pinchazo">Pinchazo</option>
+                        <option value="Golpe">golpe</option>
+                        <option value="Otros">Otros</option>
                     </select>
                 </div>
                 <div id="esp_otros" class="d-none col-lg-3 ml-3">
@@ -59,7 +60,7 @@
                           style="resize: none"></textarea>
             </div>
             <div class="form-group row no-gutters">
-                <div class="col-lg-8 col-12 mb-2 mb-lg-0">
+                <div class="col-lg-6 col-9 mb-2 mb-lg-0">
                     <h4 class="d-inline mr-3"><label for="estado_conductor">Estado del conductor</label></h4>
                     <select name="estado_conductor" id="estado_conductor" class="form-control w-lg-auto d-inline col-5">
                         <option disabled selected>Seleccione una opción</option>
@@ -69,7 +70,11 @@
                         <option value="medico_ya">Requiere atención médica URGENTE</option>
                     </select>
                 </div>
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-1  col-2 mb-2 mb-lg-0">
+                    <h4 class="d-inline mr-3">Taxi</h4>
+                    <input type="checkbox" name="taxi" value="1">
+                </div>
+                <div class="col-lg-5 col-12">
                     <h4 class="d-inline"><label for="rb_urbano" class="ml-lg-5 mt-1 mt-lg-0">Urbano</label></h4>
                     <input class="ml-2 mr-2" type="radio" name="zona" id="rb_urbano" value="Urbana">
                     <h4 class="d-inline">/</h4>
@@ -140,6 +145,7 @@
                     <div class="row no-gutters">
                         <h3 class="col-12"><label for="centro">Centro</label></h3>
                         <select name="centro" id="centro" class="form-control col-10 mb-2 mb-lg-0">
+                            <option disabled selected>Centro</option>
                             @foreach($centros as $centro)
                                 <option value="{{$centro->id}}">{{$centro->nombre}}</option>
                             @endforeach
