@@ -93,8 +93,12 @@ class IncidenciaController extends Controller
         $incidencia->coche_id = $coche->id;
         $incidencia->centro_id = request('centro');
         $incidencia->tecnico_id = request('tecnico_id');
+        $tecnico = $incidencia->tecnico;
+        $tecnico->estado = 'Ocupado';
 
+        $tecnico->save();
         $incidencia->save();
+
 
         return redirect(route('incidencia.index'));
     }
@@ -137,28 +141,35 @@ class IncidenciaController extends Controller
     public function update(Request $request, $id)
     {
         $incidencia = Incidencia::find($id);
-        $tipo_resolucion = request('tipo_res');
-        $incidencia->tipo_resolucion = $tipo_resolucion;
-        if ($tipo_resolucion == 'In situ') {
-            $incidencia->mensaje_resolucion = request('textarea_res_insitu');
+        if ($incidencia->estado == 'ACTIVA') {
+            $incidencia->estado = 'PENDIENTE';
+
+            $incidencia->save();
+
+            return redirect(route('incidencia.show', $incidencia->id));
         } else {
-            $taller = request('taller');
-            $mensaje = request('textarea_res_taller');
-            $mensaje_resolucion = $taller . ',' . $mensaje;
-            $incidencia->mensaje_resolucion = $mensaje_resolucion;
+            $tipo_resolucion = request('tipo_res');
+            $incidencia->tipo_resolucion = $tipo_resolucion;
+            if ($tipo_resolucion == 'In situ') {
+                $incidencia->mensaje_resolucion = request('textarea_res_insitu');
+            } else {
+                $taller = request('taller');
+                $mensaje = request('textarea_res_taller');
+                $mensaje_resolucion = $taller . ',' . $mensaje;
+                $incidencia->mensaje_resolucion = $mensaje_resolucion;
+            }
+            $incidencia->fecha_resolucion = date('Y-m-d');
+            $incidencia->estado = 'RESUELTA';
+
+            $incidencia->save();
+
+            $tecnico = $incidencia->tecnico;
+            $tecnico->estado = 'Disponible';
+
+            $tecnico->save();
+
+            return redirect(route('incidencia.index'));
         }
-        $incidencia->fecha_resolucion = date('Y-m-d');
-        $incidencia->estado = 'RESUELTA';
-
-        $incidencia->save();
-
-        $tecnico = $incidencia->tecnico;
-        $tecnico->estado = 'Disponible';
-
-        $tecnico->save();
-
-        return redirect(route('incidencia.index'));
-
     }
 
     /**
