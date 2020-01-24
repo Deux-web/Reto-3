@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('apellido_p')->nullable();
             $table->string('apellido_s')->nullable();
             $table->string('rol')->nullable();
-            $table->string('usuario')->nullable();
             $table->boolean('habilitado')->nullable();
         });
     }
