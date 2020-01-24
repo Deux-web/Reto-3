@@ -12,12 +12,12 @@ class IncidenciaController extends Controller
 {
     public function search(Request $request)
     {
-        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(5);
-        foreach ($incidencias as $incidencia){
-            $cliente=$incidencia->conductor;
-            $incidencia->conductor_id=$cliente;
-            $tecnico=$incidencia->tecnico;
-            $incidencia->tecnico_id=$tecnico;
+        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(50);
+        foreach ($incidencias as $incidencia) {
+            $cliente = $incidencia->conductor;
+            $incidencia->conductor_id = $cliente;
+            $tecnico = $incidencia->tecnico;
+            $incidencia->tecnico_id = $tecnico;
         }
         return response()->json($incidencias);
     }
