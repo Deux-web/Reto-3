@@ -29,8 +29,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();
-        return view('view_incidencias', ['incidencias' => $incidencias]);
+        $user = Auth::user();
+        return view('view_incidencias', ['user' => $user]);
     }
 
     /**
@@ -40,8 +40,8 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        $centros=Centro::all();
-        return view('view_crear_incidencia',['centros'=>$centros]);
+        $centros = Centro::all();
+        return view('view_crear_incidencia', ['centros' => $centros]);
     }
 
     /**
@@ -52,25 +52,24 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $incidencia= new Incidencia();
+        $incidencia = new Incidencia();
 
-        if (request('tipo')=='otros'){
-            $incidencia->tipo=request('tipo_otros');
-        }
-        else{
+        if (request('tipo') == 'otros') {
+            $incidencia->tipo = request('tipo_otros');
+        } else {
             $incidencia->tipo = request('tipo');
         }
-        $incidencia->titulo= request('titulo');
+        $incidencia->titulo = request('titulo');
         $incidencia->descripcion('descripcion');
-        if (request('zona')=='interurbana'){
-            $zona=request('zona');
-            $provincia=request('provincia');
-            $tipovia=request('tipovia');
-            $carretera=request('carretera');
-            $km=request('km');
-            $direccion_sentido=request('direccion_sentido');
-            $proximidad=request('proximidad');
-            $incidencia->direccion=$zona.','.$provincia.','.$tipovia.',';
+        if (request('zona') == 'interurbana') {
+            $zona = request('zona');
+            $provincia = request('provincia');
+            $tipovia = request('tipovia');
+            $carretera = request('carretera');
+            $km = request('km');
+            $direccion_sentido = request('direccion_sentido');
+            $proximidad = request('proximidad');
+            $incidencia->direccion = $zona . ',' . $provincia . ',' . $tipovia . ',';
         }
         return $request;
     }
