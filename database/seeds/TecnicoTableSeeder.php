@@ -26,5 +26,15 @@ class TecnicoTableSeeder extends Seeder
                 'centro_id'=>$faker->numberBetween(1,7),
             ]);
         }
+        DB::table('tecnicos') -> insert([
+            'nombre'=>'Jon',
+            'apellido_p'=>'Santos',
+            'apellido_s'=>'Barata',
+            'email'=>'jon_t@jon.jon',
+            'telefono' => '666666666',
+            'estado' =>'Disponible',
+            'habilitado'=>1,
+            'centro_id'=>1,
+        ]);
     }
 }

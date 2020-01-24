@@ -8,6 +8,7 @@ use App\Coche;
 use App\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 class IncidenciaController extends Controller
 {
@@ -158,7 +159,7 @@ class IncidenciaController extends Controller
                 $mensaje_resolucion = $taller . ',' . $mensaje;
                 $incidencia->mensaje_resolucion = $mensaje_resolucion;
             }
-            $incidencia->fecha_resolucion = date('Y-m-d');
+            $incidencia->fecha_resolucion = date('Y-m-d h:i:s');
             $incidencia->estado = 'RESUELTA';
 
             $incidencia->save();
