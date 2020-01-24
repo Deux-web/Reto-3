@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Centro;
+use App\Coche;
 use App\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,8 +41,9 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        $centros=Centro::all();
-        return view('view_crear_incidencia',['centros'=>$centros]);
+
+        $centros = Centro::all();
+        return view('view_crear_incidencia', ['centros' => $centros]);
     }
 
     /**
@@ -52,27 +54,49 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $incidencia= new Incidencia();
+        $incidencia = new Incidencia();
 
-        if (request('tipo')=='otros'){
-            $incidencia->tipo=request('tipo_otros');
-        }
-        else{
+        if (request('tipo') == 'Otros') {
+            $incidencia->tipo = request('tipo_otros');
+        } else {
             $incidencia->tipo = request('tipo');
         }
-        $incidencia->titulo= request('titulo');
-        $incidencia->descripcion('descripcion');
-        if (request('zona')=='interurbana'){
-            $zona=request('zona');
-            $provincia=request('provincia');
-            $tipovia=request('tipovia');
-            $carretera=request('carretera');
-            $km=request('km');
-            $direccion_sentido=request('direccion_sentido');
-            $proximidad=request('proximidad');
-            $incidencia->direccion=$zona.','.$provincia.','.$tipovia.',';
+        $incidencia->titulo = request('titulo');
+        $incidencia->descripcion=request('descripcion');
+        if (request('zona') == 'Interurbana') {
+            $zona = request('zona');
+            $provincia = request('provincia');
+            $tipovia = request('tipovia');
+            $carretera = request('carretera');
+            $km = request('km');
+            $direccion_sentido = request('direccion_sentido');
+            $proximidad = request('proximidad');
+            $incidencia->direccion = $zona . ',' . $provincia . ',' . $tipovia . ',' . $carretera . ',' . $km . ',' . $direccion_sentido . ',' . $proximidad;
+        } else {
+            $zona = request('zona');
+            $provincia = request('provincia');
+            $localidad = request('localidad');
+            $calle = request('calle');
+            $portal = request('portal');
+            $incidencia->direccion = $zona . ',' . $provincia . ',' . $localidad . ',' . $calle . ',' . $portal;
         }
-        return $request;
+        if (request('taxi') == null) {
+            $incidencia->taxi = 0;
+        } else {
+            $incidencia->taxi = request('taxi');
+        }
+        $incidencia->estado_conductor = request('estado_conductor');
+        $user = Auth::user();
+        $incidencia->operador = $user->name;
+        $incidencia->conductor_id = request('conductor_id');
+        $coche = Coche::where('matricula', '=', request('matricula'))->first();
+        $incidencia->coche_id = $coche->id;
+        $incidencia->centro_id = request('centro');
+        $incidencia->tecnico_id = request('tecnico_id');
+
+        $incidencia->save();
+
+        return redirect(route('incidencia.index'));
     }
 
     /**
