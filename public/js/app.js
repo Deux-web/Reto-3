@@ -1976,6 +1976,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37447,15 +37448,19 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.tecnico_id.nombre +
-                        " " +
-                        incidencia.tecnico_id.apellido_p
-                    )
-                  )
-                ]),
+                incidencia.tecnico_id !== null
+                  ? _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          incidencia.tecnico_id.nombre +
+                            " " +
+                            incidencia.tecnico_id.apellido_p
+                        )
+                      )
+                    ])
+                  : _c("td", { staticClass: "text-danger" }, [
+                      _vm._v("Sin técnico asignado")
+                    ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
                 _vm._v(" "),
