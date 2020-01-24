@@ -60,10 +60,40 @@ class IncidenciasTableSeeder extends Seeder
                 'estado_conductor' => 'bien',
                 'operador' => 'jon',
                 'conductor_id' => mt_rand(1, 50),
-                'coche_id' => 12,
-                'centro_id' => 3,
-                'tecnico_id' => 3,
+                'coche_id' => 1,
+                'centro_id' => 1,
+                'tecnico_id' => 1,
             ]);
         }
+        DB::table('incidencias')->insert([
+            'tipo' => 'Pinchazo',
+            'titulo' => 'Accidente con un Seat Alhambra',
+            'descripcion' => 'Pinchazo rueda derecha delantera',
+            'direccion' => 'Urbano,Bizkaia,Basauri,Calle Kalea,69',
+            'taxi' => 0,
+            'estado_conductor' => 'Nervioso',
+            'operador' => 'jon',
+            'conductor_id' => 2,
+            'coche_id' => 23,
+            'centro_id' => 2,
+            'tecnico_id' => 3,
+            'tipo_resolucion'=> 'INSITU',
+            'estado'=>'RESUELTA'
+        ]);
+        DB::table('incidencias')->insert([
+            'tipo' => 'Pinchazo',
+            'titulo' => 'Accidente con un Seat Alhambra',
+            'descripcion' => 'Pinchazo rueda derecha delantera',
+            'direccion' => 'Urbano,Bizkaia,Basauri,Calle Kalea,69',
+            'taxi' => 0,
+            'estado_conductor' => 'Nervioso',
+            'operador' => 'jon',
+            'conductor_id' => 2,
+            'coche_id' => 23,
+            'centro_id' => 2,
+            'tecnico_id' => 3,
+            'tipo_resolucion'=> 'TALLER',
+            'estado'=>'RESUELTA'
+        ]);
     }
 }

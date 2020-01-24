@@ -17,7 +17,7 @@
 
                         <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
                                placeholder="AAA-000 / 0000-BBB " autofocus required>
-                        <input type="button" class="btn btn-primary ml-3 " id="buscarConductor" value="Comprobar">
+                        <input type="button" class="btn btn-primary ml-3 disabled" id="buscarConductor" value="Comprobar">
                     </div>
                 </div>
                 <div class="col-lg-3 col-5">
