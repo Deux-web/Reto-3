@@ -14,8 +14,9 @@
                 <div class="col-lg-4 col-6">
                     <h3><label for="matricula">Matrícula</label></h3>
                     <div class="form-group row no-gutters">
-                        <input type="text" class="form-control p-1 col-6" id="matricula" name="matricula" maxlength="9"
-                               placeholder="0000-NNN ó NN-0000-N" required>
+
+                        <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
+                               placeholder="AAA-000 / 0000-BBB " autofocus required>
                         <input type="button" class="btn btn-primary ml-3 " id="buscarConductor" value="Comprobar">
                     </div>
                 </div>
@@ -36,7 +37,7 @@
             </div>
             <div class="form-group row no-gutters">
                 <h3 class="mb-0 col-12">Titular y conductores habituales</h3>
-                <table class="table table-striped table-hover col-lg-8">
+                <table class="table table-striped table-hover col-lg-8 invisible">
                     <thead class="bg-dark text-white">
                     <tr>
                         <th scope="col">DNI</th>
@@ -152,7 +153,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <table class="table table-striped table-hover col-lg-12">
+                    <table class="table table-striped table-hover col-lg-12 invisible">
                         <thead class="bg-dark text-white">
                         <tr>
                             <th scope="col">Nombre y apellidos</th>

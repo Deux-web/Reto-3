@@ -1,4 +1,6 @@
 window.onload = function () {
+    $("#buscarConductor").removeClass('disabled');
+    comprobarMatricula();
     let div_otros = $('#esp_otros');
     let div_interurbano = $('#div_interurbanoInputs');
     let div_urbano = $('#div_urbanoInputs');
@@ -39,8 +41,10 @@ window.onload = function () {
     }
 
     $("#buscarConductor").click(function axaj() {
+
         axios.get('/coches/' + $("#matricula").val())
             .then(function (response) {
+                $('#tablaConductores').parent().removeClass('invisible');
                 $('#tablaConductores').children().remove();
                 $.each(response.data, function (index) {
                     if (response.data[index].titular == 1) {
@@ -51,7 +55,7 @@ window.onload = function () {
                             '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                             '<td>Si</td>' +
                             '<td>' + response.data[index].telefono + '</td>' +
-                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
+                            '<td><input type="radio" name="conductor_id" value="' + response.data[index].id + '"></td>' +
                             '</tr>')
                     } else {
                         $('#tablaConductores').append(
@@ -61,7 +65,7 @@ window.onload = function () {
                             '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                             '<td>No</td>' +
                             '<td>' + response.data[index].telefono + '</td>' +
-                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
+                            '<td><input type="radio" name="conductor_id" value="' + response.data[index].id + '"></td>' +
                             '</tr>')
                     }
                 })
@@ -75,26 +79,25 @@ window.onload = function () {
             axios.get('/centros/' + $(this).val())
                 .then(function (response) {
                     console.log(response);
+                    $('#tablaTecnicos').parent().removeClass('invisible');
                     $('#tablaTecnicos').children().remove();
                     $.each(response.data, function (index) {
-                        if (response.data[index].estado=='Ocupado'||response.data[index].estado=='Fuera de trabajo'){
+                        if (response.data[index].estado == 'Ocupado' || response.data[index].estado == 'Fuera de trabajo') {
                             $('#tablaTecnicos').append(
                                 '<tr>' +
                                 '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                                 '<td>' + response.data[index].estado + '</td>' +
-                                '<td><input type="radio" name="tecnico_id"  disabled id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>'+
+                                '<td><input type="radio" name="tecnico_id"  disabled id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                                 '</tr>')
-                        }
-                        else{
+                        } else {
                             $('#tablaTecnicos').append(
                                 '<tr>' +
                                 '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                                 '<td>' + response.data[index].estado + '</td>' +
-                                '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>' +
+                                '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                                 '</tr>'
                             )
                         }
-
                     })
                 })
                 .catch(function (error) {
@@ -103,3 +106,58 @@ window.onload = function () {
         });
     });
 };
+
+
+
+function comprobarMatricula(){
+    //Matriculas nuevas 0000-xxx /^[0-9]{4}-[BCDFGHJKLMNPRSTVWXYZ ]{3}$/;
+    //Matriculas FAKER xxx-111 /^[A-Z]{3}-[0-9]{3}$/;
+
+    $("#matricula").keyup(function (event) {
+        var matricula = $("#matricula").val().toUpperCase();
+
+        var regexMatriculaFaker = /^[A-Z]{3}-[0-9]{3}$/;
+        var regexMatriculaEsp = /^[0-9]{4}-[BCDFGHJKLMNPRSTVWXYZ ]{3}$/;
+        var validacion_matricula = false;
+
+        if(!validacion_matricula){
+            if(regexMatriculaFaker.test(matricula)){
+                validacion_matricula = true;
+                $("#buscarConductor").removeClass('disabled');
+            }else if (regexMatriculaEsp.test(matricula)){
+                validacion_matricula = true;
+                $("#buscarConductor").removeClass('disabled');
+            }else{
+                validacion_matricula = false;
+                $("#buscarConductor").addClass('disabled');
+            }
+        }
+
+
+
+
+        /*
+        switch(matricula,validacion_matricula){
+            case (regexMatriculaFaker.test(matricula)):
+                console.log("Matricula correcta");
+                validacion_matricula = true;
+            case (regexMatriculaEsp.test(matricula)):
+                console.log("Matricula correcta");
+                validacion_matricula = true;
+            default:
+                console.log("Matricula incorrecto");
+                validacion_matricula = false;
+
+        }
+         */
+        if(validacion_matricula){
+
+            $("#matricula").removeClass('is-invalid');
+            $("#matricula").addClass('is-valid');
+        }else{
+
+            $("#matricula").removeClass('is-valid');
+            $("#matricula").addClass('is-invalid');
+        }
+    });
+}

@@ -30,8 +30,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();
-        return view('view_incidencias', ['incidencias' => $incidencias]);
+        $user = Auth::user();
+        return view('view_incidencias', ['user' => $user]);
     }
 
     /**
@@ -41,7 +41,6 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-
         $centros = Centro::all();
         return view('view_crear_incidencia', ['centros' => $centros]);
     }
@@ -55,6 +54,7 @@ class IncidenciaController extends Controller
     public function store(Request $request)
     {
         $incidencia = new Incidencia();
+
 
         if (request('tipo') == 'Otros') {
             $incidencia->tipo = request('tipo_otros');
