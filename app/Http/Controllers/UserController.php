@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Centro;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //Llamamos a la vista
+        $centros = Centro::all();
+        return view('view_registro_usuarios',['centros' => $centros]);
     }
 
     /**
@@ -35,7 +38,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Prueba crear usuarios
+        User::create($request->all());
+        return redirect(view('view_registro_usuarios'));
     }
 
     /**

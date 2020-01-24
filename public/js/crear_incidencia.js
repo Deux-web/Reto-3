@@ -39,14 +39,67 @@ window.onload = function () {
     }
 
     $("#buscarConductor").click(function axaj() {
-        axios.get('/coches/'+$("#matricula").val())
+        axios.get('/coches/' + $("#matricula").val())
             .then(function (response) {
-                // handle success
-                console.log(response);
+                $('#tablaConductores').children().remove();
+                $.each(response.data, function (index) {
+                    if (response.data[index].titular == 1) {
+                        $('#tablaConductores').append(
+                            '<tr>' +
+                            '<td>' + response.data[index].dni + '</td>' +
+                            '<td>' + response.data[index].nombre + '</td>' +
+                            '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
+                            '<td>Si</td>' +
+                            '<td>' + response.data[index].telefono + '</td>' +
+                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
+                            '</tr>')
+                    } else {
+                        $('#tablaConductores').append(
+                            '<tr>' +
+                            '<td>' + response.data[index].dni + '</td>' +
+                            '<td>' + response.data[index].nombre + '</td>' +
+                            '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
+                            '<td>No</td>' +
+                            '<td>' + response.data[index].telefono + '</td>' +
+                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
+                            '</tr>')
+                    }
+                })
             })
             .catch(function (error) {
-                // handle error
                 console.log(error);
             });
+    });
+    $("#centro").on('change', function () {
+        $("#centro option:selected").each(function () {
+            axios.get('/centros/' + $(this).val())
+                .then(function (response) {
+                    console.log(response);
+                    $('#tablaTecnicos').children().remove();
+                    $.each(response.data, function (index) {
+                        if (response.data[index].estado=='Ocupado'||response.data[index].estado=='Fuera de trabajo'){
+                            $('#tablaTecnicos').append(
+                                '<tr>' +
+                                '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
+                                '<td>' + response.data[index].estado + '</td>' +
+                                '<td><input type="radio" name="tecnico_id"  disabled id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>'+
+                                '</tr>')
+                        }
+                        else{
+                            $('#tablaTecnicos').append(
+                                '<tr>' +
+                                '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
+                                '<td>' + response.data[index].estado + '</td>' +
+                                '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>' +
+                                '</tr>'
+                            )
+                        }
+
+                    })
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     });
 };
