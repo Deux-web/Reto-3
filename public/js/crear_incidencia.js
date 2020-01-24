@@ -1,4 +1,6 @@
 window.onload = function () {
+    $("#buscarConductor").removeClass('disabled');
+    comprobarMatricula();
     let div_otros = $('#esp_otros');
     let div_interurbano = $('#div_interurbanoInputs');
     let div_urbano = $('#div_urbanoInputs');
@@ -103,3 +105,58 @@ window.onload = function () {
         });
     });
 };
+
+
+
+function comprobarMatricula(){
+    //Matriculas nuevas 0000-xxx /^[0-9]{4}-[BCDFGHJKLMNPRSTVWXYZ ]{3}$/;
+    //Matriculas FAKER xxx-111 /^[A-Z]{3}-[0-9]{3}$/;
+
+    $("#matricula").keyup(function (event) {
+        var matricula = $("#matricula").val().toUpperCase();
+
+        var regexMatriculaFaker = /^[A-Z]{3}-[0-9]{3}$/;
+        var regexMatriculaEsp = /^[0-9]{4}-[BCDFGHJKLMNPRSTVWXYZ ]{3}$/;
+        var validacion_matricula = false;
+
+        if(!validacion_matricula){
+            if(regexMatriculaFaker.test(matricula)){
+                validacion_matricula = true;
+                $("#buscarConductor").removeClass('disabled');
+            }else if (regexMatriculaEsp.test(matricula)){
+                validacion_matricula = true;
+                $("#buscarConductor").removeClass('disabled');
+            }else{
+                validacion_matricula = false;
+                $("#buscarConductor").addClass('disabled');
+            }
+        }
+
+
+
+
+        /*
+        switch(matricula,validacion_matricula){
+            case (regexMatriculaFaker.test(matricula)):
+                console.log("Matricula correcta");
+                validacion_matricula = true;
+            case (regexMatriculaEsp.test(matricula)):
+                console.log("Matricula correcta");
+                validacion_matricula = true;
+            default:
+                console.log("Matricula incorrecto");
+                validacion_matricula = false;
+
+        }
+         */
+        if(validacion_matricula){
+
+            $("#matricula").removeClass('is-invalid');
+            $("#matricula").addClass('is-valid');
+        }else{
+
+            $("#matricula").removeClass('is-valid');
+            $("#matricula").addClass('is-invalid');
+        }
+    });
+}
