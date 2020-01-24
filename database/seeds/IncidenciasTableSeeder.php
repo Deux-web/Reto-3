@@ -50,20 +50,5 @@ class IncidenciasTableSeeder extends Seeder
             'centro_id' => 3,
             'tecnico_id' => 3,
         ]);
-        for ($i = 0; $i < 60; $i++) {
-            DB::table('incidencias')->insert([
-                'tipo' => 'Fallo del coche',
-                'titulo' => 'Seat Ibizia parado en el arcén',
-                'descripcion' => 'El motor se ha parado poco a poco y ya no arranca',
-                'direccion' => 'Urbano,Gipuzkoa,Arrasate,Calle que vive mi amigo Aner,100',
-                'taxi' => 1,
-                'estado_conductor' => 'bien',
-                'operador' => 'jon',
-                'conductor_id' => mt_rand(1, 50),
-                'coche_id' => 12,
-                'centro_id' => 3,
-                'tecnico_id' => 3,
-            ]);
-        }
     }
 }
