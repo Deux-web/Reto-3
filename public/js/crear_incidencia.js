@@ -41,8 +41,10 @@ window.onload = function () {
     }
 
     $("#buscarConductor").click(function axaj() {
+
         axios.get('/coches/' + $("#matricula").val())
             .then(function (response) {
+                $('#tablaConductores').parent().removeClass('invisible');
                 $('#tablaConductores').children().remove();
                 $.each(response.data, function (index) {
                     if (response.data[index].titular == 1) {
@@ -53,7 +55,7 @@ window.onload = function () {
                             '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                             '<td>Si</td>' +
                             '<td>' + response.data[index].telefono + '</td>' +
-                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
+                            '<td><input type="radio" name="conductor_id" value="' + response.data[index].id + '"></td>' +
                             '</tr>')
                     } else {
                         $('#tablaConductores').append(
@@ -63,7 +65,7 @@ window.onload = function () {
                             '<td>' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                             '<td>No</td>' +
                             '<td>' + response.data[index].telefono + '</td>' +
-                            '<td><input type="radio" name="conductor_id" value="'+response.data[index].id+'"></td>' +
+                            '<td><input type="radio" name="conductor_id" value="' + response.data[index].id + '"></td>' +
                             '</tr>')
                     }
                 })
@@ -77,26 +79,25 @@ window.onload = function () {
             axios.get('/centros/' + $(this).val())
                 .then(function (response) {
                     console.log(response);
+                    $('#tablaTecnicos').parent().removeClass('invisible');
                     $('#tablaTecnicos').children().remove();
                     $.each(response.data, function (index) {
-                        if (response.data[index].estado=='Ocupado'||response.data[index].estado=='Fuera de trabajo'){
+                        if (response.data[index].estado == 'Ocupado' || response.data[index].estado == 'Fuera de trabajo') {
                             $('#tablaTecnicos').append(
                                 '<tr>' +
                                 '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                                 '<td>' + response.data[index].estado + '</td>' +
-                                '<td><input type="radio" name="tecnico_id"  disabled id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>'+
+                                '<td><input type="radio" name="tecnico_id"  disabled id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                                 '</tr>')
-                        }
-                        else{
+                        } else {
                             $('#tablaTecnicos').append(
                                 '<tr>' +
                                 '<td>' + response.data[index].nombre + ' ' + response.data[index].apellido_p + ' ' + response.data[index].apellido_s + '</td>' +
                                 '<td>' + response.data[index].estado + '</td>' +
-                                '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="'+response.data[index].id+'"></td>' +
+                                '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                                 '</tr>'
                             )
                         }
-
                     })
                 })
                 .catch(function (error) {

@@ -37,7 +37,7 @@
             </div>
             <div class="form-group row no-gutters">
                 <h3 class="mb-0 col-12">Titular y conductores habituales</h3>
-                <table class="table table-striped table-hover col-lg-8">
+                <table class="table table-striped table-hover col-lg-8 invisible">
                     <thead class="bg-dark text-white">
                     <tr>
                         <th scope="col">DNI</th>
@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <table class="table table-striped table-hover col-lg-12">
+                    <table class="table table-striped table-hover col-lg-12 invisible">
                         <thead class="bg-dark text-white">
                         <tr>
                             <th scope="col">Nombre y apellidos</th>

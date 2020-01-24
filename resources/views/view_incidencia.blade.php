@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        @if($user->rol!=='TECNICO')
+        @if($user->rol=='TECNICO')
             <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                 <div class="row">
                     <div class="col-9">

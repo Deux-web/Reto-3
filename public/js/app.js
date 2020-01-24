@@ -37410,50 +37410,7 @@ var render = function() {
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _c("thead", { staticClass: "bg-dark text-white" }, [
-          _c("tr", [
-            _c(
-              "th",
-              {
-                attrs: { scope: "col", id: "th_cod" },
-                on: {
-                  click: function($event) {
-                    return _vm.sort("id")
-                  }
-                }
-              },
-              [_vm._v("Cod. Incidencia")]
-            ),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
-              _vm._v("Afectado")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
-              _vm._v("Contacto")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
-              _vm._v("Tecnico Asignado")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [
-              _vm._v("Tipo")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
-              _vm._v("Lugar")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
-              _vm._v("Estado")
-            ]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
-              _vm._v("Fecha de creacion")
-            ])
-          ])
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37566,7 +37523,46 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-dark text-white" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col", id: "th_cod" } }, [
+          _vm._v("Cod. Incidencia")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_afectado" } }, [
+          _vm._v("Afectado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_contacto" } }, [
+          _vm._v("Contacto")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_tecnicoasignado" } }, [
+          _vm._v("Tecnico Asignado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_tipo" } }, [_vm._v("Tipo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_lugar" } }, [
+          _vm._v("Lugar")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
+          _vm._v("Estado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_fechacreacion" } }, [
+          _vm._v("Fecha de creacion")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -30,8 +30,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();
-        return view('view_incidencias', ['incidencias' => $incidencias]);
+        $user = Auth::user();
+        return view('view_incidencias', ['user' => $user]);
     }
 
     /**
@@ -41,7 +41,6 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-
         $centros = Centro::all();
         return view('view_crear_incidencia', ['centros' => $centros]);
     }
@@ -56,12 +55,14 @@ class IncidenciaController extends Controller
     {
         $incidencia = new Incidencia();
 
+
         if (request('tipo') == 'Otros') {
             $incidencia->tipo = request('tipo_otros');
         } else {
             $incidencia->tipo = request('tipo');
         }
         $incidencia->titulo = request('titulo');
+
         $incidencia->descripcion=request('descripcion');
         if (request('zona') == 'Interurbana') {
             $zona = request('zona');
