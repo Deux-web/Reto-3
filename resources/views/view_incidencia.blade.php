@@ -117,21 +117,27 @@
                     </div>
                 </div>
             </div>
-        @else
+        @elseif($incidencia->tecnico->id==$tecnico->id)
             <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                 @if($incidencia->estado === 'ACTIVA')
-                    <a href="" class="btn btn-danger py-3 w-100 comentario">Voy de camino</a>
+                    <form action="{{route('tecnico.update',$tecnico->id)}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="incidencia_id" value="{{$incidencia->id}}">
+                        <input type="submit" class="btn btn-danger py-3 w-100 comentario" name="estado"
+                               value="Voy de camino">
+                    </form>
                 @elseif($incidencia->estado === 'PENDIENTE')
-                    <form action="">
+                    <form action="{{route('incidencia.update',$incidencia->id)}}" method="POST">
+                        @csrf
                         <h1>Tipo de resolución</h1>
                         <div class="d-flex justify-content-around mb-2">
                             <div>
                                 <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
-                                <input type="radio" name="tipo_res" id="rb_insitu">
+                                <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" checked>
                             </div>
                             <div>
                                 <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
-                                <input type="radio" name="tipo_res" id="rb_taller">
+                                <input type="radio" name="tipo_res" value="Taller" id="rb_taller">
                             </div>
                         </div>
                         <div class="d-none form-group" id="res_taller">
