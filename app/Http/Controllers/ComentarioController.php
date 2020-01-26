@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -30,18 +31,28 @@ class ComentarioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $incidencia_id)
     {
-        //
+        $mensaje = request('comentario_nuevo');
+        $autor = Auth::user();
+        $inc_id = $incidencia_id;
+
+        $comentario = new Comentario();
+        $comentario->mensaje = $mensaje;
+        $comentario->autor = $autor->name .' '. $autor->apellido_p .' '. $autor->apellido_s;
+        $comentario->incidencia_id = $inc_id;
+
+        $comentario->save();
+        return redirect(route('incidencia.show', $inc_id));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comentario  $comentario
+     * @param \App\Comentario $comentario
      * @return \Illuminate\Http\Response
      */
     public function show(Comentario $comentario)
@@ -52,7 +63,7 @@ class ComentarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comentario  $comentario
+     * @param \App\Comentario $comentario
      * @return \Illuminate\Http\Response
      */
     public function edit(Comentario $comentario)
@@ -63,8 +74,8 @@ class ComentarioController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comentario  $comentario
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Comentario $comentario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comentario $comentario)
@@ -75,7 +86,7 @@ class ComentarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comentario  $comentario
+     * @param \App\Comentario $comentario
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comentario $comentario)
