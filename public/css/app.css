@@ -11358,3 +11358,8 @@ a.text-dark:focus {
   }
 }
 
+.colapsarDiv {
+  height: 0px;
+  display: none;
+}
+

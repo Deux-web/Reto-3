@@ -13,7 +13,7 @@ window.onload = function () {
     let inp_carretera = $('#carretera');
     let inp_km = $('#km');
     let inp_direccionsentido = $('#direccion_sentido');
-    let campos_intu = [select_tipovia, inp_carretera, inp_km, inp_direccionsentido];
+    let campos_intu = [select_tipovia, inp_carretera, inp_direccionsentido];
     //-----------------------------
     let inp_localidad = $('#localidad');
     let inp_calle = $('#calle');
