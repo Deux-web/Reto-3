@@ -36,10 +36,25 @@ Route::get('/incidencias/estadisticas', function () {
     $total_incidencias = \App\Incidencia::all();
     $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'INSITU');
     $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'TALLER');
+    $tecnicos = \App\Tecnico::all();
+    $numero_incidencias_por_tecnico = \App\Incidencia::select('tecnico_id')->orderBy('tecnico_id')->count('*');
+    //select count(id),tecnico_id from incidencias group by tecnico_id order by tecnico_id;
+
+    $gipuzkoa = '%Gipuzkoa'; $araba = '%Araba'; $bizkaia = '%Bizkaia'; $nafarroa = '%Nafarroa';
+    $incidencias_bizkaia = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$bizkaia}%")->get();
+    $incidencias_gipuzkoa = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$gipuzkoa}%")->get();
+    $incidencias_araba = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$araba}%")->get();
+    $incidencias_nafarroa = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$nafarroa}%")->get();
+
 
     return view('view_estadisticas', ['consulta' => $consulta,
-        'resolucion_insitu' => $resolucion_insitu, 'resolucion_taller' => $resolucion_taller,
-        'total_incidencias' => $total_incidencias]);
+        'resolucion_insitu' => $resolucion_insitu,'resolucion_taller' => $resolucion_taller,
+        'total_incidencias' =>$total_incidencias,'tecnicos'=>$tecnicos,
+        'incidencias_gipuzkoa'=>$incidencias_gipuzkoa,'incidencias_araba'=>$incidencias_araba,
+        'incidencias_bizkaia'=> $incidencias_bizkaia,'incidencias_nafarroa'=>$incidencias_nafarroa,
+        'numero_incidencias_por_tecnico'=> $numero_incidencias_por_tecnico
+        ]);
+
 })->name('incidencia.estadisticas')->middleware('auth');
 
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
