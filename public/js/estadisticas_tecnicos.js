@@ -7,6 +7,8 @@ window.onload = function () {
         console.log(value.textContent);
     });
 
+    var n_inc = $("#n_inc");
+    console.log(typeof(n_inc));
 
 
 //console.log(nombre);
