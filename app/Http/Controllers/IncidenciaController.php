@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 
 use App\Centro;
 use App\Coche;
+use App\Conductor;
 use App\Incidencia;
+use App\Tecnico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
 
 class IncidenciaController extends Controller
 {
@@ -95,14 +99,29 @@ class IncidenciaController extends Controller
         $incidencia->centro_id = request('centro');
         $incidencia->tecnico_id = request('tecnico_id');
         $tecnico = $incidencia->tecnico;
-        if ($tecnico !== null){
+        if ($tecnico !== null) {
             $tecnico->estado = 'Ocupado';
             $tecnico->save();
         }
         $incidencia->save();
+        $afectado = Conductor::find($incidencia->conductor_id);
 
+        $this->mandarEmail(
+            $tecnico->email,
+            'Incidencia ' . $incidencia->id,
+            [
+                'incidencia' => $incidencia,
+                'afectado' => $afectado,
+                'coche' => $coche,
+                'link_incidencia' => route('incidencia.show', $incidencia->id)
+            ]);
 
         return redirect(route('incidencia.index'));
+    }
+
+    public function mandarEmail($address, $subject, $data)
+    {
+        Mail::to($address)->send(new TestEmail($data, $subject));
     }
 
     /**
@@ -172,6 +191,22 @@ class IncidenciaController extends Controller
 
             return redirect(route('incidencia.index'));
         }
+    }
+
+    public function tecnico(Request $request, $id){
+
+        $incidencia=Incidencia::find($id);
+
+        $incidencia->tecnico_id=request('tecnico_id');
+
+        $tecnico=Tecnico::find(request('tecnico_id'));
+
+        $tecnico->estado='Ocupado';
+
+        $incidencia->save();
+        $tecnico->save();
+
+        return redirect(route('incidencia.index'));
     }
 
     /**

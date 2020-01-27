@@ -37407,7 +37407,8 @@ var render = function() {
     _c(
       "table",
       {
-        staticClass: "mt-3 table table-striped table-hover pb-5",
+        staticClass:
+          "mt-3 table table-striped table-hover pb-5 table-responsive-sm",
         attrs: { id: "tabla_incidencias" }
       },
       [
