@@ -3,15 +3,17 @@
     <title>Inc. {{$incidencia->id}} - {{$incidencia->estado}} - {{$user->rol}}</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/incidencia.js')}}"></script>
+    <link href="{{asset('css/mapa.css')}}" rel="stylesheet">
 @endsection
 @section('contenido')
     <div class="mx-auto row no-gutters container">
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-1 order-md-1" style="height: max-content">
             <div class="row mb-2">
-                <div class="col-md-9 col-12">
+                <div class="col-md-9 col-12 d-flex justify-content-between">
                     <h1 class="d-inline-block">Datos de la incidencia</h1>
+                    <i id="botonDatosIncidencia" class="fas fa-arrow-down col-2 d-block d-md-none d-flex justify-content-center align-items-center"></i>
                 </div>
-                <div class="col-md-3 col-12 d-flex align-items-center">
+                <div class="col-md-3 col-12 d-flex align-items-center justify-content-center">
                     @switch($incidencia->estado)
                         @case('PENDIENTE')
                         <a class="btn btn-primary px-5" href="">{{$incidencia->estado}}</a>
@@ -24,19 +26,24 @@
                     @endswitch
                 </div>
             </div>
-            <h3 class="mb-0"><label for="titulo">Título</label></h3>
-            <input class="form-control mb-2" type="text" id="titulo" value="{{$incidencia->titulo}}" readonly>
-            <h3 class="mb-0"><label for="descripcion">Descripción</label></h3>
-            <textarea class="form-control mb-2" id="descripcion" style="resize: none"
-                      readonly>{{$incidencia->descripcion}}</textarea>
-            <h3 class="mb-0"><label for="tipo_incidente">Tipo de incidente</label></h3>
-            <input type="text" name="tipo_incidente" id="tipo_incidente" class="form-control" readonly
-                   value="{{$incidencia->tipo}}">
+            <div id="datosIncidencia" class="colapsarDiv">
+                <h3 class="mb-0"><label for="titulo">Título</label></h3>
+                <input class="form-control mb-2" type="text" id="titulo" value="{{$incidencia->titulo}}" readonly>
+                <h3 class="mb-0"><label for="descripcion">Descripción</label></h3>
+                <textarea class="form-control mb-2" id="descripcion" style="resize: none"
+                          readonly>{{$incidencia->descripcion}}</textarea>
+                <h3 class="mb-0"><label for="tipo_incidente">Tipo de incidente</label></h3>
+                <input type="text" name="tipo_incidente" id="tipo_incidente" class="form-control" readonly
+                       value="{{$incidencia->tipo}}">
+            </div>
         </div>
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-2" style="height: max-content">
-            <div class="row">
-                <h1 class="col-12">Datos del afectado</h1>
-                <div class="col-lg-6">
+            <div class="col-md-9 col-12 d-flex justify-content-between px-0">
+                <h1>Datos del afectado</h1>
+                <i id="botonDatosAfectados" class="fas fa-arrow-down col-2 d-block d-md-none d-flex justify-content-center align-items-center"></i>
+            </div>
+            <div class="row colapsarDiv" id="datosAfectado">
+                <div class="col-lg-6 datosAfectado">
                     <h3 class="mb-0"><label for="nom_ap">Nombre y apellidos</label></h3>
                     <input class="form-control mb-2" type="text" id="nom_ap"
                            value="{{$conductor->nombre . ' ' . $conductor->apellido_p . ' ' .$conductor->apellido_s}}"
@@ -136,98 +143,119 @@
                 </div>
             @endif
         @elseif($incidencia->tecnico->email==$user->email)
-            <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
-                @if($incidencia->estado === 'ACTIVA')
+            @if($incidencia->estado === 'ACTIVA')
+                <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                     <form action="{{route('incidencia.update',$incidencia->id)}}" method="POST">
                         @csrf
                         <input type="submit" class="btn btn-danger py-3 w-100 comentario" name="estado"
                                value="Voy de camino">
                     </form>
-                @elseif($incidencia->estado === 'PENDIENTE')
+                </div>
+            @elseif($incidencia->estado === 'PENDIENTE')
+                <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                     <form action="{{route('incidencia.update',$incidencia->id)}}" method="POST">
                         @csrf
-                        <h1>Tipo de resolución</h1>
-                        <div class="d-flex justify-content-around mb-2">
-                            <div>
-                                <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
-                                <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" checked>
-                            </div>
-                            <div>
-                                <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
-                                <input type="radio" name="tipo_res" value="Taller" id="rb_taller">
-                            </div>
+                        <div class="col-md-9 col-12 d-flex justify-content-between px-0">
+                            <h1>Tipo de resolución</h1>
+                            <i id="botonDatosResolucion" class="fas fa-arrow-down col-2 d-block d-md-none d-flex justify-content-center align-items-center"></i>
                         </div>
-                        <div class="d-none form-group" id="res_taller">
-                            <h4 class="mb-0"><label for="taller">Taller</label></h4>
-                            <input type="text" name="taller" id="taller" class="form-control mb-1">
-                            <h4 class="mb-0"><label for="textarea_res_taller">Mensaje de resolución</label></h4>
-                            <textarea name="textarea_res_taller" id="textarea_res_taller" rows="4" class="form-control"
-                                      style="resize: none;" placeholder="La incidencia ha sido resuelta..."></textarea>
-                        </div>
-                        <div class="d-none form-group" id="res_insitu">
-                            <h4 class="mb-0"><label for="textarea_res_insitu">Mensaje de resolución</label></h4>
-                            <textarea name="textarea_res_insitu" id="textarea_res_insitu" rows="4" class="form-control"
-                                      style="resize: none;" placeholder="La incidencia ha sido resuelta..."></textarea>
+                        <div class="tipoResolucion colapsarDiv">
+                            <div class="d-flex justify-content-around mb-2">
+                                <div>
+                                    <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
+                                    <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" checked>
+                                </div>
+                                <div>
+                                    <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
+                                    <input type="radio" name="tipo_res" value="Taller" id="rb_taller">
+                                </div>
+                            </div>
+                            <div class="d-none form-group" id="res_taller">
+                                <h4 class="mb-0"><label for="taller">Taller</label></h4>
+                                <input type="text" name="taller" id="taller" class="form-control mb-1">
+                                <h4 class="mb-0"><label for="textarea_res_taller">Mensaje de resolución</label></h4>
+                                <textarea name="textarea_res_taller" id="textarea_res_taller" rows="4"
+                                          class="form-control"
+                                          style="resize: none;"
+                                          placeholder="La incidencia ha sido resuelta..."></textarea>
+                            </div>
+                            <div class="d-none form-group" id="res_insitu">
+                                <h4 class="mb-0"><label for="textarea_res_insitu">Mensaje de resolución</label></h4>
+                                <textarea name="textarea_res_insitu" id="textarea_res_insitu" rows="4"
+                                          class="form-control"
+                                          style="resize: none;"
+                                          placeholder="La incidencia ha sido resuelta..."></textarea>
+                            </div>
                         </div>
                         <input type="submit" value="Resolver incidencia" class="btn btn-primary w-100">
                     </form>
-                @endif
-            </div>
+                </div>
+            @endif
+
         @endif
         @if($incidencia->estado=="RESUELTA")
             <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
-                <h1>Tipo de resolución</h1>
-                <div class="d-flex justify-content-around mb-2">
-                    @if($incidencia->tipo_resolucion=='In situ')
-                        <div>
-                            <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
-                            <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" checked disabled>
-                        </div>
-                        <div>
-                            <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
-                            <input type="radio" name="tipo_res" value="Taller" id="rb_taller" disabled>
+                <div class="col-md-9 col-12 d-flex justify-content-between px-0">
+                    <h1>Tipo de resolución</h1>
+                    <i id="botonDatosResolucion" class="fas fa-arrow-down col-2 d-block d-md-none d-flex justify-content-center align-items-center"></i>
+                </div>
+                <div class="tipoResolucion colapsarDiv">
+                    <div class="d-flex justify-content-around mb-2">
+                        @if($incidencia->tipo_resolucion=='In situ')
+                            <div>
+                                <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
+                                <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" checked disabled>
+                            </div>
+                            <div>
+                                <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
+                                <input type="radio" name="tipo_res" value="Taller" id="rb_taller" disabled>
+                            </div>
+                        @else
+                            <div>
+                                <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
+                                <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" disabled>
+                            </div>
+                            <div>
+                                <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
+                                <input type="radio" name="tipo_res" value="Taller" id="rb_taller" checked disabled>
+                            </div>
+                        @endif
+                    </div>
+                    @if($incidencia->tipo_resolucion=='Taller')
+                        @php
+                            $mensaje_resolucion=explode(',',$incidencia->mensaje_resolucion);
+                            $taller=$mensaje_resolucion[0];
+                            $mensaje=$mensaje_resolucion[1];
+                        @endphp
+                        <div class="d-none form-group" id="res_taller">
+                            <h4 class="mb-0"><label for="taller">Taller</label></h4>
+                            <input type="text" name="taller" id="taller" class="form-control mb-1" value="{{$taller}}"
+                                   readonly>
+                            <h4 class="mb-0"><label for="textarea_res_taller">Mensaje de resolución</label></h4>
+                            <textarea name="textarea_res_taller" id="textarea_res_taller" rows="4" class="form-control"
+                                      style="resize: none;" placeholder="La incidencia ha sido resuelta..."
+                                      readonly>{{$mensaje}}</textarea>
                         </div>
                     @else
-                        <div>
-                            <h4 class="d-inline"><label for="rb_insitu">In situ</label></h4>
-                            <input type="radio" name="tipo_res" value="In situ" id="rb_insitu" disabled>
-                        </div>
-                        <div>
-                            <h4 class="d-inline"><label for="rb_taller">Taller</label></h4>
-                            <input type="radio" name="tipo_res" value="Taller" id="rb_taller" checked disabled>
+                        <div class="d-none form-group" id="res_insitu">
+                            <h4 class="mb-0"><label for="textarea_res_insitu">Mensaje de resolución</label></h4>
+                            <textarea name="textarea_res_insitu" id="textarea_res_insitu" rows="4" class="form-control"
+                                      style="resize: none;"
+                                      placeholder="La incidencia ha sido resuelta..."
+                                      readonly>{{$incidencia->mensaje_resolucion}}</textarea>
                         </div>
                     @endif
                 </div>
-                @if($incidencia->tipo_resolucion=='Taller')
-                    @php
-                        $mensaje_resolucion=explode(',',$incidencia->mensaje_resolucion);
-                        $taller=$mensaje_resolucion[0];
-                        $mensaje=$mensaje_resolucion[1];
-                    @endphp
-                    <div class="d-none form-group" id="res_taller">
-                        <h4 class="mb-0"><label for="taller">Taller</label></h4>
-                        <input type="text" name="taller" id="taller" class="form-control mb-1" value="{{$taller}}"
-                               readonly>
-                        <h4 class="mb-0"><label for="textarea_res_taller">Mensaje de resolución</label></h4>
-                        <textarea name="textarea_res_taller" id="textarea_res_taller" rows="4" class="form-control"
-                                  style="resize: none;" placeholder="La incidencia ha sido resuelta..."
-                                  readonly>{{$mensaje}}</textarea>
-                    </div>
-                @else
-                    <div class="d-none form-group" id="res_insitu">
-                        <h4 class="mb-0"><label for="textarea_res_insitu">Mensaje de resolución</label></h4>
-                        <textarea name="textarea_res_insitu" id="textarea_res_insitu" rows="4" class="form-control"
-                                  style="resize: none;"
-                                  placeholder="La incidencia ha sido resuelta..."
-                                  readonly>{{$incidencia->mensaje_resolucion}}</textarea>
-                    </div>
-                @endif
             </div>
         @endif
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-1 order-md-2" style="height: max-content">
             <div class="row">
-                <div class="col-lg-6">
-                    <img src="{{URL::asset('images/mapa_ejemplo.png')}}" alt="" width="100%">
+                <div class="col-lg-6 mt-3 d-flex justify-content-center" id="mapa">
+                    <div id="floating-panel" class="d-none">
+                        <input id="address" type="textbox" class="" value="">
+                        <input id="submit" type="button" value="Buscar" class="btn btn-primary">
+                    </div>
+                    <div id="map"></div>
                 </div>
                 <div class="col-lg-6">
                     <h1>Lugar del incidente</h1>
@@ -302,39 +330,45 @@
         </div>
 
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-4 order-md-3" style="height: max-content">
-            <h1 class="mb-0">Comentarios</h1>
-            <form action="{{route('comentario.store', $incidencia->id)}}" method="POST" class="mb-3">
-                @csrf
-                <h4><label for="comentario_nuevo">Nuevo comentario: </label></h4>
-                <div class="row">
-                    <div class="col-md-9 col-12 mb-2 mb-md-0">
+            <div class="col-md-9 col-12 d-flex justify-content-between px-0">
+                <h1 class="mb-0">Comentarios</h1>
+                <i id="botonDatosComentarios" class="fas fa-arrow-down col-2 d-block d-md-none d-flex justify-content-center align-items-center"></i>
+            </div>
+            <div id="datosComentarios" class="colapsarDiv">
+                <form action="{{route('comentario.store', $incidencia->id)}}" method="POST" class="mb-3">
+                    @csrf
+                    <h4><label for="comentario_nuevo">Nuevo comentario: </label></h4>
+                    <div class="row">
+                        <div class="col-md-9 col-12 mb-2 mb-md-0">
                         <textarea name="comentario_nuevo" id="comentario_nuevo" rows="3" class="form-control"
                                   style="resize: none;"></textarea>
-                    </div>
-                    <div class="col-md-3 col-12 d-flex align-items-start justify-content-center">
-                        <input type="submit" value="Guardar comentario" class="btn btn-primary py-md-3 w-md-auto w-100">
-                    </div>
-                </div>
-            </form>
-
-            @forelse($comentarios as $comentario)
-                <div class="px-3 py-1 border rounded-sm bg-white mb-1">
-                    <div class="row">
-                        <div class="col-12 py-2">
-                            <h5 class="d-inline">Comentario de {{$comentario->autor}}</h5>
-                            <p class="d-inline float-right">{{$comentario->created_at}}</p>
-                            <p class="comentario mb-1">{{$comentario->mensaje}}</p>
-                            <span class="float-right text-secondary"></span>
+                        </div>
+                        <div class="col-md-3 col-12 d-flex align-items-start justify-content-center">
+                            <input type="submit" value="Guardar comentario"
+                                   class="btn btn-primary py-md-3 w-md-auto w-100">
                         </div>
                     </div>
-                </div>
-            @empty
-                <div>
-                    <div class="col-12 py-2 row">
-                        <h5>No hay comentarios !</h5>
+                </form>
+
+                @forelse($comentarios as $comentario)
+                    <div class="px-3 py-1 border rounded-sm bg-white mb-1">
+                        <div class="row">
+                            <div class="col-12 py-2">
+                                <h5 class="d-inline">Comentario de {{$comentario->autor}}</h5>
+                                <p class="d-inline float-right">{{$comentario->created_at}}</p>
+                                <p class="comentario mb-1">{{$comentario->mensaje}}</p>
+                                <span class="float-right text-secondary"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endforelse
+                @empty
+                    <div>
+                        <div class="col-12 py-2 row">
+                            <h5>No hay comentarios !</h5>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
         </div>
     </div>
 @endsection
