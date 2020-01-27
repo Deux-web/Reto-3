@@ -5,7 +5,7 @@
     <script src="{{URL::asset('js/incidencia.js')}}"></script>
 @endsection
 @section('contenido')
-    <div class="m-lg-3 m-2 row no-gutters">
+    <div class="mx-auto row no-gutters container">
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-1 order-md-1" style="height: max-content">
             <div class="row mb-2">
                 <div class="col-md-9 col-12">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        @if($user->rol=='TECNICO')
+        @if($user->rol!=='TECNICO')
             <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                 <div class="row">
                     <div class="col-9">
@@ -94,29 +94,47 @@
                 </div>
 
             </div>
-            <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
-                <div class="row">
-                    <div class="col-9">
-                        <h1>Datos del técnico</h1></div>
-                    <div class="col-3">
-                        <a href="#" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
-                            más</a>
+            @if($tecnico !==null)
+                <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
+                    <div class="row">
+                        <div class="col-9">
+                            <h1>Datos del técnico</h1></div>
+                        <div class="col-3">
+                            <a href="#" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
+                                más</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3 class="mb-0"><label for="nombre_t">Nombre del técnico</label></h3>
+                            <input class="form-control" type="text" name="nombre_t" id="nombre_t"
+                                   value="{{$tecnico->nombre . ' ' . $tecnico->apellido_p}}"
+                                   readonly>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="mb-0"><label for="telefono_t">Teléfono</label></h3>
+                            <input class="form-control" type="text" name="telefono_t" id="telefono_t"
+                                   value="{{$tecnico->telefono}}" readonly>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h3 class="mb-0"><label for="nombre_t">Nombre del técnico</label></h3>
-                        <input class="form-control" type="text" name="nombre_t" id="nombre_t"
-                               value="{{$tecnico->nombre . ' ' . $tecnico->apellido_p}}"
-                               readonly>
-                    </div>
-                    <div class="col-lg-6">
-                        <h3 class="mb-0"><label for="telefono_t">Teléfono</label></h3>
-                        <input class="form-control" type="text" name="telefono_t" id="telefono_t"
-                               value="{{$tecnico->telefono}}" readonly>
-                    </div>
+            @else
+                <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
+                    <p class="d-none" id="centro_id">{{$incidencia->id}}</p>
+                    <table class="table table-striped table-hover col-lg-12" id="tablaTecnicos">
+                        <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">Nombre y apellidos</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Seleccionar</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyTecnicos">
+
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            @endif
         @elseif($incidencia->tecnico->email==$user->email)
             <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
                 @if($incidencia->estado === 'ACTIVA')
@@ -204,8 +222,6 @@
                                   readonly>{{$incidencia->mensaje_resolucion}}</textarea>
                     </div>
                 @endif
-
-
             </div>
         @endif
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-1 order-md-2" style="height: max-content">
@@ -287,7 +303,8 @@
 
         <div class="col-12 bg-light my-1 rounded-sm p-3 form-group order-4 order-md-3" style="height: max-content">
             <h1 class="mb-0">Comentarios</h1>
-            <form action="" method="POST" class="mb-3">
+            <form action="{{route('comentario.store', $incidencia->id)}}" method="POST" class="mb-3">
+                @csrf
                 <h4><label for="comentario_nuevo">Nuevo comentario: </label></h4>
                 <div class="row">
                     <div class="col-md-9 col-12 mb-2 mb-md-0">
@@ -295,22 +312,19 @@
                                   style="resize: none;"></textarea>
                     </div>
                     <div class="col-md-3 col-12 d-flex align-items-start justify-content-center">
-                        <input type="button" value="Guardar comentario" class="btn btn-primary py-md-3 w-md-auto w-100">
+                        <input type="submit" value="Guardar comentario" class="btn btn-primary py-md-3 w-md-auto w-100">
                     </div>
                 </div>
             </form>
 
             @forelse($comentarios as $comentario)
-                <div class="px-3 py-1 border rounded-sm bg-white">
+                <div class="px-3 py-1 border rounded-sm bg-white mb-1">
                     <div class="row">
-                        <div class="col-9 py-2">
-                            <h4>Mensaje</h4>
+                        <div class="col-12 py-2">
+                            <h5 class="d-inline">Comentario de {{$comentario->autor}}</h5>
+                            <p class="d-inline float-right">{{$comentario->created_at}}</p>
                             <p class="comentario mb-1">{{$comentario->mensaje}}</p>
-                            <span class="float-right text-secondary">{{$comentario->created_at}}</span>
-                        </div>
-                        <div class="col-3 border-left py-2">
-                            <h4>Autor</h4>
-                            <span class="comentario">{{$comentario->autor}}</span>
+                            <span class="float-right text-secondary"></span>
                         </div>
                     </div>
                 </div>

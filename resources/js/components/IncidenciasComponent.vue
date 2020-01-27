@@ -1,6 +1,7 @@
 <template>
     <div class="pl-2 pr-2 overflow">
-        <table id="tabla_incidencias" class="mt-3 table table-striped table-hover pb-5">
+        <table id="tabla_incidencias" class="mt-3 table table-striped table-hover pb-5 table-responsive">
+        <table id="tabla_incidencias" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
             <thead class="bg-dark text-white">
             <tr>
                 <th scope="col" id="th_cod">Cod. Incidencia</th>
@@ -18,7 +19,8 @@
                 <td>{{incidencia.id}}</td>
                 <td>{{incidencia.conductor_id.nombre+' '+incidencia.conductor_id.apellido_p}}</td>
                 <td>{{incidencia.conductor_id.telefono+' '+incidencia.conductor_id.email}}</td>
-                <td>{{incidencia.tecnico_id.nombre+' '+incidencia.tecnico_id.apellido_p}}</td>
+                <td v-if="incidencia.tecnico_id !== null">{{incidencia.tecnico_id.nombre+' '+incidencia.tecnico_id.apellido_p}}</td>
+                <td v-else class="text-danger">Sin técnico asignado</td>
                 <td>{{incidencia.tipo}}</td>
                 <td>{{dividirDireccion(incidencia.direccion)}}</td>
                 <td>{{incidencia.estado}}</td>

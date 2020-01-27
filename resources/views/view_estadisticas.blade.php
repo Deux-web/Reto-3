@@ -9,6 +9,7 @@
 @section('contenido')
     <div class="m-lg-3">
         <h1>Estadísticas</h1>
+
         <div class="card text-center">
             <div class="card-header">
                 <div class="row d-flex justify-content-around">
@@ -58,7 +59,13 @@
                         <div id="chart_div" style="width: 450px; height: 250px;"></div>
                     </div>
                 </div>
+
                 <div class="row d-flex justify-content-sm-around m-2">
+                    <div class="d-none">
+                        <p  id="total_incidencias">{{sizeof($total_incidencias)}} </p>
+                        <p  id="insitu">{{sizeof($resolucion_insitu)}}</p>
+                        <p  id="taller">{{sizeof($resolucion_taller)}}</p>
+                    </div>
                     <div class="col-5">
                         <img class="img-fluid" src="{{URL::asset('images/time.png')}}"/>
                     </div>

@@ -37,6 +37,7 @@ class IncidenciasTableSeeder extends Seeder
             'centro_id' => 2,
             'tecnico_id' => 3,
         ]);
+
         DB::table('incidencias')->insert([
             'tipo' => 'Fallo del coche',
             'titulo' => 'Seat Ibizia parado en el arcén',
@@ -50,20 +51,37 @@ class IncidenciasTableSeeder extends Seeder
             'centro_id' => 3,
             'tecnico_id' => 3,
         ]);
-        for ($i = 0; $i < 60; $i++) {
-            DB::table('incidencias')->insert([
-                'tipo' => 'Fallo del coche',
-                'titulo' => 'Seat Ibizia parado en el arcén',
-                'descripcion' => 'El motor se ha parado poco a poco y ya no arranca',
-                'direccion' => 'Urbano,Gipuzkoa,Arrasate,Calle que vive mi amigo Aner,100',
-                'taxi' => 1,
-                'estado_conductor' => 'bien',
-                'operador' => 'jon',
-                'conductor_id' => mt_rand(1, 50),
-                'coche_id' => 12,
-                'centro_id' => 3,
-                'tecnico_id' => 3,
-            ]);
-        }
+
+        DB::table('incidencias')->insert([
+            'tipo' => 'Pinchazo',
+            'titulo' => 'Accidente con un Seat Alhambra',
+            'descripcion' => 'Pinchazo rueda derecha delantera',
+            'direccion' => 'Urbano,Bizkaia,Basauri,Calle Kalea,69',
+            'taxi' => 0,
+            'estado_conductor' => 'Nervioso',
+            'operador' => 'jon',
+            'conductor_id' => 2,
+            'coche_id' => 23,
+            'centro_id' => 2,
+            'tecnico_id' => 3,
+            'tipo_resolucion'=> 'In situ',
+            'estado'=>'RESUELTA'
+        ]);
+        DB::table('incidencias')->insert([
+            'tipo' => 'Pinchazo',
+            'titulo' => 'Accidente con un Seat Alhambra',
+            'descripcion' => 'Pinchazo rueda derecha delantera',
+            'direccion' => 'Urbano,Bizkaia,Basauri,Calle Kalea,69',
+            'taxi' => 0,
+            'estado_conductor' => 'Nervioso',
+            'operador' => 'jon',
+            'conductor_id' => 2,
+            'coche_id' => 23,
+            'centro_id' => 2,
+            'tecnico_id' => 3,
+            'tipo_resolucion'=> 'Taller',
+            'estado'=>'RESUELTA'
+        ]);
+
     }
 }

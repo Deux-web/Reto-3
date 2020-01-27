@@ -7,7 +7,7 @@
     <link href="{{asset('css/mapa.css')}}" rel="stylesheet">
 @endsection
 @section('contenido')
-    <div>
+    <div class="container">
         <form action="{{route('incidencia.store')}}" method="post" class="m-lg-5 m-3">
             @csrf
             <div class="form-group row no-gutters">
@@ -16,8 +16,10 @@
                     <div class="form-group row no-gutters">
 
                         <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
-                               placeholder="AAA-000 / 0000-BBB " autofocus required>
+
+                               placeholder="AAA-000 / 0000-BBB " autofocus required name="matricula">
                         <input type="button" class="btn btn-primary ml-3 " id="buscarConductor" value="Comprobar">
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-5">
@@ -62,7 +64,7 @@
             <div class="form-group row no-gutters">
                 <div class="col-lg-6 col-9 mb-2 mb-lg-0">
                     <h4 class="d-inline mr-3"><label for="estado_conductor">Estado del conductor</label></h4>
-                    <select name="estado_conductor" id="estado_conductor" class="form-control w-lg-auto d-inline col-5">
+                    <select name="estado_conductor" id="estado_conductor" class="form-control w-lg-auto d-inline col-5" required>
                         <option disabled selected>Seleccione una opción</option>
                         <option value="bien">Bien</option>
                         <option value="nervioso">Nervioso</option>
@@ -85,14 +87,14 @@
             <div class="form-group row no-gutters p-3" style="border: 1px solid #7e7e7e">
                 <div class="col-lg-6">
                     <label for="provincia" class="col-12 mr-3 pl-1"><strong>Provincia</strong></label>
-                    <select name="provincia" id="provincia" class="col-10 pr-3 form-control mr-3 my-1">
+                    <select name="provincia" id="provincia" class="col-10 pr-3 form-control mr-3 my-1" required>
                         <option disabled selected>Seleccione provincia</option>
                         <option value="araba">Araba</option>
                         <option value="bizkaia">Bizkaia</option>
                         <option value="gipuzkoa">Gipuzkoa</option>
                         <option value="nafarroa">Nafarroa</option>
                     </select>
-                    <div class="" id="div_interurbanoInputs">
+                    <div class="" id="div_interurbanoInputs"> <!-- INTERURBANO -->
                         <label for="tipovia" class="col-12 mr-3 pl-1"><strong>Tipo de vía</strong></label>
                         <select name="tipovia" id="tipovia" class="pr-3 form-control col-lg-10 col-12 mr-3 my-1">
                             <option disabled selected>Seleccione tipo de vía</option>
@@ -111,7 +113,6 @@
                             <input type="number" name="km" id="km" class="form-control col-4 p-1 my-1 offset-1"
                                    placeholder="KM">
                         </div>
-
                         <div class="row no-gutters">
                             <label for="direccion_sentido" class="col-12 pl-1"><strong>Dirección /
                                     Sentido</strong></label>
@@ -122,7 +123,7 @@
                                    class="form-control col-lg-10 col-12 p-1 my-1">
                         </div>
                     </div>
-                    <div class="" id="div_urbanoInputs">
+                    <div class="" id="div_urbanoInputs"> <!-- URBANO -->
                         <label for="localidad" class="col-12 mr-3 pl-1"><strong>Localidad</strong></label>
                         <input type="text" name="localidad" id="localidad" class="form-control col-10">
                         <label for="calle"><strong>Calle</strong></label>
