@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Centro;
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,26 +29,39 @@ class UserController extends Controller
     {
         //Llamamos a la vista
         $centros = Centro::all();
-        return view('view_registro_usuarios',['centros' => $centros]);
+        if (Auth::user()->rol === 'GERENTE' || Auth::user()->rol === 'COORDINADOR') {
+            return view('view_registro_usuarios', ['centros' => $centros]);
+        } else {
+            return redirect(route('incidencia.index'));
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //Prueba crear usuarios
-        User::create($request->all());
-        return redirect(view('view_registro_usuarios'));
+        DB::table('users')->insert(
+            [
+                'name' => request('name'),
+                'apellido_p' => request('apellido_p'),
+                'apellido_s' => request('apellido_s'),
+                'email' => request('email'),
+                'rol' => request('rol'),
+                'password' => Hash::make(request('password')),
+                'created_at' => date('Y-m-d H:i:s')
+            ]
+        );
+        return redirect(route('incidencia.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -57,7 +72,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -68,8 +83,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -80,7 +95,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
