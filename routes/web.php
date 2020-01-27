@@ -36,6 +36,7 @@ Route::get('/incidencias/estadisticas', function () {
     $total_incidencias = \App\Incidencia::all();
     $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'INSITU');
     $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'TALLER');
+    $nombre_tecnico = \App\Tecnico::all()->where('nombre','!=','null');
 
     return view('view_estadisticas', ['consulta' => $consulta,
         'resolucion_insitu' => $resolucion_insitu, 'resolucion_taller' => $resolucion_taller,
