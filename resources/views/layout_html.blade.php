@@ -6,8 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    <link href="{{secure_asset('css/app.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/app.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{URL::asset('images/road-tech-assistance.ico')}}" type="image/x-icon" sizes="16x16">
     <script src="https://kit.fontawesome.com/122a23edb6.js" crossorigin="anonymous"></script>
     <style>
