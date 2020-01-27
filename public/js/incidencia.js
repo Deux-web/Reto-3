@@ -47,7 +47,6 @@ window.onload = function () {
 
     axios.get('/centros/' + $('#centro_id').text())
         .then(function (response) {
-            console.log(response.data);
             $.each(response.data, function (index) {
                 if (response.data[index].estado == 'Disponible') {
                     $('#tbodyTecnicos').append(
@@ -57,63 +56,63 @@ window.onload = function () {
                         '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                         '</tr>'
                     )
-                } else {
+                }
+                if ($('#tbodyTecnicos').children().length==0){
                     $('<h5>No hay técnicos disponibles</h5>').insertBefore($('#tablaTecnicos'));
                     $('#tablaTecnicos').remove();
-
                 }
             })
         });
     $('#botonDatosAfectados').on('click', function () {
         let divDatosAfectados = $('#datosAfectado').css('height');
-        $('#botonDatosAfectados').css('transition','all 0.4s ease-in-out');
+        $('#botonDatosAfectados').css('transition', 'all 0.4s ease-in-out');
         if (divDatosAfectados == '0px') {
             $('#datosAfectado').css('height', 'auto');
             $('#datosAfectado').css('display', 'block');
-            $('#botonDatosAfectados').css('transform','rotate(-180deg)');
+            $('#botonDatosAfectados').css('transform', 'rotate(-180deg)');
         } else {
             $('#datosAfectado').css('height', '0px');
             $('#datosAfectado').css('display', 'none');
-            $('#botonDatosAfectados').css('transform','rotate(0deg)');
+            $('#botonDatosAfectados').css('transform', 'rotate(0deg)');
         }
     })
     $('#botonDatosIncidencia').on('click', function () {
         let divDatosAfectados = $('#datosIncidencia').css('height');
-        $('#botonDatosIncidencia').css('transition','all 0.4s ease-in-out');
+        $('#botonDatosIncidencia').css('transition', 'all 0.4s ease-in-out');
         if (divDatosAfectados == '0px') {
             $('#datosIncidencia').css('height', 'auto');
             $('#datosIncidencia').css('display', 'block');
-            $('#botonDatosIncidencia').css('transform','rotate(-180deg)');
+            $('#botonDatosIncidencia').css('transform', 'rotate(-180deg)');
         } else {
             $('#datosIncidencia').css('height', '0px');
             $('#datosIncidencia').css('display', 'none');
-            $('#botonDatosIncidencia').css('transform','rotate(0deg)');
+            $('#botonDatosIncidencia').css('transform', 'rotate(0deg)');
         }
     })
     $('#botonDatosResolucion').on('click', function () {
         let divDatosAfectados = $('.tipoResolucion').css('height');
-        $('#botonDatosResolucion').css('transition','all 0.4s ease-in-out');
+        $('#botonDatosResolucion').css('transition', 'all 0.4s ease-in-out');
         if (divDatosAfectados == '0px') {
             $('.tipoResolucion').css('height', 'auto');
             $('.tipoResolucion').css('display', 'block');
-            $('#botonDatosResolucion').css('transform','rotate(-180deg)');
+            $('#botonDatosResolucion').css('transform', 'rotate(-180deg)');
         } else {
             $('.tipoResolucion').css('height', '0px');
             $('.tipoResolucion').css('display', 'none');
-            $('#botonDatosResolucion').css('transform','rotate(0deg)');
+            $('#botonDatosResolucion').css('transform', 'rotate(0deg)');
         }
     })
     $('#botonDatosComentarios').on('click', function () {
         let divDatosAfectados = $('#datosComentarios').css('height');
-        $('#botonDatosComentarios').css('transition','all 0.4s ease-in-out');
+        $('#botonDatosComentarios').css('transition', 'all 0.4s ease-in-out');
         if (divDatosAfectados == '0px') {
             $('#datosComentarios').css('height', 'auto');
             $('#datosComentarios').css('display', 'block');
-            $('#botonDatosComentarios').css('transform','rotate(-180deg)');
+            $('#botonDatosComentarios').css('transform', 'rotate(-180deg)');
         } else {
             $('#datosComentarios').css('height', '0px');
             $('#datosComentarios').css('display', 'none');
-            $('#botonDatosComentarios').css('transform','rotate(0deg)');
+            $('#botonDatosComentarios').css('transform', 'rotate(0deg)');
         }
     })
 };

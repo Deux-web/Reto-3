@@ -48,7 +48,7 @@
         </div>
     @else
         <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
-            <p class="d-none" id="centro_id">{{$incidencia->id}}</p>
+            <p class="d-none" id="centro_id">{{$centro->id}}</p>
             <table class="table table-striped table-hover col-lg-12" id="tablaTecnicos">
                 <thead class="bg-dark text-white">
                 <tr>
