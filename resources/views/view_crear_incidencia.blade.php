@@ -7,7 +7,7 @@
     <link href="{{asset('css/mapa.css')}}" rel="stylesheet">
 @endsection
 @section('contenido')
-    <div>
+    <div class="container">
         <form action="{{route('incidencia.store')}}" method="post" class="m-lg-5 m-3">
             @csrf
             <div class="form-group row no-gutters">

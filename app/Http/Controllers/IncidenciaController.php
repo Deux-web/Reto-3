@@ -95,9 +95,10 @@ class IncidenciaController extends Controller
         $incidencia->centro_id = request('centro');
         $incidencia->tecnico_id = request('tecnico_id');
         $tecnico = $incidencia->tecnico;
-        $tecnico->estado = 'Ocupado';
-
-        $tecnico->save();
+        if ($tecnico !== null){
+            $tecnico->estado = 'Ocupado';
+            $tecnico->save();
+        }
         $incidencia->save();
 
 
