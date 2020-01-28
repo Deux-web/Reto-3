@@ -1977,6 +1977,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1989,14 +2002,28 @@ __webpack_require__.r(__webpack_exports__);
     this.getIncidencias();
   },
   methods: {
-    getIncidencias: function getIncidencias() {
+    getIncidenciasBusqueda: function getIncidenciasBusqueda() {
       var _this = this;
 
+      var opcion = $('#opcion').val();
+      var datosBusqueda = $('#datosBusqueda').val();
       var $this = this;
-      axios.get(this.url).then(function (res) {
+      axios.get('/api/incidencias/' + datosBusqueda + '/' + opcion).then(function (res) {
         _this.incidencias = res.data.data;
         $this.makePagination(res.data);
       });
+    },
+    getIncidencias: function getIncidencias() {
+      var _this2 = this;
+
+      var $this = this;
+      axios.get(this.url).then(function (res) {
+        _this2.incidencias = res.data.data;
+        $this.makePagination(res.data);
+      });
+    },
+    refrescar: function refrescar() {
+      location.reload();
     },
     makePagination: function makePagination(data) {
       var pagination = {
@@ -37404,6 +37431,32 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("input", { attrs: { type: "text", id: "datosBusqueda" } }),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "btn btn-primary col-3",
+      staticStyle: { "font-size": "125%" },
+      attrs: { type: "button", value: "Buscar" },
+      on: {
+        click: function($event) {
+          return _vm.getIncidenciasBusqueda()
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "btn btn-primary col-3",
+      staticStyle: { "font-size": "125%" },
+      attrs: { type: "button", value: "Refrescar" },
+      on: {
+        click: function($event) {
+          return _vm.refrescar()
+        }
+      }
+    }),
+    _vm._v(" "),
     _c(
       "table",
       {
@@ -37412,7 +37465,7 @@ var render = function() {
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37439,15 +37492,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.conductor_id.telefono +
-                        " " +
-                        incidencia.conductor_id.email
-                    )
-                  )
-                ]),
+                _c("td", [_vm._v(_vm._s(incidencia.conductor_id.telefono))]),
                 _vm._v(" "),
                 incidencia.tecnico_id !== null
                   ? _c("td", [
@@ -37456,7 +37501,7 @@ var render = function() {
                           incidencia.tecnico_id.nombre +
                             " " +
                             incidencia.tecnico_id.apellido_p
-                        )
+                        ) + "\n            "
                       )
                     ])
                   : _c("td", { staticClass: "text-danger" }, [
@@ -37498,7 +37543,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Anterior\n        ")]
+          [_vm._v("Anterior\n            ")]
         ),
         _vm._v(" "),
         _c("span", [
@@ -37523,13 +37568,37 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Siguiente\n        ")]
+          [_vm._v("Siguiente\n            ")]
         )
       ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("select", { attrs: { id: "opcion", name: "opcion" } }, [
+      _c("option", { attrs: { value: "id" } }, [_vm._v("Cod. Incidencia")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "nombreConductor" } }, [
+        _vm._v("Afectado")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "telefono" } }, [_vm._v("Telefono")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "nombreTecnico" } }, [
+        _vm._v("Tecnico Asignado")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "tipo" } }, [_vm._v("Tipo")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "provincia" } }, [_vm._v("Provincia")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "estado" } }, [_vm._v("Estado")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -49842,7 +49911,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49862,7 +49931,7 @@ component.options.__file = "resources/js/components/IncidenciasComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./IncidenciasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IncidenciasComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IncidenciasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

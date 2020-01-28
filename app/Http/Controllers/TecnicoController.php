@@ -33,22 +33,51 @@ class TecnicoController extends Controller
         $tecnico->save();
     }
 
-    public function show(Tecnico $tecnico)
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Tecnico $tecnico
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        //
+        $tecnico = Tecnico::find($id);
+
+        return view('tecnico', ['tecnico' => $tecnico]);
     }
 
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param \App\Tecnico $tecnico
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Tecnico $tecnico)
     {
         //
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Tecnico $tecnico
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
 
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Tecnico $tecnico
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Tecnico $tecnico)
     {
         //
