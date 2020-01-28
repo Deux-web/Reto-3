@@ -1977,6 +1977,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1989,12 +1995,22 @@ __webpack_require__.r(__webpack_exports__);
     this.getIncidencias();
   },
   methods: {
-    getIncidencias: function getIncidencias() {
+    getIncidenciasBusqueda: function getIncidenciasBusqueda() {
       var _this = this;
+
+      var datosBusqueda = $('#datosBusqueda').val();
+      var $this = this;
+      axios.get('/api/incidencias/' + datosBusqueda).then(function (res) {
+        _this.incidencias = res.data.data;
+        $this.makePagination(res.data);
+      });
+    },
+    getIncidencias: function getIncidencias() {
+      var _this2 = this;
 
       var $this = this;
       axios.get(this.url).then(function (res) {
-        _this.incidencias = res.data.data;
+        _this2.incidencias = res.data.data;
         $this.makePagination(res.data);
       });
     },
@@ -37404,6 +37420,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
+    _c(
+      "form",
+      {
+        staticClass:
+          "d-inline form-inline form-sm mt-0 d-flex align-items-center justify-content-md-end justify-content-between col-10 col-md-8 ml-auto mr-auto mr-md-0 p-0 row"
+      },
+      [
+        _c("input", { attrs: { type: "text", id: "datosBusqueda" } }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "btn btn-primary col-3",
+          staticStyle: { "font-size": "125%" },
+          attrs: { type: "button", value: "Buscar" },
+          on: {
+            click: function($event) {
+              return _vm.getIncidenciasBusqueda()
+            }
+          }
+        })
+      ]
+    ),
+    _vm._v(" "),
     _c(
       "table",
       {

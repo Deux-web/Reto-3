@@ -14,12 +14,9 @@
                 <div class="col-lg-4 col-6">
                     <h3><label for="matricula">Matrícula</label></h3>
                     <div class="form-group row no-gutters">
-
                         <input type="text" class="form-control p-1 col-6" id="matricula" maxlength="9"
-
                                placeholder="AAA-000 / 0000-BBB " autofocus required name="matricula">
                         <input type="button" class="btn btn-primary ml-3 " id="buscarConductor" value="Comprobar">
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-5">
@@ -38,7 +35,7 @@
                 </div>
             </div>
             <div class="form-group row no-gutters">
-                <h3 class="mb-0 col-12">Titular y conductores habituales</h3>
+                <h3 class="mb-0 col-12" id="tituloTablaConductores">Titular y conductores habituales</h3>
                 <table class="table table-striped table-hover col-lg-8 invisible">
                     <thead class="bg-dark text-white">
                     <tr>

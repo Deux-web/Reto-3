@@ -25,6 +25,8 @@ Route::get('/home', function () {
 //INCIDENCIAS
 Route::get('/api/incidencias', 'IncidenciaController@search')->name('incidencia.search');
 
+Route::get('/api/incidencias/{busqueda}', 'IncidenciaController@busqueda')->name('incidencia.busqueda');
+
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index')->middleware('auth');
 
 Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
@@ -64,13 +66,17 @@ Route::get('/coches/{matricula}', 'CocheController@show')->name('coche.show');
 
 //CENTROS
 
-Route::get('/centros/{id}', 'CentroController@show')->name('centro.show');
+Route::get('/centros/{id}', 'CentroController@show')->name('centro.show')->middleware('auth');
+
+Route::get('/api/centros/{id}', 'CentroController@get')->name('centro.json');
 
 //COMENTARIOS
 
 Route::post('/incidencias/{incidencia_id}/comentarios', 'ComentarioController@store')->name('comentario.store');
 
 //TECNICOS
+
+Route::get('/tecnicos/{id}', 'TecnicoController@show')->name('tecnico.show')->middleware('auth');
 
 Route::post('/tecnicos/{id}', 'TecnicoController@update')->name('tecnico.update');
 
