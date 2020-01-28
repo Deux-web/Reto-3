@@ -12,13 +12,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use App\Mail\TestEmail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class IncidenciaController extends Controller
 {
     public function search(Request $request)
     {
-        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(3);
+        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(50);
         foreach ($incidencias as $incidencia) {
             $cliente = $incidencia->conductor;
             $incidencia->conductor_id = $cliente;
@@ -27,9 +28,35 @@ class IncidenciaController extends Controller
         }
         return response()->json($incidencias);
     }
-    public function busqueda($busqueda)
+
+    public function busqueda($busqueda, $opcion)
     {
-        $incidencias = Incidencia::orderBy('id', 'DESC')->where('id','=',$busqueda)->paginate(3);
+        switch ($opcion) {
+            case 'id':
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('id', '=', $busqueda)->paginate(10);
+                break;
+            case 'nombreConductor':
+                $conductor = Conductor::where('nombre', $busqueda)->first();
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('conductor_id', '=', $conductor->id)->paginate(10);
+                break;
+            case 'telefono':
+                $conductor = Conductor::where('telefono', $busqueda)->first();
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('conductor_id', '=', $conductor->id)->paginate(10);
+                break;
+            case 'nombreTecnico':
+                $tecnico = Tecnico::where('nombre', '=', $busqueda)->first();
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tecnico_id', '=', $tecnico->id)->paginate(10);
+                break;
+            case 'tipo':
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tipo', '=', $busqueda)->paginate(10);
+                break;
+            case 'provincia':
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('direccion', 'LIKE', '%'.$busqueda.'%')->paginate(10);
+                break;
+            case 'estado':
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('estado', '=', $busqueda)->paginate(10);
+                break;
+        }
         foreach ($incidencias as $incidencia) {
             $cliente = $incidencia->conductor;
             $incidencia->conductor_id = $cliente;
