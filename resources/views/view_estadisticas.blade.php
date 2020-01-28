@@ -3,14 +3,14 @@
     <title>Estadisticas</title>
     <script src="{{URL::asset('https://www.gstatic.com/charts/loader.js')}}"></script>
     <script src="{{URL::asset('js/app.js')}}"></script>
-    <script src="{{URL::asset('js/estadisticas.js')}}"></script>
+    <script src="{{URL::asset('js/estadisticas_resulucion.js')}}"></script>
     <script src="{{URL::asset('js/estadisticas_tecnicos.js')}}"></script>
     <script src="{{URL::asset('js/estadisticas_zonas.js')}}"></script>
 
 @endsection
 @section('contenido')
     <div class="m-lg-3">
-        <h1>Estadísticas {{$numero_incidencias_por_tecnico}}</h1>
+        <h1>Estadísticas{{$inc_por_tecnico}}</h1>
         <div class="card text-center">
             <div class="card-header">
                 <div class="row d-flex justify-content-around">
@@ -52,9 +52,10 @@
             <div class="card-body">
                 <div class="row d-flex justify-content-sm-around m-2">
                     <div class="col-5">
-                        <!-- TECNICOS-->
+                        <!--INCIDENDIAS POR TECNICOS-->
                         <div id="chart_div"></div>
                         <div class="d-none">
+                            <p class="n_inc">{{$inc_por_tecnico}}</p>
                             @foreach($tecnicos as $tecnico)
                                 <p class="nombre_tec">{{$tecnico->nombre}} </p>
                             @endforeach

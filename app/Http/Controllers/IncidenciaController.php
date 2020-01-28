@@ -7,6 +7,7 @@ use App\Centro;
 use App\Coche;
 use App\Conductor;
 use App\Incidencia;
+use App\Tecnico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -190,6 +191,22 @@ class IncidenciaController extends Controller
 
             return redirect(route('incidencia.index'));
         }
+    }
+
+    public function tecnico(Request $request, $id){
+
+        $incidencia=Incidencia::find($id);
+
+        $incidencia->tecnico_id=request('tecnico_id');
+
+        $tecnico=Tecnico::find(request('tecnico_id'));
+
+        $tecnico->estado='Ocupado';
+
+        $incidencia->save();
+        $tecnico->save();
+
+        return redirect(route('incidencia.index'));
     }
 
     /**

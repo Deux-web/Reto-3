@@ -37,10 +37,11 @@ Route::get('/incidencias/estadisticas', function () {
     $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'INSITU');
     $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'TALLER');
     $tecnicos = \App\Tecnico::all();
-    $numero_incidencias_por_tecnico = \App\Incidencia::select('tecnico_id')->orderBy('tecnico_id')->count('*');
-    //select count(id),tecnico_id from incidencias group by tecnico_id order by tecnico_id;
 
-    $gipuzkoa = '%Gipuzkoa'; $araba = '%Araba'; $bizkaia = '%Bizkaia'; $nafarroa = '%Nafarroa';
+    $inc_por_tecnico = \App\Incidencia::groupBy('tecnico_id')->orderBy('incidencias', 'desc')->get(DB::raw('count(tecnico_id) as incidencias, tecnico_id'));
+    //DB::table('incidencias')->groupBy('tecnico_id')->orderBy('incidencias', 'desc')->get(DB::raw('count(tecnico_id) as incidencias, tecnico_id'))->take(10);
+
+    $gipuzkoa = 'Gipuzkoa'; $araba = 'Araba'; $bizkaia = 'Bizkaia'; $nafarroa = 'Nafarroa';
     $incidencias_bizkaia = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$bizkaia}%")->get();
     $incidencias_gipuzkoa = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$gipuzkoa}%")->get();
     $incidencias_araba = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$araba}%")->get();
@@ -52,7 +53,7 @@ Route::get('/incidencias/estadisticas', function () {
         'total_incidencias' =>$total_incidencias,'tecnicos'=>$tecnicos,
         'incidencias_gipuzkoa'=>$incidencias_gipuzkoa,'incidencias_araba'=>$incidencias_araba,
         'incidencias_bizkaia'=> $incidencias_bizkaia,'incidencias_nafarroa'=>$incidencias_nafarroa,
-        'numero_incidencias_por_tecnico'=> $numero_incidencias_por_tecnico
+        'inc_por_tecnico' => $inc_por_tecnico
         ]);
 
 })->name('incidencia.estadisticas')->middleware('auth');
@@ -60,6 +61,8 @@ Route::get('/incidencias/estadisticas', function () {
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
 Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('incidencia.edit')->middleware('auth');
+
+Route::post('/incidencias/{id}/tecnico', 'IncidenciaController@tecnico')->name('incidencia.tecnico')->middleware('auth');
 
 Route::post('/incidencias/{id}', 'IncidenciaController@update')->name('incidencia.update')->middleware('auth');
 //USUARIOS

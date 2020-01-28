@@ -48,19 +48,25 @@
         </div>
     @else
         <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
-            <p class="d-none" id="centro_id">{{$incidencia->id}}</p>
-            <table class="table table-striped table-hover col-lg-12" id="tablaTecnicos">
-                <thead class="bg-dark text-white">
-                <tr>
-                    <th scope="col">Nombre y apellidos</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Seleccionar</th>
-                </tr>
-                </thead>
-                <tbody id="tbodyTecnicos">
+            <p class="d-none" id="centro_id">{{$centro->id}}</p>
+            <form method="post" action="{{route('incidencia.tecnico',$incidencia->id)}}">
+                <table class="table table-striped table-hover col-lg-12" id="tablaTecnicos">
 
-                </tbody>
-            </table>
+                    @csrf
+                    <thead class="bg-dark text-white">
+                    <tr>
+                        <th scope="col">Nombre y apellidos</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Seleccionar</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbodyTecnicos">
+
+                    </tbody>
+                    <input type="submit" value="Asignar Tecnico">
+
+                </table>
+            </form>
         </div>
     @endif
     <!-------------------------ACCION DEPENDIENDO DEL ESTADO DE LA INCIDENCIA---------------------------->
