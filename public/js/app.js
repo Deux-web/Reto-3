@@ -1983,6 +1983,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37420,27 +37432,38 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
-    _c(
-      "form",
-      {
-        staticClass:
-          "d-inline form-inline form-sm mt-0 d-flex align-items-center justify-content-md-end justify-content-between col-10 col-md-8 ml-auto mr-auto mr-md-0 p-0 row"
-      },
-      [
-        _c("input", { attrs: { type: "text", id: "datosBusqueda" } }),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "btn btn-primary col-3",
-          staticStyle: { "font-size": "125%" },
-          attrs: { type: "button", value: "Buscar" },
-          on: {
-            click: function($event) {
-              return _vm.getIncidenciasBusqueda()
-            }
-          }
-        })
-      ]
-    ),
+    _c("div", { staticClass: "row no-gutters" }, [
+      _c("div", {
+        staticClass: "col-md-6 col-12 mb-1 row no-gutters",
+        attrs: { id: "botones" }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-md-6 col-12 d-flex justify-content-end align-items-center row"
+        },
+        [
+          _c("div", { staticClass: "col-4 px-1" }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-4 pl-1 pr-0" }, [
+            _c("input", {
+              staticClass: "btn btn-primary w-100",
+              staticStyle: { "font-size": "125%" },
+              attrs: { type: "button", value: "Buscar" },
+              on: {
+                click: function($event) {
+                  return _vm.getIncidenciasBusqueda()
+                }
+              }
+            })
+          ])
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "table",
@@ -37450,7 +37473,7 @@ var render = function() {
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37477,15 +37500,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.conductor_id.telefono +
-                        " " +
-                        incidencia.conductor_id.email
-                    )
-                  )
-                ]),
+                _c("td", [_vm._v(_vm._s(incidencia.conductor_id.telefono))]),
                 _vm._v(" "),
                 incidencia.tecnico_id !== null
                   ? _c("td", [
@@ -37494,7 +37509,7 @@ var render = function() {
                           incidencia.tecnico_id.nombre +
                             " " +
                             incidencia.tecnico_id.apellido_p
-                        )
+                        ) + "\n            "
                       )
                     ])
                   : _c("td", { staticClass: "text-danger" }, [
@@ -37536,7 +37551,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Anterior\n        ")]
+          [_vm._v("Anterior\n            ")]
         ),
         _vm._v(" "),
         _c("span", [
@@ -37561,13 +37576,24 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Siguiente\n        ")]
+          [_vm._v("Siguiente\n            ")]
         )
       ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4 px-1" }, [
+      _c("input", {
+        staticClass: "form-control d-inline mr-1",
+        attrs: { type: "text", id: "datosBusqueda" }
+      })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
