@@ -78,6 +78,7 @@ window.onload = function () {
             .then(function (response) {
                 $('#tablaConductores').parent().removeClass('invisible');
                 $('#tablaConductores').children().remove();
+                $('#noMatricula').remove();
                 $.each(response.data, function (index) {
                     if (response.data[index].titular == 1) {
                         $('#tablaConductores').append(
@@ -103,7 +104,8 @@ window.onload = function () {
                 })
             })
             .catch(function (error) {
-                console.log(error);
+                $('#noMatricula').remove();
+                $('#tituloTablaConductores').after('<h5 id="noMatricula">No existe esa matricula en nuestra base de datos</h5>')
             });
     });
     $("#centro").on('change', function () {
