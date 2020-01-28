@@ -94,14 +94,14 @@
                                 <div class="form-group row ">
                                     <label for="telefono" class="col-md-4 col-form-label text-md-right">Teléfono</label>
                                     <div class="col-md-6">
-                                        <input id="telefono" type="text"
+                                          <input id="telefono" type="text"
                                                class="form-control" name="telefono" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
                                     <label for="centro" class="col-md-4 col-form-label text-md-right">Centro</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" id="centro">
+                                        <select class="form-control" id="centro" name="centro">
                                             <option disabled selected>- Seleccione un centro -</option>
                                             @foreach($centros as $centro)
                                                 <option value="{{$centro->id}}">{{$centro->nombre}}</option>

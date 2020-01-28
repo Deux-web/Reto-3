@@ -26,5 +26,9 @@ class Coche_ConductorTableSeeder extends Seeder
                 'coche_id' => $faker->numberBetween(1, 50),
             ]);
         }
+        DB::table('coche_conductor')->insert([
+            'conductor_id' => 160,
+            'coche_id' => 51,
+        ]);
     }
 }

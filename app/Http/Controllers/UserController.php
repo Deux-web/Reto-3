@@ -55,6 +55,9 @@ class UserController extends Controller
                 'created_at' => date('Y-m-d H:i:s')
             ]
         );
+        if (request('rol') === 'TECNICO') {
+            (new TecnicoController)->store(request('name'), request('apellido_p'), request('apellido_s'), request('email'), request('telefono'), $request->input('centro'));
+        }
         return redirect(route('incidencia.index'));
     }
 
