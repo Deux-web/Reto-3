@@ -1983,6 +1983,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1998,9 +2005,10 @@ __webpack_require__.r(__webpack_exports__);
     getIncidenciasBusqueda: function getIncidenciasBusqueda() {
       var _this = this;
 
+      var opcion = $('#opcion').val();
       var datosBusqueda = $('#datosBusqueda').val();
       var $this = this;
-      axios.get('/api/incidencias/' + datosBusqueda).then(function (res) {
+      axios.get('/api/incidencias/' + datosBusqueda + '/' + opcion).then(function (res) {
         _this.incidencias = res.data.data;
         $this.makePagination(res.data);
       });
@@ -2013,6 +2021,9 @@ __webpack_require__.r(__webpack_exports__);
         _this2.incidencias = res.data.data;
         $this.makePagination(res.data);
       });
+    },
+    refrescar: function refrescar() {
+      location.reload();
     },
     makePagination: function makePagination(data) {
       var pagination = {
@@ -37420,27 +37431,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
-    _c(
-      "form",
-      {
-        staticClass:
-          "d-inline form-inline form-sm mt-0 d-flex align-items-center justify-content-md-end justify-content-between col-10 col-md-8 ml-auto mr-auto mr-md-0 p-0 row"
-      },
-      [
-        _c("input", { attrs: { type: "text", id: "datosBusqueda" } }),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "btn btn-primary col-3",
-          staticStyle: { "font-size": "125%" },
-          attrs: { type: "button", value: "Buscar" },
-          on: {
-            click: function($event) {
-              return _vm.getIncidenciasBusqueda()
-            }
-          }
-        })
-      ]
-    ),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("input", { attrs: { type: "text", id: "datosBusqueda" } }),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "btn btn-primary col-3",
+      staticStyle: { "font-size": "125%" },
+      attrs: { type: "button", value: "Buscar" },
+      on: {
+        click: function($event) {
+          return _vm.getIncidenciasBusqueda()
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "btn btn-primary col-3",
+      staticStyle: { "font-size": "125%" },
+      attrs: { type: "button", value: "Refrescar" },
+      on: {
+        click: function($event) {
+          return _vm.refrescar()
+        }
+      }
+    }),
     _vm._v(" "),
     _c(
       "table",
@@ -37450,7 +37465,7 @@ var render = function() {
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37568,6 +37583,30 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("select", { attrs: { id: "opcion", name: "opcion" } }, [
+      _c("option", { attrs: { value: "id" } }, [_vm._v("Cod. Incidencia")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "nombreConductor" } }, [
+        _vm._v("Afectado")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "telefono" } }, [_vm._v("Telefono")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "nombreTecnico" } }, [
+        _vm._v("Tecnico Asignado")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "tipo" } }, [_vm._v("Tipo")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "provincia" } }, [_vm._v("Provincia")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "estado" } }, [_vm._v("Estado")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

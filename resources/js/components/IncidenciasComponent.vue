@@ -1,11 +1,18 @@
 <template>
 
     <div class="pl-2 pr-2 overflow">
-        <form
-        class="d-inline form-inline form-sm mt-0 d-flex align-items-center justify-content-md-end justify-content-between col-10 col-md-8 ml-auto mr-auto mr-md-0 p-0 row">
+        <select id="opcion" name="opcion">
+            <option value="id">Cod. Incidencia</option>
+            <option value="nombreConductor">Afectado</option>
+            <option value="telefono">Telefono</option>
+            <option value="nombreTecnico">Tecnico Asignado</option>
+            <option value="tipo">Tipo</option>
+            <option value="provincia">Provincia</option>
+            <option value="estado">Estado</option>
+        </select>
         <input type="text" id="datosBusqueda">
         <input type="button" value="Buscar" class="btn btn-primary col-3" style="font-size: 125%" v-on:click=getIncidenciasBusqueda()>
-    </form>
+        <input type="button" value="Refrescar" class="btn btn-primary col-3" style="font-size: 125%" v-on:click=refrescar()>
         <table id="tabla_incidencias" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
             <thead class="bg-dark text-white">
             <tr>
@@ -63,9 +70,10 @@
         },
         methods: {
             getIncidenciasBusqueda(){
+                let opcion=$('#opcion').val();
                 let datosBusqueda=$('#datosBusqueda').val();
                 let $this = this;
-                axios.get('/api/incidencias/'+datosBusqueda).then(res => {
+                axios.get('/api/incidencias/'+datosBusqueda+'/'+opcion).then(res => {
                     this.incidencias = res.data.data;
                     $this.makePagination(res.data)
                 })
@@ -76,6 +84,9 @@
                     this.incidencias = res.data.data;
                     $this.makePagination(res.data)
                 })
+            },
+            refrescar(){
+                location.reload();
             },
             makePagination(data) {
                 let pagination = {
