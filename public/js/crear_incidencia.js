@@ -53,7 +53,7 @@ window.onload = function () {
     });
 
     function comprobarOtros() {
-        if (select_tipoaveria.val() === 'otros') {
+        if (select_tipoaveria.val() === 'Otros') {
             div_otros.addClass('d-block').removeClass('d-none');
         } else {
             div_otros.addClass('d-none').removeClass('d-block');

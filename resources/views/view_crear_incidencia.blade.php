@@ -25,7 +25,7 @@
                         <option disabled selected>Seleccione tipo de avería</option>
                         <option value="Fallo del coche">Fallo del coche</option>
                         <option value="Pinchazo">Pinchazo</option>
-                        <option value="Golpe">golpe</option>
+                        <option value="Golpe">Golpe</option>
                         <option value="Otros">Otros</option>
                     </select>
                 </div>
@@ -64,10 +64,10 @@
                     <select name="estado_conductor" id="estado_conductor" class="form-control w-lg-auto d-inline col-5"
                             required>
                         <option disabled selected>Seleccione una opción</option>
-                        <option value="bien">Bien</option>
-                        <option value="nervioso">Nervioso</option>
-                        <option value="medico">Requiere atención médica</option>
-                        <option value="medico_ya">Requiere atención médica URGENTE</option>
+                        <option value="Bien">Bien</option>
+                        <option value="Nervioso">Nervioso</option>
+                        <option value="Requiere atención médica">Requiere atención médica</option>
+                        <option value="Requiere atención médica URGENTE">Requiere atención médica URGENTE</option>
                     </select>
                 </div>
                 <div class="col-lg-1  col-2 mb-2 mb-lg-0">
@@ -87,21 +87,21 @@
                     <label for="provincia" class="col-12 mr-3 pl-1"><strong>Provincia</strong></label>
                     <select name="provincia" id="provincia" class="col-10 pr-3 form-control mr-3 my-1" required>
                         <option disabled selected>Seleccione provincia</option>
-                        <option value="araba">Araba</option>
-                        <option value="bizkaia">Bizkaia</option>
-                        <option value="gipuzkoa">Gipuzkoa</option>
-                        <option value="nafarroa">Nafarroa</option>
+                        <option value="Araba">Araba</option>
+                        <option value="Bizkaia">Bizkaia</option>
+                        <option value="Gipuzkoa">Gipuzkoa</option>
+                        <option value="Nafarroa">Nafarroa</option>
                     </select>
                     <div class="" id="div_interurbanoInputs"> <!-- INTERURBANO -->
                         <label for="tipovia" class="col-12 mr-3 pl-1"><strong>Tipo de vía</strong></label>
                         <select name="tipovia" id="tipovia" class="pr-3 form-control col-lg-10 col-12 mr-3 my-1">
                             <option disabled selected>Seleccione tipo de vía</option>
-                            <option value="autopista">Autopista</option>
-                            <option value="autovia">Autovía</option>
-                            <option value="interes_general">Interes general</option>
-                            <option value="autonomica">Autonómicas</option>
-                            <option value="complementaria">Complementaria</option>
-                            <option value="comarcal">Comarcal</option>
+                            <option value="Autopista">Autopista</option>
+                            <option value="Autovia">Autovía</option>
+                            <option value="Interés general">Interes general</option>
+                            <option value="Autonómica">Autonómicas</option>
+                            <option value="Complementaria">Complementaria</option>
+                            <option value="Comarcal">Comarcal</option>
                         </select>
                         <div class="col-12 row">
                             <label for="carretera" class="col-5 pl-1"><strong>Carretera</strong></label>

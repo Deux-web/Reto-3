@@ -1,66 +1,93 @@
-google.charts.load('current', {packages: ['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+window.onload = function () {
+    verTodas();
 
-function drawChart() {
-    var taller = parseInt($("#taller").text());
-    var insitu =parseInt($("#insitu").text());
-    var numero_incis = parseInt($("#total_incidencias").text());
-
-
-    var porcentaje_taller = (taller*100)/numero_incis;
-    var procentaje_insitu = parseInt(insitu*100/numero_incis);
-    var resto_incis = parseInt((100 - (porcentaje_taller + procentaje_insitu)));
-
-    // Define the chart to be drawn.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Element');
-    data.addColumn('number', 'Percentage');
-
-
-    data.addRows([
-        ['Taller', porcentaje_taller],
-        ['In-Situ', procentaje_insitu]
-    ]);
-
-    // Set chart options
-
-
-
-    // Instantiate and draw the chart.
-    var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
-    chart.draw(data, null);
 }
 
-google.charts.load('current', {
-    'packages': ['geochart'],
-    // Note: you will need to get a mapsApiKey for your project.
-    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-});
-google.charts.setOnLoadCallback(drawMarkersMap);
+function verTodas() {
+    desmarcarTodo();
+    $(".todas").addClass('active');
+    verGraficos();
+}
 
-function drawMarkersMap() {
-    var data = google.visualization.arrayToDataTable([
-        ['City',   'Population', 'Area'],
-        ['Rome',      2761477,    1285.31],
-        ['Milan',     1324110,    181.76],
-        ['Naples',    959574,     117.27],
-        ['Turin',     907563,     130.17],
-        ['Palermo',   655875,     158.9],
-        ['Genoa',     607906,     243.60],
-        ['Bologna',   380181,     140.7],
-        ['Florence',  371282,     102.41],
-        ['Fiumicino', 67370,      213.44],
-        ['Anzio',     52192,      43.43],
-        ['Ciampino',  38262,      11]
-    ]);
+function verTecnicos() {
+    desmarcarTodo();
+    $(".tecnicos").addClass('active');
+    verGraficoTecnico();
+}
 
-    var options = {
-        region: 'IT',
-        displayMode: 'markers',
-        colorAxis: {colors: ['green', 'blue']}
-    };
+function verTiempos() {
+    desmarcarTodo();
+    $(".tiempos").addClass('active');
+    verGraficoHoras();
+}
 
-    var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-};
+function verFechas() {
+    desmarcarTodo();
+    $(".fechas").addClass('active');
+    verGraficoFechas();
+}
+
+function verZonas() {
+    desmarcarTodo();
+    $(".zonas").addClass('active');
+    verGraficoZonas();
+}
+
+function verResolucion() {
+    desmarcarTodo();
+    $(".resolucion").addClass('active');
+    verGraficoResolucion();
+}
+
+
+function desmarcarTodo() {
+    $(".todas").removeClass('active');
+    $(".tecnicos").removeClass('active');
+    $(".tiempos").removeClass('active');
+    $(".fechas").removeClass('active');
+    $(".zonas").removeClass('active');
+    $(".resolucion").removeClass('active');
+}
+
+function ocultarGraficos() {
+    $("#grafico_tecnico").addClass('d-none');
+    $("#grafico_horas").addClass('d-none');
+    $("#grafico_zonas").removeClass('d-flex');
+    $("#grafico_zonas").removeClass('justify-content-center');
+    $("#grafico_zonas").addClass('d-none');
+    $("#grafico_fechas").addClass('d-none');
+    $("#grafico_resolucion").addClass('d-none');
+}
+
+function verGraficoTecnico() {
+    ocultarGraficos();
+    $("#grafico_tecnico").removeClass('d-none');
+}
+
+function verGraficoHoras() {
+    ocultarGraficos();
+    $("#grafico_horas").removeClass('d-none');
+}
+
+function verGraficoZonas() {
+    ocultarGraficos();
+    $("#grafico_zonas").removeClass('d-none');
+}
+
+function verGraficoFechas() {
+    ocultarGraficos();
+    $("#grafico_fechas").removeClass('d-none');
+}
+
+function verGraficoResolucion() {
+    ocultarGraficos();
+    $("#grafico_resolucion").removeClass('d-none');
+}
+function verGraficos(){
+    $("#grafico_tecnico").removeClass('d-none');
+    $("#grafico_horas").removeClass('d-none');
+    $("#grafico_zonas").removeClass('d-none');
+    $("#grafico_fechas").removeClass('d-none');
+    $("#grafico_resolucion").removeClass('d-none');
+
+}

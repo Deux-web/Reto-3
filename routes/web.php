@@ -33,16 +33,7 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store')->middleware('auth');
 
-Route::get('/incidencias/estadisticas', function () {
-    $consulta = \App\Incidencia::all()->where('estado', '=', 'ACTIVA');
-    $total_incidencias = \App\Incidencia::all();
-    $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'INSITU');
-    $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'TALLER');
-
-    return view('view_estadisticas', ['consulta' => $consulta,
-        'resolucion_insitu' => $resolucion_insitu, 'resolucion_taller' => $resolucion_taller,
-        'total_incidencias' => $total_incidencias]);
-})->name('incidencia.estadisticas')->middleware('auth');
+Route::get('/incidencias/estadisticas','EstadisticasController@selectEstadisticas')->name('incidencia.estadisticas')->middleware('auth');
 
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
