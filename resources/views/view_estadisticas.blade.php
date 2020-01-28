@@ -58,7 +58,7 @@
                         <img class="img-fluid" src="{{URL::asset('images/hora.png')}}"/>
                     </div>
                 </div>
-                <div class="row offset-2">
+                <div class="row offset-lg-1">
                     <div class="col-12 d-flex justify-content-center" id="grafico_zonas">
                         <!--Por zonas -->
                         <div class="d-none">
@@ -67,7 +67,7 @@
                             <p id="inc_bizkaia">{{sizeof($incidencias_bizkaia)}}</p>
                             <p id="inc_nafarroa">{{sizeof($incidencias_nafarroa)}}</p>
                         </div>
-                        <div id="donutchart" style="width: 900px; height: 500px;"></div>
+                        <div id="donutchart"></div>
                     </div>
                 </div>
 
