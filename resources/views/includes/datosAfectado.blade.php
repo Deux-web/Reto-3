@@ -4,7 +4,7 @@
         <i id="botonDatosAfectados"
            class="fas fa-arrow-down col-2 d-block d-md-none d-flex justify-content-center align-items-center"></i>
     </div>
-    <div class="row colapsarDiv" id="datosAfectado">
+    <div class="row colapsarDiv d-md-flex" id="datosAfectado">
         <div class="col-lg-6 datosAfectado">
             <h3 class="mb-0"><label for="nom_ap">Nombre y apellidos</label></h3>
             <input class="form-control mb-2" type="text" id="nom_ap"
