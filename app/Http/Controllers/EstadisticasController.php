@@ -8,8 +8,8 @@ class EstadisticasController extends Controller
     public function selectEstadisticas(){
         $consulta = \App\Incidencia::all()->where('estado', '=', 'ACTIVA');
         $total_incidencias = \App\Incidencia::all();
-        $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'INSITU');
-        $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'TALLER');
+        $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'In situ');
+        $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'Taller');
         $tecnicos = \App\Tecnico::all();
 
         //$inc_por_tecnico = \App\Incidencia::groupBy('tecnico_id')->orderBy('incidencias', 'desc')->get(DB::raw('count(tecnico_id) as incidencias, tecnico_id'));

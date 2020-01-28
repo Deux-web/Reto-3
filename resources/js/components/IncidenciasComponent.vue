@@ -5,18 +5,26 @@
             </div>
             <div class="col-md-6 col-12 d-flex justify-content-end align-items-center row">
                 <div class="col-4 px-1">
-
+                <select id="opcion" name="opcion">
+                    <option value="id">Cod. Incidencia</option>
+                    <option value="nombreConductor">Afectado</option>
+                    <option value="telefono">Telefono</option>
+                    <option value="nombreTecnico">Tecnico Asignado</option>
+                    <option value="tipo">Tipo</option>
+                    <option value="provincia">Provincia</option>
+                    <option value="estado">Estado</option>
+                </select>
                 </div>
                 <div class="col-4 px-1">
                     <input type="text" id="datosBusqueda" class="form-control d-inline mr-1">
                 </div>
                 <div class="col-4 pl-1 pr-0">
-                    <input type="button" value="Buscar" class="btn btn-primary w-100" style="font-size: 125%"
+                    <input type="button" value="Buscar" class="btn btn-primary w-50" style="font-size: 125%"
                            v-on:click=getIncidenciasBusqueda()>
+                             <input type="button" value="Refrescar" class="btn btn-primary w-50" style="font-size: 125%" v-on:click=refrescar()>
                 </div>
             </div>
         </div>
-
         <table id="tabla_incidencias" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
             <thead class="bg-dark text-white">
             <tr>
@@ -74,10 +82,11 @@
             this.getIncidencias()
         },
         methods: {
-            getIncidenciasBusqueda() {
-                let datosBusqueda = $('#datosBusqueda').val();
+            getIncidenciasBusqueda(){
+                let opcion=$('#opcion').val();
+                let datosBusqueda=$('#datosBusqueda').val();
                 let $this = this;
-                axios.get('/api/incidencias/' + datosBusqueda).then(res => {
+                axios.get('/api/incidencias/'+datosBusqueda+'/'+opcion).then(res => {
                     this.incidencias = res.data.data;
                     $this.makePagination(res.data)
                 })
@@ -88,6 +97,9 @@
                     this.incidencias = res.data.data;
                     $this.makePagination(res.data)
                 })
+            },
+            refrescar(){
+                location.reload();
             },
             makePagination(data) {
                 let pagination = {
