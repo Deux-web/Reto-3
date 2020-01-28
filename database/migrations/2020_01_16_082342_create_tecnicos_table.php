@@ -19,10 +19,10 @@ class CreateTecnicosTable extends Migration
             $table->string('nombre');
             $table->string('apellido_p');
             $table->string('apellido_s');
-            $table->string('email')->unique();;
-            $table->string('telefono')->unique();;
-            $table->string('estado');
-            $table->boolean('habilitado');
+            $table->string('email')->unique();
+            $table->string('telefono')->unique();
+            $table->string('estado')->default('Fuera de trabajo');
+            $table->boolean('habilitado')->default(true);
             $table->unsignedBigInteger('centro_id');
         });
     }
