@@ -15,7 +15,18 @@ class IncidenciaController extends Controller
 {
     public function search(Request $request)
     {
-        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(50);
+        $incidencias = Incidencia::orderBy('id', 'DESC')->paginate(3);
+        foreach ($incidencias as $incidencia) {
+            $cliente = $incidencia->conductor;
+            $incidencia->conductor_id = $cliente;
+            $tecnico = $incidencia->tecnico;
+            $incidencia->tecnico_id = $tecnico;
+        }
+        return response()->json($incidencias);
+    }
+    public function busqueda($busqueda)
+    {
+        $incidencias = Incidencia::orderBy('id', 'DESC')->where('id','=',$busqueda)->paginate(3);
         foreach ($incidencias as $incidencia) {
             $cliente = $incidencia->conductor;
             $incidencia->conductor_id = $cliente;

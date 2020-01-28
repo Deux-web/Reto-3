@@ -54,12 +54,6 @@
                     incidencia
                 </a>
             @endif
-            <form
-                class="d-inline form-inline form-sm mt-0 d-flex align-items-center justify-content-md-end justify-content-between col-10 col-md-8 ml-auto mr-auto mr-md-0 p-0 row">
-                <input class="form-control form-control-sm col-8 col-md-6 mr-md-2" type="text" placeholder="Search"
-                       aria-label="Search" style="font-size: 125%">
-                <input type="submit" value="Buscar" class="btn btn-primary col-3" style="font-size: 125%">
-            </form>
         </div>
         <incidencias-component></incidencias-component>
     </div>

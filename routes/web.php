@@ -25,6 +25,8 @@ Route::get('/home', function () {
 //INCIDENCIAS
 Route::get('/api/incidencias', 'IncidenciaController@search')->name('incidencia.search');
 
+Route::get('/api/incidencias/{busqueda}', 'IncidenciaController@busqueda')->name('incidencia.busqueda');
+
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index')->middleware('auth');
 
 Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
