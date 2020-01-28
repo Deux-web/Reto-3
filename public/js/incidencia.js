@@ -45,7 +45,7 @@ window.onload = function () {
         }
     }
 
-    axios.get('/centros/' + $('#centro_id').text())
+    axios.get('/api/centros/' + $('#centro_id').text())
         .then(function (response) {
             $.each(response.data, function (index) {
                 if (response.data[index].estado == 'Disponible') {

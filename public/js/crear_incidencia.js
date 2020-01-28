@@ -110,7 +110,7 @@ window.onload = function () {
     });
     $("#centro").on('change', function () {
         $("#centro option:selected").each(function () {
-            axios.get('/centros/' + $(this).val())
+            axios.get('/api/centros/' + $(this).val())
                 .then(function (response) {
                     console.log(response);
                     $('#tablaTecnicos').parent().removeClass('invisible');

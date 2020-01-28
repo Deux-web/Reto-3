@@ -1,10 +1,11 @@
+<!-------------------------CENTROS Y TECNICOS (todos menos tecnico)---------------------------->
 @if($user->rol!=='TECNICO')
     <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
         <div class="row">
             <div class="col-9">
                 <h1>Datos del centro</h1></div>
             <div class="col-3">
-                <a href="#" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
+                <a target="_blank" href="{{route('centro.show',['id'=>$centro->id])}}" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
                     más</a>
             </div>
         </div>
@@ -28,7 +29,7 @@
                 <div class="col-9">
                     <h1>Datos del técnico</h1></div>
                 <div class="col-3">
-                    <a href="#" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
+                    <a target="_blank" href="{{route('tecnico.show',['id'=>$tecnico->id])}}" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
                         más</a>
                 </div>
             </div>

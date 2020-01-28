@@ -31,7 +31,7 @@ class CentroController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,20 +42,26 @@ class CentroController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Centro  $centro
+     * @param \App\Centro $centro
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $centro=Centro::find($id);
-        $tecnicos=Tecnico::where('centro_id','=',$centro->id)->orderBy('estado')->get();
+        $centro = Centro::find($id);
+        return view('centro', ['centro' => $centro]);
+    }
+
+    public function get($id)
+    {
+        $centro = Centro::find($id);
+        $tecnicos = Tecnico::where('centro_id', '=', $centro->id)->orderBy('estado')->get();
         return response()->json($tecnicos);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Centro  $centro
+     * @param \App\Centro $centro
      * @return \Illuminate\Http\Response
      */
     public function edit(Centro $centro)
@@ -66,8 +72,8 @@ class CentroController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Centro  $centro
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Centro $centro
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Centro $centro)
@@ -78,7 +84,7 @@ class CentroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Centro  $centro
+     * @param \App\Centro $centro
      * @return \Illuminate\Http\Response
      */
     public function destroy(Centro $centro)
