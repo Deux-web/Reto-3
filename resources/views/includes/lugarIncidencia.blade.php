@@ -13,7 +13,7 @@
                 $lugar = explode(',',$incidencia->direccion);
                     $urbano_interurbano = $lugar[0];
                     $provincia = $lugar[1];
-                if (sizeof($lugar)>5){
+                if ($urbano_interurbano=='Interurbano'){
                     $tipovia = $lugar[2];
                     $carretera = $lugar[3];
                     $km = $lugar[4];
@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-6 mb-2">
                     <h3 class="mb-0"><label for="urbano_interurbano">Zona</label></h3>
-                    @if(sizeof($lugar)>5)
+                    @if($urbano_interurbano=='Interurbano')
                         <input type="text" class="form-control" value="Interurbano" id="urbano_interurbano"
                                disabled>
                     @else
@@ -42,7 +42,7 @@
                     <input type="text" name="provincia_m" id="provincia_m" class="form-control"
                            value="{{$provincia}}" disabled>
                 </div>
-                @if(sizeof($lugar)>5)
+                @if($urbano_interurbano=='Interurbano')
                     <div class="col-6 mb-2">
                         <h3 class="mb-0"><label for="tipo_via">Tipo de vía</label></h3>
                         <input type="text" name="tipo_via" id="tipo_via" class="form-control"

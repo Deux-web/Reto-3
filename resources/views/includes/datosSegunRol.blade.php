@@ -1,10 +1,11 @@
+<!-------------------------CENTROS Y TECNICOS (todos menos tecnico)---------------------------->
 @if($user->rol!=='TECNICO')
     <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
         <div class="row">
             <div class="col-9">
                 <h1>Datos del centro</h1></div>
             <div class="col-3">
-                <a href="#" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
+                <a target="_blank" href="{{route('centro.show',['id'=>$centro->id])}}" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
                     más</a>
             </div>
         </div>
@@ -28,7 +29,7 @@
                 <div class="col-9">
                     <h1>Datos del técnico</h1></div>
                 <div class="col-3">
-                    <a href="#" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
+                    <a target="_blank" href="{{route('tecnico.show',['id'=>$tecnico->id])}}" class="btn btn-secondary d-flex align-items-center justify-content-center">Ver
                         más</a>
                 </div>
             </div>
@@ -49,8 +50,8 @@
     @else
         <div class="col-lg-6 col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
             <p class="d-none" id="centro_id">{{$centro->id}}</p>
-            <form method="post" action="{{route('incidencia.tecnico',$incidencia->id)}}">
-                <table class="table table-striped table-hover col-lg-12" id="tablaTecnicos">
+            <form method="post" action="{{route('incidencia.tecnico',$incidencia->id)}}" class="text-center">
+                <table class="table table-striped table-hover col-lg-12 mb-1" id="tablaTecnicos">
 
                     @csrf
                     <thead class="bg-dark text-white">
@@ -63,14 +64,14 @@
                     <tbody id="tbodyTecnicos">
 
                     </tbody>
-                    <input type="submit" value="Asignar Tecnico">
+
 
                 </table>
             </form>
         </div>
     @endif
     <!-------------------------ACCION DEPENDIENDO DEL ESTADO DE LA INCIDENCIA---------------------------->
-@elseif($incidencia->tecnico->email==$user->email)
+@elseif($incidencia->tecnico !==null && $incidencia->tecnico->email==$user->email)
     <!--------------------------ACTIVA (solo lo ve el tecnico asignado)-------------------------->
     @if($incidencia->estado === 'ACTIVA')
         <div class="col-12 bg-light my-1 rounded-sm p-3 order-2" style="height: max-content">
@@ -122,4 +123,8 @@
             </form>
         </div>
     @endif
+@else
+    <div class="col-12 bg-light my-1 rounded-sm p-3 order-2 text-center" style="height: max-content">
+        <h3>No hay tecnico asignado a esta incidencia</h3>
+    </div>
 @endif

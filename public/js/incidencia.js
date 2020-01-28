@@ -45,7 +45,7 @@ window.onload = function () {
         }
     }
 
-    axios.get('/centros/' + $('#centro_id').text())
+    axios.get('/api/centros/' + $('#centro_id').text())
         .then(function (response) {
             $.each(response.data, function (index) {
                 if (response.data[index].estado == 'Disponible') {
@@ -56,6 +56,7 @@ window.onload = function () {
                         '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                         '</tr>'
                     )
+                    $('#tablaTecnicos').after('<input type="submit" class="btn btn-primary w-50 " value="Asignar Tecnico">');
                 }
                 if ($('#tbodyTecnicos').children().length==0){
                     $('<h5>No hay técnicos disponibles</h5>').insertBefore($('#tablaTecnicos'));
@@ -63,6 +64,7 @@ window.onload = function () {
                 }
             })
         });
+
     $('#botonDatosAfectados').on('click', function () {
         let divDatosAfectados = $('#datosAfectado').css('height');
         $('#botonDatosAfectados').css('transition', 'all 0.4s ease-in-out');
@@ -76,6 +78,7 @@ window.onload = function () {
             $('#botonDatosAfectados').css('transform', 'rotate(0deg)');
         }
     })
+
     $('#botonDatosIncidencia').on('click', function () {
         let divDatosAfectados = $('#datosIncidencia').css('height');
         $('#botonDatosIncidencia').css('transition', 'all 0.4s ease-in-out');
@@ -89,6 +92,7 @@ window.onload = function () {
             $('#botonDatosIncidencia').css('transform', 'rotate(0deg)');
         }
     })
+
     $('#botonDatosResolucion').on('click', function () {
         let divDatosAfectados = $('.tipoResolucion').css('height');
         $('#botonDatosResolucion').css('transition', 'all 0.4s ease-in-out');
@@ -102,6 +106,7 @@ window.onload = function () {
             $('#botonDatosResolucion').css('transform', 'rotate(0deg)');
         }
     })
+
     $('#botonDatosComentarios').on('click', function () {
         let divDatosAfectados = $('#datosComentarios').css('height');
         $('#botonDatosComentarios').css('transition', 'all 0.4s ease-in-out');

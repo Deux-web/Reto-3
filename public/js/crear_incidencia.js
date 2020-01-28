@@ -78,6 +78,7 @@ window.onload = function () {
             .then(function (response) {
                 $('#tablaConductores').parent().removeClass('invisible');
                 $('#tablaConductores').children().remove();
+                $('#noMatricula').remove();
                 $.each(response.data, function (index) {
                     if (response.data[index].titular == 1) {
                         $('#tablaConductores').append(
@@ -103,12 +104,13 @@ window.onload = function () {
                 })
             })
             .catch(function (error) {
-                console.log(error);
+                $('#noMatricula').remove();
+                $('#tituloTablaConductores').after('<h5 id="noMatricula">No existe esa matricula en nuestra base de datos</h5>')
             });
     });
     $("#centro").on('change', function () {
         $("#centro option:selected").each(function () {
-            axios.get('/centros/' + $(this).val())
+            axios.get('/api/centros/' + $(this).val())
                 .then(function (response) {
                     console.log(response);
                     $('#tablaTecnicos').parent().removeClass('invisible');

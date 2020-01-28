@@ -3,70 +3,59 @@
     <title>Estadisticas</title>
     <script src="{{URL::asset('https://www.gstatic.com/charts/loader.js')}}"></script>
     <script src="{{URL::asset('js/app.js')}}"></script>
+    <script src="{{URL::asset('js/estadisticas.js')}}"></script>
     <script src="{{URL::asset('js/estadisticas_resulucion.js')}}"></script>
     <script src="{{URL::asset('js/estadisticas_tecnicos.js')}}"></script>
     <script src="{{URL::asset('js/estadisticas_zonas.js')}}"></script>
 
+
 @endsection
 @section('contenido')
     <div class="m-lg-3">
-        <h1>Estadísticas{{$inc_por_tecnico}}</h1>
+        <h1>Estadísticas</h1>
+
+
+
+
         <div class="card text-center">
-            <div class="card-header">
-                <div class="row d-flex justify-content-around">
-                    <div class="col-2 rounded" style="background-color: #181c30;color:white;">
-                        <div class="row d-flex justify-content-around align-self-center">
-                            <div class="col-7 align-self-center"><h5>Tecnicos</h5></div>
-                            <div class="col-5 align-self-center mt-1"><h1><i class="fas fa-user"></i></h1></div>
-                        </div>
-                    </div>
-                    <div class="col-2 rounded" style="background-color: #181c30;color:white;">
-                        <div class="row d-flex justify-content-around align-self-center">
-                            <div class="col-7 align-self-center"><h5>Tiempos</h5></div>
-                            <div class="col-5 align-self-center mt-1"><h1><i class="fas fa-hourglass-half"></i></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 rounded" style="background-color: #181c30;color:white;">
-                        <div class="row d-flex justify-content-around align-self-center">
-                            <div class="col-6 align-self-center"><h5>Zonas</h5></div>
-                            <div class="col-6 align-self-center mt-1"><h1><i class="far fa-map"></i></h1></div>
-                        </div>
-                    </div>
-                    <div class="col-2 rounded" style="background-color: #181c30;color:white;">
-                        <div class="row d-flex justify-content-around align-self-center" data-toggle="modal"
-                             data-target="#ModalFechas">
-                            <div class="col-6 align-self-center"><h5>Fechas</h5></div>
-                            <div class="col-6 align-self-center mt-1"><h1><i class="fas fa-calendar-day"></i></h1></div>
-                        </div>
-                    </div>
-                    <div class="col-2 rounded" style="background-color: #181c30;color:white;">
-                        <div class="row d-flex justify-content-around align-self-center" data-toggle="modal"
-                             data-target="#ModalResolucion">
-                            <div class="col-8 align-self-center"><h5>Resolucion</h5></div>
-                            <div class="col-4 align-self-center mt-1"><h1><i class="fas fa-tools"></i></h1></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ul class="nav nav-pills nav-fill ">
+                <li class="nav-item" id="todas">
+                    <a class="nav-link active todas" href="#" onclick="verTodas();">Todas <i class="fas fa-chart-line"></i></a>
+                </li>
+                <li class="nav-item" id="tecnicos">
+                    <a class="nav-link tecnicos"  href="#" onclick="verTecnicos();">Tecnicos <i class="fas fa-user"></i> </a>
+                </li>
+                <li class="nav-item" id="tiempos">
+                    <a class="nav-link tiempos"  href="#" onclick="verTiempos();">Tiempos <i class="fas fa-hourglass-half"></i></a>
+                </li>
+                <li class="nav-item" id="fechas">
+                    <a class="nav-link fechas"  href="#" onclick="verFechas();">Fechas <i class="fas fa-calendar-day"></i></a>
+                </li>
+                <li class="nav-item" id="zonas">
+                    <a class="nav-link zonas" href="#" onclick="verZonas();">Zonas <i class="far fa-map"></i></a>
+                </li>
+                <li class="nav-item" id="resolucion">
+                    <a class="nav-link resolucion"  href="#" onclick="verResolucion();">Resolución <i class="fas fa-tools"></i></a>
+                </li>
+            </ul>
             <div class="card-body">
                 <div class="row d-flex justify-content-sm-around m-2">
-                    <div class="col-5">
+                    <div class="col-5" id="grafico_tecnico">
                         <!--INCIDENDIAS POR TECNICOS-->
                         <div id="chart_div"></div>
                         <div class="d-none">
-                            <p class="n_inc">{{$inc_por_tecnico}}</p>
+                            {{--<p class="n_inc">{{$inc_por_tecnico}}</p>
                             @foreach($tecnicos as $tecnico)
                                 <p class="nombre_tec">{{$tecnico->nombre}} </p>
-                            @endforeach
+                            @endforeach--}}
                         </div>
                     </div>
-                    <div class="col-5 align-self-center">
+                    <div class="col-5 align-self-center" id="grafico_horas">
                         <img class="img-fluid" src="{{URL::asset('images/hora.png')}}"/>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-sm-around m-2">
-                    <div class="col-10 d-flex justify-content-center">
+                    <div class="col-10 d-flex justify-content-center" id="grafico_zonas">
                         <!--Por zonas -->
                         <div class="d-none">
                             <p id="inc_gipuzkoa">{{sizeof($incidencias_gipuzkoa)}}</p>
@@ -80,12 +69,12 @@
 
                 <div class="row d-flex justify-content-sm-around m-2">
 
-                    <div class="col-5">
-
+                    <div class="col-5" id="grafico_fechas">
+                        <p>Grafico de fechas</p>
                     </div>
 
-                    <div class="col-5">
-                        <div class="d-none">
+                    <div class="col-5" id="grafico_resolucion">
+                        <div class="">
                             <p id="total_incidencias">{{sizeof($total_incidencias)}} </p>
                             <p id="insitu">{{sizeof($resolucion_insitu)}}</p>
                             <p id="taller">{{sizeof($resolucion_taller)}}</p>
