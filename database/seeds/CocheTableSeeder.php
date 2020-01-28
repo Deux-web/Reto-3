@@ -24,5 +24,13 @@ class CocheTableSeeder extends Seeder
                 'color' => $faker->safeColorName,
             ]);
         }
+        DB::table('coches')->insert([
+            'id' => 51,
+            'matricula' => '0225-CCN',
+            'marca' => 'Mazda',
+            'modelo' => 'MPV',
+            'anyo' => '2001',
+            'color' => 'Granate',
+        ]);
     }
 }

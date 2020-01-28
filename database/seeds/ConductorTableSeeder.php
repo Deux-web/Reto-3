@@ -46,5 +46,18 @@ class ConductorTableSeeder extends Seeder
                 'email' => $faker->email
             ]);
         }
+        DB::table('conductors')->insert([
+            'id' => 160,
+            'dni' => '72852975S',
+            'nombre' => 'Jon',
+            'apellido_p' => 'Santos',
+            'apellido_s' => 'Barata',
+            'titular' => '1',
+            'fecha_nac' => $faker->numberBetween(1945, 2002),
+            'fecha_carnet' => $faker->date('Y-m-d'),
+            'direccion' => $faker->address,
+            'telefono' => '6' . $faker->randomNumber(8),
+            'email' => $faker->email
+        ]);
     }
 }
