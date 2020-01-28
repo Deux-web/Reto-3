@@ -37,6 +37,8 @@ Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.s
 
 Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('incidencia.edit')->middleware('auth');
 
+Route::post('/incidencias/{id}/tecnico', 'IncidenciaController@tecnico')->name('incidencia.tecnico')->middleware('auth');
+
 Route::post('/incidencias/{id}', 'IncidenciaController@update')->name('incidencia.update')->middleware('auth');
 //USUARIOS
 
