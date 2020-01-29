@@ -14,6 +14,7 @@ function drawTitleSubtitle(datos) {
     $.each( datos, function(i, obj) {
         arrayDatos.push([obj.nombre,obj.incidencias]);
     });
+    console.log(arrayDatos);
     var data = google.visualization.arrayToDataTable(
         arrayDatos
     );
