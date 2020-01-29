@@ -35,6 +35,8 @@ Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.stor
 
 Route::get('/incidencias/estadisticas', 'EstadisticasController@selectEstadisticas')->name('incidencia.estadisticas')->middleware('auth');
 
+Route::get('/incidencias/tecnicos','EstadisticasController@estadisticasTecnicos')->name('estadistica.tecnicos')->middleware('auth');
+
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
 Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('incidencia.edit')->middleware('auth');
@@ -42,14 +44,15 @@ Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('inciden
 Route::post('/incidencias/{id}/tecnico', 'IncidenciaController@tecnico')->name('incidencia.tecnico')->middleware('auth');
 
 Route::post('/incidencias/{id}', 'IncidenciaController@update')->name('incidencia.update')->middleware('auth');
+
 //USUARIOS
+
+Route::get('/api/usuarios','UserController@get')->name('usuarios.get')->middleware('auth');
+
+Route::get('/api/usuarios/{busqueda}/{opcion}', 'UserController@busqueda')->name('usuarios.busqueda')->middleware('auth');
 
 Route::get('/usuarios', 'UserController@index')->name('usuario.index')->middleware('auth');
 
-/*Route::get('/usuarios/create',function () {
-    return redirect()->route('register');})->name('usuario.create');
-*/
-//prueba insertar usuario
 Route::post('/usuarios', 'UserController@store')->name('usuario.store')->middleware('auth');
 
 Route::get('/usuarios/create', 'UserController@create')->name('usuario.create')->middleware('auth');
@@ -76,6 +79,10 @@ Route::post('/incidencias/{incidencia_id}/comentarios', 'ComentarioController@st
 
 //TECNICOS
 Route::get('/tecnicos/estado', 'TecnicoController@cambiarEstado')->name('tecnico.cambiarestado')->middleware('auth');
+
+Route::get('/api/tecnicos','TecnicoController@get')->name('tecnico.get')->middleware('auth');
+
+Route::get('/api/tecnicos/{busqueda}/{opcion}', 'TecnicoController@busqueda')->name('tecnico.busqueda')->middleware('auth');
 
 Route::get('/tecnicos/{id}', 'TecnicoController@show')->name('tecnico.show')->middleware('auth');
 
