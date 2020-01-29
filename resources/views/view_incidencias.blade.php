@@ -31,7 +31,7 @@
             @if($user->rol=='GERENTE' || $user->rol=='COORDINADOR')
                 <input type="hidden" value="COORDINADOR_GERENTE" id="rol">
                 <input type="hidden" id="ruta" value="{{route('incidencia.estadisticas')}}">
-                <input type="hidden" id="ruta2" value="{{route('usuario.create')}}">
+                <input type="hidden" id="ruta2" value="{{route('usuario.index')}}">
             @elseif($user->rol=='TECNICO')
                 <input type="hidden" value="TECNICO" id="rol">
                 <input type="hidden" id="ruta" value="">
