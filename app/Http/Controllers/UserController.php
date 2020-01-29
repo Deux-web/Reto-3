@@ -12,6 +12,38 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function get()
+    {
+        $usuarios = User::orderBy('id', 'DESC')->paginate(10);
+        return response()->json($usuarios);
+    }
+
+    public function busqueda($busqueda, $opcion)
+    {
+        switch ($opcion) {
+            case 'id':
+                $usuarios = User::orderBy('id', 'DESC')->where('id', '=', $busqueda)->paginate(10);
+                break;
+            case 'nombre':
+                $usuarios = User::orderBy('id', 'DESC')->where('nombre', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'email':
+                $usuarios = User::orderBy('id', 'DESC')->where('email', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'rol':
+                $usuarios = User::orderBy('id', 'DESC')->where('rol', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'habilitado':
+                if ($busqueda == 'si') {
+                    $usuarios = User::orderBy('id', 'DESC')->where('habilidado', '=', '1')->paginate(10);
+                } else {
+                    $usuarios = User::orderBy('id', 'DESC')->where('habilidado', '=', '0')->paginate(10);
+                }
+                break;
+        }
+        return response()->json($usuarios);
+    }
+
     /**
      * Display a listing of the resource.
      *
