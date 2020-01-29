@@ -34,7 +34,12 @@
                 <input type="hidden" id="ruta2" value="{{route('usuario.index')}}">
             @elseif($user->rol=='TECNICO')
                 <input type="hidden" value="TECNICO" id="rol">
-                <input type="hidden" id="ruta" value="">
+                <input type="hidden" id="tecnico_id" value="{{$tecnico->id}}">
+                <input type="hidden" id="ruta2" value="{{route('tecnico.cambiarestado')}}">
+                <input type="hidden" name="estado_t" id="estado_t" value="{{$tecnico->estado}}">
+                @if($tecnico->estado === 'Ocupado')
+                    <input type="hidden" id="ruta_pendiente" value="{{route('incidencia.show', $inc_asignada->id)}}">
+                @endif
             @else
                 <input type="hidden" value="OPERARIO" id="rol">
                 <input type="hidden" id="ruta" value="{{route('incidencia.create')}}">

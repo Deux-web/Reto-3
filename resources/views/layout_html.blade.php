@@ -7,17 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
     <link href="{{URL::asset('css/app.css')}}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{URL::asset('images/road-tech-assistance.ico')}}" type="image/x-icon" sizes="16x16">
+    <link rel="shortcut icon" href="{{URL::asset('images/road-tech-assistance.ico')}}" type="image/x-icon"
+          sizes="16x16">
     <script src="https://kit.fontawesome.com/122a23edb6.js" crossorigin="anonymous"></script>
     <style>
         body {
             display: grid;
             grid-template-rows: auto 1fr auto;
         }
-        header{
+
+        header {
             z-index: 100;
         }
-        footer{
+
+        footer {
             z-index: 100;
         }
     </style>
@@ -44,7 +47,7 @@
                           style="display: none;">
                         @csrf
                     </form>
-                    <span class="float-right text-primary mr-3">{{ Auth::user()->rol }}</span>
+                        <span class="float-right text-primary mr-3">{{ Auth::user()->rol }}</span>
                 </div>
             @endif
         </div>
