@@ -25,34 +25,7 @@
         </ul>
         <div class="tab-content" id="tablesContent">
             <div class="tab-pane fade show active" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
-                <table id="tabla_usuarios" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
-                    <thead class="bg-dark text-white">
-                    <tr>
-                        <th scope="col" id="th_cod">Cod. Usuario</th>
-                        <th scope="col" id="th_nombre">Nombre</th>
-                        <th scope="col" id="th_apellidos">Apellidos</th>
-                        <th scope="col" id="th_email">Email</th>
-                        <th scope="col" id="th_rol">Rol</th>
-                        <th scope="col" id="th_habilitado">Habilitado</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($usuarios as $usuario)
-                        <tr>
-                            <td>{{$usuario->id}}</td>
-                            <td>{{$usuario->name}}</td>
-                            <td>{{$usuario->apellido_p}} {{$usuario->apellido_s}}</td>
-                            <td>{{$usuario->email}}</td>
-                            <td>{{$usuario->rol}}</td>
-                            @if($usuario->habilitado==1)
-                                <td>Si</td>
-                            @else
-                                <td>No</td>
-                            @endif
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <usuarios-component></usuarios-component>
             </div>
             <div class="tab-pane fade" id="tecnicos" role="tabpanel" aria-labelledby="tecnicos-tab">
                 <tecnicos-component></tecnicos-component>

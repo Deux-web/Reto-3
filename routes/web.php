@@ -47,6 +47,10 @@ Route::post('/incidencias/{id}', 'IncidenciaController@update')->name('incidenci
 
 //USUARIOS
 
+Route::get('/api/usuarios','UserController@get')->name('usuarios.get')->middleware('auth');
+
+Route::get('/api/usuarios/{busqueda}/{opcion}', 'UserController@busqueda')->name('usuarios.busqueda')->middleware('auth');
+
 Route::get('/usuarios', 'UserController@index')->name('usuario.index')->middleware('auth');
 
 Route::post('/usuarios', 'UserController@store')->name('usuario.store')->middleware('auth');
@@ -77,7 +81,7 @@ Route::post('/incidencias/{incidencia_id}/comentarios', 'ComentarioController@st
 
 Route::get('/api/tecnicos','TecnicoController@get')->name('tecnico.get')->middleware('auth');
 
-Route::get('/api/tecnicos/{busqueda}/{opcion}', 'TecnicoController@busqueda')->name('tecnico.busqueda');
+Route::get('/api/tecnicos/{busqueda}/{opcion}', 'TecnicoController@busqueda')->name('tecnico.busqueda')->middleware('auth');
 
 Route::get('/tecnicos/{id}', 'TecnicoController@show')->name('tecnico.show')->middleware('auth');
 
