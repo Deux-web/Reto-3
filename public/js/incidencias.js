@@ -9,6 +9,30 @@ window.onload = function () {
     let th_estado = $('#th_estado');
     let th_fechacreacion = $('#th_fechacreacion');
 
+    // let botones_operario = $('<a href="' + $("#ruta").val() + '" class="btn btn-primary" style="font-size: 125%;"> Nueva incidencia</a>');
+
+    switch ($('#rol').val()) {
+        case "OPERARIO":
+            let botones_operario = $(
+                '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12" style="font-size: 125%;">Nueva incidencia</a> '
+            );
+            $('#botones').append(botones_operario);
+            break;
+        case "TECNICO":
+            let botones_tecnico = $(
+                '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12" style="font-size: 125%;">Mis incidencias</a>'
+            );
+            $('#botones').append(botones_tecnico);
+            break;
+        case "COORDINADOR_GERENTE":
+            let botones_coordinador = $(
+                '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12 mr-1 mb-1 mb-md-0" style="font-size: 125%;">Estadísticas</a>' +
+                '<a href="' + $("#ruta2").val() + '" class="btn btn-primary col-md-5 col-12" style="font-size: 125%;">Crear usuarios</a>'
+            );
+            $('#botones').append(botones_coordinador);
+            break;
+    }
+
     let columnas = [th_cod, th_afectado, th_contacto, th_tecnicoasignado, th_tipo, th_lugar, th_estado, th_fechacreacion];
     columnas.forEach(value => {
         value.css('user-select', 'none');

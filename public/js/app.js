@@ -1990,6 +1990,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37431,31 +37450,55 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("input", { attrs: { type: "text", id: "datosBusqueda" } }),
-    _vm._v(" "),
-    _c("input", {
-      staticClass: "btn btn-primary col-3",
-      staticStyle: { "font-size": "125%" },
-      attrs: { type: "button", value: "Buscar" },
-      on: {
-        click: function($event) {
-          return _vm.getIncidenciasBusqueda()
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      staticClass: "btn btn-primary col-3",
-      staticStyle: { "font-size": "125%" },
-      attrs: { type: "button", value: "Refrescar" },
-      on: {
-        click: function($event) {
-          return _vm.refrescar()
-        }
-      }
-    }),
+    _c("div", { staticClass: "row no-gutters" }, [
+      _c("div", {
+        staticClass: "col-md-5 col-12 mb-1 row no-gutters",
+        attrs: { id: "botones" }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-md-7 col-12 d-flex justify-content-end align-items-center row"
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-4 pl-1 pr-0 row no-gutters" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary col-6 d-block mx-auto",
+                staticStyle: { "font-size": "125%" },
+                on: {
+                  click: function($event) {
+                    return _vm.getIncidenciasBusqueda()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-search" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary col-5 d-block mx-auto",
+                staticStyle: { "font-size": "125%" },
+                on: {
+                  click: function($event) {
+                    return _vm.refrescar()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-undo-alt" })]
+            )
+          ])
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "table",
@@ -37465,7 +37508,7 @@ var render = function() {
         attrs: { id: "tabla_incidencias" }
       },
       [
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37492,15 +37535,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.conductor_id.telefono +
-                        " " +
-                        incidencia.conductor_id.email
-                    )
-                  )
-                ]),
+                _c("td", [_vm._v(_vm._s(incidencia.conductor_id.telefono))]),
                 _vm._v(" "),
                 incidencia.tecnico_id !== null
                   ? _c("td", [
@@ -37509,7 +37544,7 @@ var render = function() {
                           incidencia.tecnico_id.nombre +
                             " " +
                             incidencia.tecnico_id.apellido_p
-                        )
+                        ) + "\n            "
                       )
                     ])
                   : _c("td", { staticClass: "text-danger" }, [
@@ -37551,7 +37586,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Anterior\n        ")]
+          [_vm._v("Anterior\n            ")]
         ),
         _vm._v(" "),
         _c("span", [
@@ -37576,7 +37611,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Siguiente\n        ")]
+          [_vm._v("Siguiente\n            ")]
         )
       ])
     ])
@@ -37587,24 +37622,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("select", { attrs: { id: "opcion", name: "opcion" } }, [
-      _c("option", { attrs: { value: "id" } }, [_vm._v("Cod. Incidencia")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "nombreConductor" } }, [
-        _vm._v("Afectado")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "telefono" } }, [_vm._v("Telefono")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "nombreTecnico" } }, [
-        _vm._v("Tecnico Asignado")
-      ]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "tipo" } }, [_vm._v("Tipo")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "provincia" } }, [_vm._v("Provincia")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "estado" } }, [_vm._v("Estado")])
+    return _c("div", { staticClass: "col-4 px-1" }, [
+      _c(
+        "select",
+        {
+          staticClass: "custom-select",
+          attrs: { id: "opcion", name: "opcion" }
+        },
+        [
+          _c("option", { attrs: { value: "id" } }, [_vm._v("Cod. Incidencia")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "nombreConductor" } }, [
+            _vm._v("Afectado")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "telefono" } }, [_vm._v("Telefono")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "nombreTecnico" } }, [
+            _vm._v("Tecnico Asignado")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "tipo" } }, [_vm._v("Tipo")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "provincia" } }, [
+            _vm._v("Provincia")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "estado" } }, [_vm._v("Estado")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4 px-1" }, [
+      _c("input", {
+        staticClass: "form-control d-inline mr-1",
+        attrs: { type: "text", id: "datosBusqueda" }
+      })
     ])
   },
   function() {
