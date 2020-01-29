@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Incidencia;
 use App\Tecnico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TecnicoController extends Controller
 {
@@ -81,5 +83,21 @@ class TecnicoController extends Controller
     public function destroy(Tecnico $tecnico)
     {
         //
+    }
+
+    public function cambiarEstado(Request $request)
+    {
+        $estado_t = request('estado_t');
+        $user = Auth::user();
+        $tecnico = Tecnico::where('email', $user->email)->first();
+
+        if ($estado_t === 'Disponible') {
+            $tecnico->estado = 'Fuera de trabajo';
+        } else if ($estado_t === 'Fuera de trabajo') {
+            $tecnico->estado = 'Disponible';
+        }
+        // echo $tecnico;
+        $tecnico->save();
+        return redirect(route('incidencia.index'));
     }
 }
