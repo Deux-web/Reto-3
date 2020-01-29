@@ -35,6 +35,8 @@ Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.stor
 
 Route::get('/incidencias/estadisticas','EstadisticasController@selectEstadisticas')->name('incidencia.estadisticas')->middleware('auth');
 
+Route::get('/incidencias/tecnicos','EstadisticasController@estadisticasTecnicos')->name('estadistica.tecnicos')->middleware('auth');
+
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
 Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('incidencia.edit')->middleware('auth');
