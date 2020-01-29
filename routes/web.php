@@ -44,14 +44,11 @@ Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('inciden
 Route::post('/incidencias/{id}/tecnico', 'IncidenciaController@tecnico')->name('incidencia.tecnico')->middleware('auth');
 
 Route::post('/incidencias/{id}', 'IncidenciaController@update')->name('incidencia.update')->middleware('auth');
+
 //USUARIOS
 
 Route::get('/usuarios', 'UserController@index')->name('usuario.index')->middleware('auth');
 
-/*Route::get('/usuarios/create',function () {
-    return redirect()->route('register');})->name('usuario.create');
-*/
-//prueba insertar usuario
 Route::post('/usuarios', 'UserController@store')->name('usuario.store')->middleware('auth');
 
 Route::get('/usuarios/create', 'UserController@create')->name('usuario.create')->middleware('auth');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Centro;
+use App\Tecnico;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +19,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        $tecnicos = Tecnico::orderBy('habilitado', 'desc')->orderBy('centro_id', 'asc')->get();
+        $centros = Centro::all();
+
+        return view('view_usuarios_tecnicos', ['usuarios' => $usuarios, 'tecnicos' => $tecnicos, 'centros' => $centros]);
     }
 
     /**
