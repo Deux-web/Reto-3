@@ -2,12 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Centro;
 use App\Incidencia;
 use App\Tecnico;
 use Illuminate\Http\Request;
 
 class TecnicoController extends Controller
 {
+    public function get()
+    {
+        $tecnicos = Tecnico::orderBy('id', 'DESC')->paginate(10);
+        foreach ($tecnicos as $tecnico) {
+            $centro = $tecnico->centro;
+            $tecnico->centro_id = $centro;
+        }
+        return response()->json($tecnicos);
+    }
+
+    public function busqueda($busqueda, $opcion)
+    {
+        switch ($opcion) {
+            case 'id':
+                $tecnicos = Tecnico::orderBy('id', 'DESC')->where('id', '=', $busqueda)->paginate(10);
+                break;
+            case 'nombre':
+                $tecnicos = Tecnico::orderBy('id', 'DESC')->where('nombre', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'telefono':
+                $tecnicos = Tecnico::orderBy('id', 'DESC')->where('telefono', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'email':
+                $tecnicos = Tecnico::orderBy('id', 'DESC')->where('email', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'centro':
+                $centro = Centro::where('nombre', '=', $busqueda)->first();
+                $tecnicos = Tecnico::orderBy('id', 'DESC')->where('centro_id', '=', $centro->id)->paginate(10);
+                break;
+            case 'habilitado':
+                if ($busqueda == 'si') {
+                    $tecnicos = Tecnico::orderBy('id', 'DESC')->where('habilidado', '=', '1')->paginate(10);
+                } else {
+                    $tecnicos = Tecnico::orderBy('id', 'DESC')->where('habilidado', '=', '0')->paginate(10);
+                }
+                break;
+            case 'estado':
+                $tecnicos = Tecnico::orderBy('id', 'DESC')->where('estado', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+        }
+        foreach ($tecnicos as $tecnico) {
+            $centro = $tecnico->centro;
+            $tecnico->centro_id = $centro;
+        }
+        return response()->json($tecnicos);
+    }
 
     public function index()
     {

@@ -75,6 +75,10 @@ Route::post('/incidencias/{incidencia_id}/comentarios', 'ComentarioController@st
 
 //TECNICOS
 
+Route::get('/api/tecnicos','TecnicoController@get')->name('tecnico.get')->middleware('auth');
+
+Route::get('/api/tecnicos/{busqueda}/{opcion}', 'TecnicoController@busqueda')->name('tecnico.busqueda');
+
 Route::get('/tecnicos/{id}', 'TecnicoController@show')->name('tecnico.show')->middleware('auth');
 
 Route::post('/tecnicos/{id}', 'TecnicoController@update')->name('tecnico.update');
