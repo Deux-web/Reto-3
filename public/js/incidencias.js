@@ -46,7 +46,7 @@ window.onload = function () {
         case "COORDINADOR_GERENTE":
             let botones_coordinador = $(
                 '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12 mb-1 mb-md-0" style="font-size: 125%;">Estadísticas</a>' +
-                '<a href="' + $("#ruta2").val() + '" class="btn btn-primary col-md-5 col-12 ml-lg-1 ml-0" style="font-size: 125%;">Crear usuarios</a>'
+                '<a href="' + $("#ruta2").val() + '" class="btn btn-primary col-md-5 col-12 ml-lg-1 ml-0" style="font-size: 125%;">Usuarios</a>'
             );
             $('#botones').append(botones_coordinador);
             $('#mis_incidencias').addClass('d-none');
