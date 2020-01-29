@@ -33,7 +33,7 @@ class EstadisticasController extends Controller
     }
     public function estadisticasTecnicos(){
         $inc_por_tecnico=DB::table('incidencias')->join('tecnicos','incidencias.tecnico_id','=','tecnicos.id')
-            ->select(DB::raw('count(*) as incidencias'),'tecnicos.nombre')->groupBy('incidencias.tecnico_id')->where('incidencias.estado','=','RESUELTA')->orderBy('incidencias', 'desc')->get()->take(10);
+            ->select(DB::raw('count(*) as incidencias'),'tecnicos.nombre')->groupBy('tecnicos.nombre')->where('incidencias.estado','=','RESUELTA')->orderBy('incidencias', 'desc')->get()->take(10);
 
         return response()->json($inc_por_tecnico);
     }
