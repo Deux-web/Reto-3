@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Centro;
 use App\Incidencia;
 use App\Tecnico;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -115,8 +116,26 @@ class TecnicoController extends Controller
      * @param \App\Tecnico $tecnico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
+        $tecnico = Tecnico::find($id);
+        if ($tecnico->habilitado == 1) {
+            $tecnico->habilitado = 0;
+        } else {
+            $tecnico->habilitado = 1;
+        }
+
+        $tecnico->save();
+        $usuario = User::where('email', '=', $tecnico->email)->first();
+
+        if ($usuario->habilitado == 1) {
+            $usuario->habilitado = 0;
+        } else {
+            $usuario->habilitado = 1;
+        }
+        $usuario->save();
+        $tecnicos = User::orderBy('id', 'DESC')->paginate(10);
+        return response()->json($tecnicos);
 
     }
 
@@ -127,12 +146,14 @@ class TecnicoController extends Controller
      * @param \App\Tecnico $tecnico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tecnico $tecnico)
+    public
+    function destroy(Tecnico $tecnico)
     {
         //
     }
 
-    public function cambiarEstado(Request $request)
+    public
+    function cambiarEstado(Request $request)
     {
         $estado_t = request('estado_t');
         $user = Auth::user();

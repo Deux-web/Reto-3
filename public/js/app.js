@@ -2175,6 +2175,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2223,8 +2225,12 @@ __webpack_require__.r(__webpack_exports__);
       this.url = url;
       this.getTecnicos();
     },
-    verTecnico: function verTecnico(id) {
-      location.href = '/tecnicos/' + id;
+    cambiarHabilitado: function cambiarHabilitado(usuario_id) {
+      axios.post('/tecnicos/' + usuario_id, {}).then(function (res) {
+        location.reload();
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -2240,6 +2246,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2357,8 +2365,12 @@ __webpack_require__.r(__webpack_exports__);
       this.url = url;
       this.getUsuarios();
     },
-    verUsuario: function verUsuario(id) {
-      location.href = '/usuarios/' + id;
+    cambiarHabilitado: function cambiarHabilitado(usuario_id) {
+      axios.post('/usuarios/' + usuario_id, {}).then(function (res) {
+        location.reload();
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -38103,41 +38115,40 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.tecnicos, function(tecnico) {
-            return _c(
-              "tr",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.verTecnico(tecnico.id)
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(tecnico.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tecnico.nombre))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(tecnico.apellido_p) + " " + _vm._s(tecnico.apellido_s)
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tecnico.email))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tecnico.telefono))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tecnico.estado))]),
+              _vm._v(" "),
+              tecnico.habilitado == 1
+                ? _c("td", [_vm._v("Si")])
+                : _c("td", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tecnico.centro_id.nombre))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  attrs: { type: "checkbox", id: tecnico.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.cambiarHabilitado(tecnico.id)
+                    }
                   }
-                }
-              },
-              [
-                _c("td", [_vm._v(_vm._s(tecnico.id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(tecnico.nombre))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(tecnico.apellido_p) +
-                      " " +
-                      _vm._s(tecnico.apellido_s)
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(tecnico.email))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(tecnico.telefono))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(tecnico.estado))]),
-                _vm._v(" "),
-                tecnico.habilitado == 1
-                  ? _c("td", [_vm._v("Si")])
-                  : _c("td", [_vm._v("No")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(tecnico.centro_id.nombre))])
-              ]
-            )
+                })
+              ])
+            ])
           }),
           0
         )
@@ -38212,11 +38223,11 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("option", { attrs: { value: "estado" } }, [_vm._v("Estado")]),
           _vm._v(" "),
+          _c("option", { attrs: { value: "centro" } }, [_vm._v("Centro")]),
+          _vm._v(" "),
           _c("option", { attrs: { value: "habilitado" } }, [
             _vm._v("Habilitado")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "centro" } }, [_vm._v("Centro")])
+          ])
         ]
       )
     ])
@@ -38262,12 +38273,16 @@ var staticRenderFns = [
           _vm._v("Estado")
         ]),
         _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_centro" } }, [
+          _vm._v("Centro")
+        ]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col", id: "th_habilitado" } }, [
           _vm._v("Habilitado")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_centro" } }, [
-          _vm._v("Centro")
+        _c("th", { attrs: { scope: "rol", id: "th_cambiarHablitado" } }, [
+          _vm._v("Cambiar Habilitado")
         ])
       ])
     ])
@@ -38358,37 +38373,36 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.usuarios, function(usuario) {
-            return _c(
-              "tr",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.verUsuario(usuario.id)
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(usuario.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(usuario.name))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(usuario.apellido_p) + " " + _vm._s(usuario.apellido_s)
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(usuario.email))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(usuario.rol))]),
+              _vm._v(" "),
+              usuario.habilitado == 1
+                ? _c("td", [_vm._v("Si")])
+                : _c("td", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  attrs: { type: "checkbox", id: usuario.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.cambiarHabilitado(usuario.id)
+                    }
                   }
-                }
-              },
-              [
-                _c("td", [_vm._v(_vm._s(usuario.id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(usuario.nombre))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(usuario.apellido_p) +
-                      " " +
-                      _vm._s(usuario.apellido_s)
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(usuario.email))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(usuario.rol))]),
-                _vm._v(" "),
-                usuario.habilitado == 1
-                  ? _c("td", [_vm._v("Si")])
-                  : _c("td", [_vm._v("No")])
-              ]
-            )
+                })
+              ])
+            ])
           }),
           0
         )
@@ -38459,11 +38473,11 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("option", { attrs: { value: "email" } }, [_vm._v("email")]),
           _vm._v(" "),
+          _c("option", { attrs: { value: "rol" } }, [_vm._v("Rol")]),
+          _vm._v(" "),
           _c("option", { attrs: { value: "habilitado" } }, [
             _vm._v("Habilitado")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "rol" } }, [_vm._v("Rol")])
+          ])
         ]
       )
     ])
@@ -38505,6 +38519,10 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col", id: "th_habilitado" } }, [
           _vm._v("Habilitado")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "rol", id: "th_cambiarHablitado" } }, [
+          _vm._v("Cambiar Habilitado")
         ])
       ])
     ])

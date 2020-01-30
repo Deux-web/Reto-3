@@ -11,8 +11,8 @@
                         <option value="telefono">Telefono</option>
                         <option value="email">email</option>
                         <option value="estado">Estado</option>
-                        <option value="habilitado">Habilitado</option>
                         <option value="centro">Centro</option>
+                        <option value="habilitado">Habilitado</option>
                     </select>
                 </div>
                 <div class="col-4 px-1">
@@ -40,12 +40,13 @@
                 <th scope="col" id="th_email">Email</th>
                 <th scope="col" id="th_telefono">Telefono</th>
                 <th scope="col" id="th_estado">Estado</th>
-                <th scope="col" id="th_habilitado">Habilitado</th>
                 <th scope="col" id="th_centro">Centro</th>
+                <th scope="col" id="th_habilitado">Habilitado</th>
+                <th scope="rol" id="th_cambiarHablitado">Cambiar Habilitado</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="tecnico in tecnicos" v-on:click="verTecnico(tecnico.id)">
+            <tr v-for="tecnico in tecnicos">
                 <td>{{tecnico.id}}</td>
                 <td>{{tecnico.nombre}}</td>
                 <td>{{tecnico.apellido_p}} {{tecnico.apellido_s}}</td>
@@ -55,6 +56,7 @@
                 <td v-if="tecnico.habilitado==1">Si</td>
                 <td v-else>No</td>
                 <td>{{tecnico.centro_id.nombre}}</td>
+                <td><input type="checkbox" :id="tecnico.id" v-on:click="cambiarHabilitado(tecnico.id)"></td>
             </tr>
             </tbody>
         </table>
@@ -118,9 +120,15 @@
                 this.url = url;
                 this.getTecnicos()
             },
-            verTecnico(id) {
-                location.href = '/tecnicos/' + id;
-            },
+            cambiarHabilitado(usuario_id) {
+                axios.post('/tecnicos/' + usuario_id, {})
+                    .then(function (res) {
+                        location.reload();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     }
 </script>
