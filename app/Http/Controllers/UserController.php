@@ -128,9 +128,29 @@ class UserController extends Controller
      * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update($id)
     {
-        //
+        $usuario = User::find($id);
+        if ($usuario->habilitado == 1) {
+            $usuario->habilitado = 0;
+        } else {
+            $usuario->habilitado = 1;
+        }
+
+        $usuario->save();
+
+        if ($usuario->rol == 'TECNICO') {
+            $tecnico = Tecnico::where('email', '=', $usuario->email)->first();
+
+            if ($tecnico->habilitado == 1) {
+                $tecnico->habilitado = 0;
+            } else {
+                $tecnico->habilitado = 1;
+            }
+            $tecnico->save();
+        }
+        $usuarios = User::orderBy('id', 'DESC')->paginate(10);
+        return response()->json($usuarios);
     }
 
     /**

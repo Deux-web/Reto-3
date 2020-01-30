@@ -9,8 +9,8 @@
                         <option value="id">Cod. Usuario</option>
                         <option value="nombre">nombre</option>
                         <option value="email">email</option>
-                        <option value="habilitado">Habilitado</option>
                         <option value="rol">Rol</option>
+                        <option value="habilitado">Habilitado</option>
                     </select>
                 </div>
                 <div class="col-4 px-1">
@@ -38,17 +38,19 @@
                 <th scope="col" id="th_email">Email</th>
                 <th scope="col" id="th_rol">Rol</th>
                 <th scope="col" id="th_habilitado">Habilitado</th>
+                <th scope="rol" id="th_cambiarHablitado">Cambiar Habilitado</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="usuario in usuarios" v-on:click="verUsuario(usuario.id)">
+            <tr v-for="usuario in usuarios">
                 <td>{{usuario.id}}</td>
-                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.name}}</td>
                 <td>{{usuario.apellido_p}} {{usuario.apellido_s}}</td>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.rol}}</td>
                 <td v-if="usuario.habilitado==1">Si</td>
                 <td v-else>No</td>
+                <td><input type="checkbox" :id="usuario.id" v-on:click="cambiarHabilitado(usuario.id)"></td>
             </tr>
             </tbody>
         </table>
@@ -112,9 +114,15 @@
                 this.url = url;
                 this.getUsuarios()
             },
-            verUsuario(id) {
-                location.href = '/usuarios/' + id;
-            },
+            cambiarHabilitado(usuario_id) {
+                axios.post('/usuarios/' + usuario_id, {})
+                    .then(function (res) {
+                        location.reload();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     }
 </script>
