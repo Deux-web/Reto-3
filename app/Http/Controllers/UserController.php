@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Centro;
+use App\Tecnico;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +12,38 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function get()
+    {
+        $usuarios = User::orderBy('id', 'DESC')->paginate(10);
+        return response()->json($usuarios);
+    }
+
+    public function busqueda($busqueda, $opcion)
+    {
+        switch ($opcion) {
+            case 'id':
+                $usuarios = User::orderBy('id', 'DESC')->where('id', '=', $busqueda)->paginate(10);
+                break;
+            case 'nombre':
+                $usuarios = User::orderBy('id', 'DESC')->where('nombre', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'email':
+                $usuarios = User::orderBy('id', 'DESC')->where('email', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'rol':
+                $usuarios = User::orderBy('id', 'DESC')->where('rol', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                break;
+            case 'habilitado':
+                if ($busqueda == 'si') {
+                    $usuarios = User::orderBy('id', 'DESC')->where('habilidado', '=', '1')->paginate(10);
+                } else {
+                    $usuarios = User::orderBy('id', 'DESC')->where('habilidado', '=', '0')->paginate(10);
+                }
+                break;
+        }
+        return response()->json($usuarios);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +51,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        $tecnicos = Tecnico::orderBy('habilitado', 'desc')->orderBy('centro_id', 'asc')->get();
+        $centros = Centro::all();
+
+        return view('view_usuarios_tecnicos', ['usuarios' => $usuarios, 'tecnicos' => $tecnicos, 'centros' => $centros]);
     }
 
     /**

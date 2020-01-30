@@ -2,6 +2,7 @@
     <div class="pl-2 pr-2 overflow">
         <div class="row no-gutters">
             <div class="col-md-5 col-12 mb-1 row no-gutters" id="botones">
+                <a id="mis_incidencias" v-on:click=getMisIncidencias() class="btn btn-primary col-md-5 col-12 mb-1 mb-md-0" style="font-size: 125%;">Mis incidencias</a>
             </div>
             <div class="col-md-7 col-12 d-flex justify-content-end align-items-center row">
                 <div class="col-4 px-1">
@@ -20,7 +21,7 @@
                 </div>
                 <div class="col-4 pl-1 pr-0 row no-gutters">
                     <button class="btn btn-primary col-6 d-block mx-auto"
-                           style="font-size: 125%"
+                            style="font-size: 125%"
                             v-on:click=getIncidenciasBusqueda()>
                         <i class="fas fa-search"></i>
                     </button>
@@ -54,7 +55,9 @@
                 <td v-else class="text-danger">Sin técnico asignado</td>
                 <td>{{incidencia.tipo}}</td>
                 <td>{{dividirDireccion(incidencia.direccion)}}</td>
-                <td>{{incidencia.estado}}</td>
+                <td v-if="incidencia.estado === 'ACTIVA'" style="color: cornflowerblue;">{{incidencia.estado}}</td>
+                <td v-else-if="incidencia.estado === 'PENDIENTE'" style="color: red;">{{incidencia.estado}}</td>
+                <td v-else style="color: darkgreen;">{{incidencia.estado}}</td>
                 <td>{{incidencia.created_at}}</td>
 
             </tr>
@@ -100,6 +103,13 @@
             getIncidencias() {
                 let $this = this;
                 axios.get(this.url).then(res => {
+                    this.incidencias = res.data.data;
+                    $this.makePagination(res.data)
+                })
+            },
+            getMisIncidencias() {
+                let $this = this;
+                axios.get('/api/incidencias/' + $('#tecnico_id').val() + '/' + 'tecnico_id').then(res => {
                     this.incidencias = res.data.data;
                     $this.makePagination(res.data)
                 })
