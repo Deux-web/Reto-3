@@ -23,6 +23,7 @@ Route::get('/home', function () {
 });
 
 //INCIDENCIAS
+
 Route::get('/api/incidencias', 'IncidenciaController@search')->name('incidencia.search');
 
 Route::get('/api/incidencias/{busqueda}/{opcion}', 'IncidenciaController@busqueda')->name('incidencia.busqueda');
@@ -33,9 +34,13 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store')->middleware('auth');
 
-Route::get('/incidencias/estadisticas', 'EstadisticasController@selectEstadisticas')->name('incidencia.estadisticas')->middleware('auth');
+Route::get('/incidencias/estadisticas', 'EstadisticasController@index')->name('estadisticas.index')->middleware('auth');
 
 Route::get('/incidencias/tecnicos','EstadisticasController@estadisticasTecnicos')->name('estadistica.tecnicos')->middleware('auth');
+
+Route::get('/incidencias/tipo_resolucion','EstadisticasController@estadisticasTipo_resolucion')->name('estadistica.tipo_resolucion')->middleware('auth');
+
+Route::get('/incidencias/provincias','EstadisticasController@estadisticasProvincias')->name('estadistica.provincias')->middleware('auth');
 
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
