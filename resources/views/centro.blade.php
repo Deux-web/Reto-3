@@ -9,7 +9,7 @@
     <div class="container">
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="{{asset('images/road-tech-assistance.png')}}">
-            <h2>Datos del Centro {{$centro->nombre}}</h2>
+            <h2>Datos del centro {{$centro->nombre}}</h2>
         </div>
 
         <div class="row">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Direccion</label>
+                    <label>Dirección</label>
                     <div class="input-group">
                         <input type="text" class="form-control" value="{{$centro->direccion}}" readonly>
                     </div>
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>Telefono</label>
+                                <label>Teléfono</label>
                                 <input type="text" class="form-control" value="{{$centro->telefono}}" readonly>
                             </div>
                         </div>
