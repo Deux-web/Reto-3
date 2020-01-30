@@ -33,7 +33,7 @@ class IncidenciaController extends Controller
     {
         switch ($opcion) {
             case 'id':
-                $incidencias = Incidencia::orderBy('id', 'DESC')->where('id', '=', $busqueda)->paginate(10);
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('id', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'nombreConductor':
                 $conductor = Conductor::where('nombre', $busqueda)->first();
@@ -51,10 +51,13 @@ class IncidenciaController extends Controller
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('tipo', '=', $busqueda)->paginate(10);
                 break;
             case 'provincia':
-                $incidencias = Incidencia::orderBy('id', 'DESC')->where('direccion', 'LIKE', '%'.$busqueda.'%')->paginate(10);
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('direccion', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'estado':
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('estado', '=', $busqueda)->paginate(10);
+                break;
+            case 'tecnico_id':
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tecnico_id', '=', $busqueda)->paginate(10);
                 break;
         }
         foreach ($incidencias as $incidencia) {
@@ -74,7 +77,13 @@ class IncidenciaController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('view_incidencias', ['user' => $user]);
+        if ($user->rol === 'TECNICO') {
+            $tecnico = DB::table('tecnicos')->where('email', '=', $user->email)->first();
+            $inc_asignada = DB::table('incidencias')->where('tecnico_id', '=', $tecnico->id)->where('estado', '=', 'PENDIENTE')->first();
+            return view('view_incidencias', ['user' => $user, 'tecnico' => $tecnico, 'inc_asignada' => $inc_asignada]);
+        } else {
+            return view('view_incidencias', ['user' => $user], []);
+        }
     }
 
     /**

@@ -2009,6 +2009,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2038,6 +2041,15 @@ __webpack_require__.r(__webpack_exports__);
       var $this = this;
       axios.get(this.url).then(function (res) {
         _this2.incidencias = res.data.data;
+        $this.makePagination(res.data);
+      });
+    },
+    getMisIncidencias: function getMisIncidencias() {
+      var _this3 = this;
+
+      var $this = this;
+      axios.get('/api/incidencias/' + $('#tecnico_id').val() + '/' + 'tecnico_id').then(function (res) {
+        _this3.incidencias = res.data.data;
         $this.makePagination(res.data);
       });
     },
@@ -37725,10 +37737,29 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
     _c("div", { staticClass: "row no-gutters" }, [
-      _c("div", {
-        staticClass: "col-md-5 col-12 mb-1 row no-gutters",
-        attrs: { id: "botones" }
-      }),
+      _c(
+        "div",
+        {
+          staticClass: "col-md-5 col-12 mb-1 row no-gutters",
+          attrs: { id: "botones" }
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary col-md-5 col-12 mb-1 mb-md-0",
+              staticStyle: { "font-size": "125%" },
+              attrs: { id: "mis_incidencias" },
+              on: {
+                click: function($event) {
+                  return _vm.getMisIncidencias()
+                }
+              }
+            },
+            [_vm._v("Mis incidencias")]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -37831,7 +37862,17 @@ var render = function() {
                   _vm._v(_vm._s(_vm.dividirDireccion(incidencia.direccion)))
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(incidencia.estado))]),
+                incidencia.estado === "ACTIVA"
+                  ? _c("td", { staticStyle: { color: "cornflowerblue" } }, [
+                      _vm._v(_vm._s(incidencia.estado))
+                    ])
+                  : incidencia.estado === "PENDIENTE"
+                  ? _c("td", { staticStyle: { color: "red" } }, [
+                      _vm._v(_vm._s(incidencia.estado))
+                    ])
+                  : _c("td", { staticStyle: { color: "darkgreen" } }, [
+                      _vm._v(_vm._s(incidencia.estado))
+                    ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(incidencia.created_at))])
               ]

@@ -17,19 +17,39 @@ window.onload = function () {
                 '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12" style="font-size: 125%;">Nueva incidencia</a> '
             );
             $('#botones').append(botones_operario);
+            $('#mis_incidencias').addClass('d-none');
             break;
         case "TECNICO":
-            let botones_tecnico = $(
-                '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12" style="font-size: 125%;">Mis incidencias</a>'
-            );
-            $('#botones').append(botones_tecnico);
+            let btn_estadoT;
+            if ($('#estado_t').val() === 'Disponible') {
+                btn_estadoT = $('' +
+                    '<form method="get" class="col-md-6 col-12 ml-0 ml-lg-1" action="' + $('#ruta2').val() + '">' +
+                    '<input type="hidden" name="estado_t" value="' + $('#estado_t').val() + '">' +
+                    '<input type="submit" class="btn btn-primary w-100" style="font-size: 125%;" value="Finalizar jornada">' +
+                    '</form>'
+                );
+            } else if ($('#estado_t').val() === 'Fuera de trabajo') {
+                btn_estadoT = $('' +
+                    '<form method="get" class="col-md-6 col-12 ml-0 ml-lg-1" action="' + $('#ruta2').val() + '">' +
+                    '<input type="hidden" name="estado_t" value="' + $('#estado_t').val() + '">' +
+                    '<input type="submit" class="btn btn-primary w-100" style="font-size: 125%;" value="Empezar jornada">' +
+                    '</form>'
+                );
+            } else {
+                btn_estadoT = $(
+                    '<a style="font-size: 125%;" class="col-md-6 col-12 ml-0 ml-lg-1 btn btn-primary" href="' + $('#ruta_pendiente').val() + '">Incidencia en proceso</a>'
+                )
+                ;
+            }
+            $('#botones').append(btn_estadoT);
             break;
         case "COORDINADOR_GERENTE":
             let botones_coordinador = $(
-                '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12 mr-1 mb-1 mb-md-0" style="font-size: 125%;">Estadísticas</a>' +
-                '<a href="' + $("#ruta2").val() + '" class="btn btn-primary col-md-5 col-12" style="font-size: 125%;">Usuarios</a>'
+                '<a href="' + $("#ruta").val() + '" class="btn btn-primary col-md-5 col-12 mb-1 mb-md-0" style="font-size: 125%;">Estadísticas</a>' +
+                '<a href="' + $("#ruta2").val() + '" class="btn btn-primary col-md-5 col-12 ml-lg-1 ml-0" style="font-size: 125%;">Usuarios</a>'
             );
             $('#botones').append(botones_coordinador);
+            $('#mis_incidencias').addClass('d-none');
             break;
     }
 

@@ -33,7 +33,7 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store')->middleware('auth');
 
-Route::get('/incidencias/estadisticas','EstadisticasController@selectEstadisticas')->name('incidencia.estadisticas')->middleware('auth');
+Route::get('/incidencias/estadisticas', 'EstadisticasController@selectEstadisticas')->name('incidencia.estadisticas')->middleware('auth');
 
 Route::get('/incidencias/tecnicos','EstadisticasController@estadisticasTecnicos')->name('estadistica.tecnicos')->middleware('auth');
 
@@ -78,6 +78,7 @@ Route::get('/api/centros/{id}', 'CentroController@get')->name('centro.json');
 Route::post('/incidencias/{incidencia_id}/comentarios', 'ComentarioController@store')->name('comentario.store');
 
 //TECNICOS
+Route::get('/tecnicos/estado', 'TecnicoController@cambiarEstado')->name('tecnico.cambiarestado')->middleware('auth');
 
 Route::get('/api/tecnicos','TecnicoController@get')->name('tecnico.get')->middleware('auth');
 
@@ -86,5 +87,6 @@ Route::get('/api/tecnicos/{busqueda}/{opcion}', 'TecnicoController@busqueda')->n
 Route::get('/tecnicos/{id}', 'TecnicoController@show')->name('tecnico.show')->middleware('auth');
 
 Route::post('/tecnicos/{id}', 'TecnicoController@update')->name('tecnico.update');
+
 
 Auth::routes();
