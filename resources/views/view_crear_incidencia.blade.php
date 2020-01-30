@@ -99,7 +99,7 @@
                             <option value="Autopista">Autopista</option>
                             <option value="Autovia">Autovía</option>
                             <option value="Interés general">Interes general</option>
-                            <option value="Autonómica">Autonómicas</option>
+                            <option value="Autonómica">Autonómica</option>
                             <option value="Complementaria">Complementaria</option>
                             <option value="Comarcal">Comarcal</option>
                         </select>
@@ -112,8 +112,7 @@
                                    placeholder="KM">
                         </div>
                         <div class="row no-gutters">
-                            <label for="direccion_sentido" class="col-12 pl-1"><strong>Dirección /
-                                    Sentido</strong></label>
+                            <label for="direccion_sentido" class="col-12 pl-1"><strong>Dirección / Sentido</strong></label>
                             <input type="text" id="direccion_sentido" name="direccion_sentido"
                                    class="form-control col-lg-10 col-12 p-1 my-1">
                             <label for="proximidad" class="col-12"><strong>Proximidad</strong></label>

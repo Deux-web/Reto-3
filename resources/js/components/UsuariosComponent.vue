@@ -61,8 +61,7 @@
                         :disabled="!pagination.prev_page_url">Anterior
                 </button>
                 <span>Page {{pagination.current_page}} of {{pagination.last_page}}</span>
-                <button class="btn btn-primary" v-on:click="fetchPaginateUsuarios(pagination.next_page_url)"
-                        :disabled="!pagination.next_page_url">Siguiente
+                <button class="btn btn-primary" v-on:click="fetchPaginateUsuarios(pagination.next_page_url)":disabled="!pagination.next_page_url">Siguiente
                 </button>
             </div>
         </div>

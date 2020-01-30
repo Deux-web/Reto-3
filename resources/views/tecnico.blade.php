@@ -9,13 +9,13 @@
     <div class="container">
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="{{asset('images/road-tech-assistance.png')}}">
-            <h2>Datos del tecnico {{$tecnico->nombre}}</h2>
+            <h2>Datos del técnico {{$tecnico->nombre}}</h2>
         </div>
 
         <div class="row">
             <div class="col-md-12 order-md-1">
                 <div class="mb-3">
-                    <label>Nombre del tecnico</label>
+                    <label>Nombre del técnico</label>
                     <div class="input-group">
                         <input type="text" class="form-control" value="{{$tecnico->nombre}}" readonly>
                     </div>
@@ -36,12 +36,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-3 px-0 pl-md-0 pr-md-3">
                             <div class="mb-3">
-                                <label>email</label>
+                                <label>Email</label>
                                 <input type="email" class="form-control" value="{{$tecnico->email}}" readonly>
                             </div>
 
                             <div class="mb-3">
-                                <label>Telefono</label>
+                                <label>Teléfono</label>
                                 <input type="text" class="form-control" value="{{$tecnico->telefono}}" readonly>
                             </div>
                         </div>

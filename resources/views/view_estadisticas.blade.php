@@ -1,6 +1,6 @@
 @extends('layout_html')
 @section('head')
-    <title>Estadisticas</title>
+    <title>Estadísticas</title>
     <script src="{{URL::asset('https://www.gstatic.com/charts/loader.js')}}"></script>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/estadisticas.js')}}"></script>
@@ -16,7 +16,7 @@
                             class="fas fa-chart-line"></i></a>
                 </li>
                 <li class="nav-item" id="tecnicos">
-                    <a class="nav-link tecnicos" href="#" onclick="verTecnicos();">Tecnicos <i class="fas fa-user"></i>
+                    <a class="nav-link tecnicos" href="#" onclick="verTecnicos();">Técnicos <i class="fas fa-user"></i>
                     </a>
                 </li>
                 <li class="nav-item" id="tiempos">
