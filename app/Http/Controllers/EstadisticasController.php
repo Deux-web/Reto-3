@@ -49,6 +49,17 @@ class EstadisticasController extends Controller
 
         return response()->json($provincias);
     }
+    public function estadisticasCalendario()
+    {
+        //select count(*) as numero,fecha_resolucion from incidencias group by fecha_resolucion;
 
+
+        $calendario = DB::table('incidencias')->select(DB::raw('count(*) as num_inc'),'fecha_resolucion')
+            ->where('fecha_resolucion','!=',null)
+            ->groupBy('fecha_resolucion')->get();
+
+
+        return response()->json($calendario);
+    }
 }
 

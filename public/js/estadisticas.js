@@ -3,6 +3,7 @@ window.onload = function () {
     drawChart();
     drawTitleSubtitle();
     donutZonas();
+    calendarChart();
 }
 
 //estadistica Tecnico
@@ -20,6 +21,11 @@ google.charts.setOnLoadCallback(drawChart);
 google.charts.load("current", {packages: ["corechart"]});
 google.charts.setOnLoadCallback(donutZonas);
 
+//estadisticas calendario
+google.charts.load("current", {packages:["calendar"]});
+google.charts.setOnLoadCallback(calendarChart);
+
+
 /**
  * Funcion para estadistica de tecnico
  */
@@ -36,8 +42,7 @@ function drawTitleSubtitle() {
 
         var materialOptions = {
             chart: {
-                title: 'Incidencias resueltas por técnico',
-                subtitle: 'Esta estadística se actualiza automáticamente'
+                title: 'Incidencias resueltas por técnico'
             },
             hAxis: {
                 title: 'Numero de incidencias',
@@ -71,7 +76,7 @@ function drawChart() {
         var numero_incis = insitu + taller;
         var porcentaje_taller = (taller * 100) / numero_incis;
         var procentaje_insitu = parseInt(insitu * 100 / numero_incis);
-        var resto_incis = parseInt((100 - (porcentaje_taller + procentaje_insitu)));
+        //var resto_incis = parseInt((100 - (porcentaje_taller + procentaje_insitu)));
 
         // Define the chart to be drawn.
         var data = new google.visualization.DataTable();
@@ -82,14 +87,19 @@ function drawChart() {
         data.addRows([
             ['Taller', porcentaje_taller],
             ['In-Situ', procentaje_insitu]
+
         ]);
 
         // Set chart options
+        var options = {
+            title: 'Resolución',
+            is3D: true,
+        };
 
 
         // Instantiate and draw the chart.
         var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
-        chart.draw(data, null);
+        chart.draw(data, options);
     })
 }
 
@@ -136,6 +146,75 @@ function donutZonas() {
     });
 
 }
+
+/*
+* Funcion para estadisticas calendario
+* */
+
+function calendarChart() {
+
+    axios.get('/incidencias/calendario').then(res => {
+        var arrayFechas= new Array();
+        var year;
+        var mes;
+        var dia;
+        var fecha;
+
+
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'date', id: 'Date' });
+        dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+        $.each( res.data, function(i, obj) {
+            arrayFechas.push([obj.num_inc,obj.fecha_resolucion]);
+            fecha = obj.fecha_resolucion.split("-");
+           //alert(fecha);
+            year = fecha[0];
+            mes = fecha[1]-1;
+            dia = fecha[2];
+
+            dataTable.addRows([
+                [ new Date(year, mes, dia), obj.num_inc ],
+            ]);
+        });
+        console.log(arrayFechas);
+
+        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+        var options = {
+            title: 'Incidencias por día',
+            height: 350,
+            calendar: {
+                monthLabel: {
+                    fontName: 'Heebo',
+                    fontSize: 8,
+                    color: 'black'
+                },noDataPattern: {
+                    backgroundColor: '#76a7fa',
+                    color: '#a0c3ff'
+                },
+                monthOutlineColor: {
+                    stroke: '#981b48',
+                    strokeOpacity: 0.8,
+                    strokeWidth: 2
+                },
+                unusedMonthOutlineColor: {
+                    stroke: '#bc5679',
+                    strokeOpacity: 0.8,
+                    strokeWidth: 1
+                },
+                underMonthSpace: 16,
+
+            }
+
+        };
+
+        chart.draw(dataTable, options);
+    })
+
+
+
+}
+
 
 function verTodas() {
     desmarcarTodo();
