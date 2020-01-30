@@ -42,6 +42,9 @@ Route::get('/incidencias/tipo_resolucion','EstadisticasController@estadisticasTi
 
 Route::get('/incidencias/provincias','EstadisticasController@estadisticasProvincias')->name('estadistica.provincias')->middleware('auth');
 
+Route::get('/incidencias/calendario','EstadisticasController@estadisticasCalendario')->name('estadistica.provincias')->middleware('auth');
+
+
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
 Route::get('/incidencias/{id}/edit', 'IncidenciaController@edit')->name('incidencia.edit')->middleware('auth');
