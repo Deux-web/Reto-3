@@ -7,36 +7,59 @@ use Illuminate\Support\Facades\DB;
 
 class EstadisticasController extends Controller
 {
-    public function selectEstadisticas(){
-        $consulta = \App\Incidencia::all()->where('estado', '=', 'ACTIVA');
-        $total_incidencias = \App\Incidencia::all();
-        $resolucion_insitu = \App\Incidencia::all()->where('tipo_resolucion', '=', 'In situ');
-        $resolucion_taller = \App\Incidencia::all()->where('tipo_resolucion', '=', 'Taller');
-        $tecnicos = \App\Tecnico::all();
-
-        //$inc_por_tecnico = \App\Incidencia::groupBy('tecnico_id')->orderBy('incidencias', 'desc')->get(DB::raw('count(tecnico_id) as incidencias, tecnico_id'));
-
-        $gipuzkoa = 'Gipuzkoa'; $araba = 'Araba'; $bizkaia = 'Bizkaia'; $nafarroa = 'Nafarroa';
-        $incidencias_bizkaia = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$bizkaia}%")->get();
-        $incidencias_gipuzkoa = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$gipuzkoa}%")->get();
-        $incidencias_araba = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$araba}%")->get();
-        $incidencias_nafarroa = \App\Incidencia::select('direccion')->where('direccion', 'like', "%{$nafarroa}%")->get();
-
-
-        return view('view_estadisticas', ['consulta' => $consulta,
-            'resolucion_insitu' => $resolucion_insitu,'resolucion_taller' => $resolucion_taller,
-            'total_incidencias' =>$total_incidencias,'tecnicos'=>$tecnicos,
-            'incidencias_gipuzkoa'=>$incidencias_gipuzkoa,'incidencias_araba'=>$incidencias_araba,
-            'incidencias_bizkaia'=> $incidencias_bizkaia,'incidencias_nafarroa'=>$incidencias_nafarroa
-        ]);
-
+    public function index()
+    {
+        return view('view_estadisticas');
     }
-    public function estadisticasTecnicos(){
-        $inc_por_tecnico=DB::table('incidencias')->join('tecnicos','incidencias.tecnico_id','=','tecnicos.id')
-            ->select(DB::raw('count(*) as incidencias'),'tecnicos.nombre')->groupBy('tecnicos.nombre')->where('incidencias.estado','=','RESUELTA')->orderBy('incidencias', 'desc')->get()->take(10);
+
+    public function estadisticasTecnicos()
+    {
+        $inc_por_tecnico = DB::table('incidencias')->join('tecnicos', 'incidencias.tecnico_id', '=', 'tecnicos.id')
+            ->select(DB::raw('count(*) as incidencias'), 'tecnicos.nombre')->groupBy('tecnicos.nombre')->where('incidencias.estado', '=', 'RESUELTA')->orderBy('incidencias', 'desc')->get()->take(10);
 
         return response()->json($inc_por_tecnico);
     }
 
+    public function estadisticasTipo_resolucion()
+    {
+        $tipos_resolucion = DB::table('incidencias')->select(DB::raw('count(*) as numero_incidencias'), 'tipo_resolucion')->groupBy('tipo_resolucion')->get();
+
+        return response()->json($tipos_resolucion);
+    }
+
+    public function estadisticasProvincias()
+    {
+        $gipuzkoa = 'Gipuzkoa';
+        $araba = 'Araba';
+        $bizkaia = 'Bizkaia';
+        $nafarroa = 'Nafarroa';
+
+        $provincias = DB::table('incidencias')->select(DB::raw('count(*) as numero_incidencias'), 'direccion')
+            ->where('direccion', 'like', "%{$bizkaia}%")
+            ->orWhere('direccion', 'like', "%{$gipuzkoa}%")
+            ->orWhere('direccion', 'like', "%{$araba}%")
+            ->orWhere('direccion', 'like', "%{$nafarroa}%")
+            ->groupBy('direccion')->get();
+
+        foreach ($provincias as $provincia) {
+            $lugar = explode(',', $provincia->direccion);
+            $zona = $lugar[1];
+            $provincia->direccion = $zona;
+        }
+
+        return response()->json($provincias);
+    }
+    public function estadisticasCalendario()
+    {
+        //select count(*) as numero,fecha_resolucion from incidencias group by fecha_resolucion;
+
+
+        $calendario = DB::table('incidencias')->select(DB::raw('count(*) as num_inc'),'fecha_resolucion')
+            ->where('fecha_resolucion','!=',null)
+            ->groupBy('fecha_resolucion')->get();
+
+
+        return response()->json($calendario);
+    }
 }
 

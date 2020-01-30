@@ -1,7 +1,220 @@
 window.onload = function () {
     verTodas();
+    drawChart();
+    drawTitleSubtitle();
+    donutZonas();
+    calendarChart();
+}
+
+//estadistica Tecnico
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawTitleSubtitle);
+
+//estadistica tipo resolucion
+
+google.charts.load('current', {packages: ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+//estadisticas provincia
+
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(donutZonas);
+
+//estadisticas calendario
+google.charts.load("current", {packages:["calendar"]});
+google.charts.setOnLoadCallback(calendarChart);
+
+
+/**
+ * Funcion para estadistica de tecnico
+ */
+function drawTitleSubtitle() {
+    axios.get('/incidencias/tecnicos').then(res => {
+        var arrayDatos= new Array();
+        arrayDatos.push(['Tecnico', 'Nº incidencias']);
+        $.each( res.data, function(i, obj) {
+            arrayDatos.push([obj.nombre,obj.incidencias]);
+        });
+        var data = google.visualization.arrayToDataTable(
+            arrayDatos
+        );
+
+        var materialOptions = {
+            chart: {
+                title: 'Incidencias resueltas por técnico'
+            },
+            hAxis: {
+                title: 'Numero de incidencias',
+                minValue: 0,
+            },
+            vAxis: {
+                title: 'Técnico'
+            },
+            bars: 'vertical'
+        };
+        var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
+        materialChart.draw(data, materialOptions);
+    })
+}
+
+
+/**
+ * Funcion para estadistica de tipo resolucion
+ */
+function drawChart() {
+    var taller;
+    var insitu;
+    axios.get('/incidencias/tipo_resolucion').then(res => {
+        $.each(res.data, function (i, obj) {
+            if (obj.tipo_resolucion == 'In situ') {
+                insitu = obj.numero_incidencias;
+            } else if (obj.tipo_resolucion == 'Taller') {
+                taller = obj.numero_incidencias;
+            }
+        });
+        var numero_incis = insitu + taller;
+        var porcentaje_taller = (taller * 100) / numero_incis;
+        var procentaje_insitu = parseInt(insitu * 100 / numero_incis);
+        //var resto_incis = parseInt((100 - (porcentaje_taller + procentaje_insitu)));
+
+        // Define the chart to be drawn.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Element');
+        data.addColumn('number', 'Percentage');
+
+
+        data.addRows([
+            ['Taller', porcentaje_taller],
+            ['In-Situ', procentaje_insitu]
+
+        ]);
+
+        // Set chart options
+        var options = {
+            title: 'Resolución',
+            is3D: true,
+        };
+
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+        chart.draw(data, options);
+    })
+}
+
+/**
+ * Funcion para estadistica de provincias
+ */
+function donutZonas() {
+    axios.get('/incidencias/provincias').then(res => {
+        var araba;
+        var gipuzkoa;
+        var bizkaia;
+        var nafarroa;
+        $.each(res.data, function (i, obj) {
+            switch (obj.direccion) {
+                case 'Araba':
+                    araba=obj.numero_incidencias;
+                    break;
+                case 'Bizkaia':
+                    gipuzkoa=obj.numero_incidencias;
+                    break;
+                case 'Gipuzkoa':
+                    bizkaia=obj.numero_incidencias;
+                    break;
+                case 'Nafarroa':
+                    nafarroa=obj.numero_incidencias;
+                    break;
+            }
+        });
+        var data = google.visualization.arrayToDataTable([
+            ['Provincia', 'Nº Inc.'],
+            ['Alava', araba],
+            ['Vizcaya', bizkaia],
+            ['Gipuzcoa', gipuzkoa],
+            ['Navarra', nafarroa]
+        ]);
+
+        var options = {
+            title: 'Nº Inc. por zonas',
+            pieHole: 0.3,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+    });
 
 }
+
+/*
+* Funcion para estadisticas calendario
+* */
+
+function calendarChart() {
+
+    axios.get('/incidencias/calendario').then(res => {
+        var arrayFechas= new Array();
+        var year;
+        var mes;
+        var dia;
+        var fecha;
+
+
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'date', id: 'Date' });
+        dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+        $.each( res.data, function(i, obj) {
+            arrayFechas.push([obj.num_inc,obj.fecha_resolucion]);
+            fecha = obj.fecha_resolucion.split("-");
+           //alert(fecha);
+            year = fecha[0];
+            mes = fecha[1]-1;
+            dia = fecha[2];
+
+            dataTable.addRows([
+                [ new Date(year, mes, dia), obj.num_inc ],
+            ]);
+        });
+        console.log(arrayFechas);
+
+        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+        var options = {
+            title: 'Incidencias por día',
+            height: 350,
+            calendar: {
+                monthLabel: {
+                    fontName: 'Heebo',
+                    fontSize: 8,
+                    color: 'black'
+                },noDataPattern: {
+                    backgroundColor: '#76a7fa',
+                    color: '#a0c3ff'
+                },
+                monthOutlineColor: {
+                    stroke: '#981b48',
+                    strokeOpacity: 0.8,
+                    strokeWidth: 2
+                },
+                unusedMonthOutlineColor: {
+                    stroke: '#bc5679',
+                    strokeOpacity: 0.8,
+                    strokeWidth: 1
+                },
+                underMonthSpace: 16,
+
+            }
+
+        };
+
+        chart.draw(dataTable, options);
+    })
+
+
+
+}
+
 
 function verTodas() {
     desmarcarTodo();
