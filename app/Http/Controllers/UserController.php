@@ -14,7 +14,14 @@ class UserController extends Controller
 {
     public function get()
     {
-        $usuarios = User::orderBy('id', 'DESC')->paginate(10);
+        $user = Auth::user();
+        if ($user->rol=='COORDINADOR'){
+            $usuarios = User::orderBy('id', 'ASC')->where('rol','=','TECNICO')->orWhere('rol','=','OPERARIO')->paginate(10);
+        }
+        else{
+            $usuarios = User::orderBy('id', 'ASC')->paginate(10);
+
+        }
         return response()->json($usuarios);
     }
 
@@ -22,22 +29,22 @@ class UserController extends Controller
     {
         switch ($opcion) {
             case 'id':
-                $usuarios = User::orderBy('id', 'DESC')->where('id', '=', $busqueda)->paginate(10);
+                $usuarios = User::orderBy('id', 'ASC')->where('id', '=', $busqueda)->paginate(10);
                 break;
             case 'nombre':
-                $usuarios = User::orderBy('id', 'DESC')->where('nombre', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                $usuarios = User::orderBy('id', 'ASC')->where('nombre', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'email':
-                $usuarios = User::orderBy('id', 'DESC')->where('email', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                $usuarios = User::orderBy('id', 'ASC')->where('email', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'rol':
-                $usuarios = User::orderBy('id', 'DESC')->where('rol', 'LIKE', '%' . $busqueda . '%')->paginate(10);
+                $usuarios = User::orderBy('id', 'ASC')->where('rol', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'habilitado':
                 if ($busqueda == 'si') {
-                    $usuarios = User::orderBy('id', 'DESC')->where('habilidado', '=', '1')->paginate(10);
+                    $usuarios = User::orderBy('id', 'ASC')->where('habilidado', '=', '1')->paginate(10);
                 } else {
-                    $usuarios = User::orderBy('id', 'DESC')->where('habilidado', '=', '0')->paginate(10);
+                    $usuarios = User::orderBy('id', 'ASC')->where('habilidado', '=', '0')->paginate(10);
                 }
                 break;
         }
@@ -153,7 +160,7 @@ class UserController extends Controller
             }
             $tecnico->save();
         }
-        $usuarios = User::orderBy('id', 'DESC')->paginate(10);
+        $usuarios = User::orderBy('id', 'ASC')->paginate(10);
         return response()->json($usuarios);
     }
 

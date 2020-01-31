@@ -1,7 +1,7 @@
 @extends('layout_html')
 
 @section('head')
-    <title>Datos Centro</title>
+    <title>Datos Tecnico</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/crear_incidencia.js')}}"></script>
 @endsection

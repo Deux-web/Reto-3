@@ -36,28 +36,28 @@ class IncidenciaController extends Controller
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('id', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'nombreConductor':
-                $conductor = Conductor::where('nombre', $busqueda)->first();
+                $conductor = Conductor::where('nombre', 'LIKE', '%' . $busqueda . '%')->first();
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('conductor_id', '=', $conductor->id)->paginate(10);
                 break;
             case 'telefono':
-                $conductor = Conductor::where('telefono', $busqueda)->first();
+                $conductor = Conductor::where('telefono', 'LIKE', '%' . $busqueda . '%')->first();
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('conductor_id', '=', $conductor->id)->paginate(10);
                 break;
             case 'nombreTecnico':
-                $tecnico = Tecnico::where('nombre', '=', $busqueda)->first();
+                $tecnico = Tecnico::where('nombre', 'LIKE', '%' . $busqueda . '%')->first();
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('tecnico_id', '=', $tecnico->id)->paginate(10);
                 break;
             case 'tipo':
-                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tipo', '=', $busqueda)->paginate(10);
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tipo', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'provincia':
                 $incidencias = Incidencia::orderBy('id', 'DESC')->where('direccion', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'estado':
-                $incidencias = Incidencia::orderBy('id', 'DESC')->where('estado', '=', $busqueda)->paginate(10);
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('estado', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
             case 'tecnico_id':
-                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tecnico_id', '=', $busqueda)->paginate(10);
+                $incidencias = Incidencia::orderBy('id', 'DESC')->where('tecnico_id', 'LIKE', '%' . $busqueda . '%')->paginate(10);
                 break;
         }
         foreach ($incidencias as $incidencia) {

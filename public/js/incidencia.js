@@ -56,13 +56,13 @@ window.onload = function () {
                         '<td><input type="radio" name="tecnico_id" id="' + response.data[index].id + '" value="' + response.data[index].id + '"></td>' +
                         '</tr>'
                     )
-                    $('#tablaTecnicos').after('<input type="submit" class="btn btn-primary w-50 " value="Asignar Tecnico">');
                 }
                 if ($('#tbodyTecnicos').children().length==0){
                     $('<h5>No hay técnicos disponibles</h5>').insertBefore($('#tablaTecnicos'));
                     $('#tablaTecnicos').remove();
                 }
             })
+            $('#tablaTecnicos').after('<input type="submit" class="btn btn-primary w-50 " value="Asignar Tecnico">');
         });
 
     $('#botonDatosAfectados').on('click', function () {

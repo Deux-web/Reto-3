@@ -13,16 +13,16 @@ class TecnicoTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('es_ES');
 
-        for ($i = 0; $i < 21; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             DB::table('tecnicos')->insert([
 
                 'nombre' => $faker->firstName,
                 'apellido_p' => $faker->lastName,
                 'apellido_s' => $faker->lastName,
-                'email' => $faker->email,
+                'email' => 'tecnico'.$i.'@tecnico.tecnico',
                 'telefono' => '6' . $faker->randomNumber(8),
-                'estado' => $faker->randomElement(['Fuera de trabajo', 'Disponible', 'Ocupado']),
-                'habilitado' => $faker->boolean,
+                'estado' => $faker->randomElement(['Fuera de trabajo', 'Disponible']),
+                'habilitado' => 1,
                 'centro_id' => $faker->numberBetween(1, 7),
             ]);
         }
