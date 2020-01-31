@@ -39,9 +39,15 @@ window.onload = function () {
         if (rb_insitu.is(':checked')) {
             res_taller.addClass('d-none').removeClass('d-block');
             res_insitu.addClass('d-block').removeClass('d-none');
+            $('#textarea_res_insitu').prop('required', true);
+            $('#textarea_res_taller').prop('required', false);
+            $('#taller').prop('required', false);
         } else {
             res_taller.addClass('d-block').removeClass('d-none');
             res_insitu.addClass('d-none').removeClass('d-block');
+            $('#textarea_res_insitu').prop('required', false);
+            $('#textarea_res_taller').prop('required', true);
+            $('#taller').prop('required', true);
         }
     }
 
@@ -57,7 +63,7 @@ window.onload = function () {
                         '</tr>'
                     )
                 }
-                if ($('#tbodyTecnicos').children().length==0){
+                if ($('#tbodyTecnicos').children().length == 0) {
                     $('<h5>No hay técnicos disponibles</h5>').insertBefore($('#tablaTecnicos'));
                     $('#tablaTecnicos').remove();
                 }
@@ -71,13 +77,15 @@ window.onload = function () {
         if (divDatosAfectados == '0px') {
             $('#datosAfectado').css('height', 'auto');
             $('#datosAfectado').css('display', 'block');
+            $('#datosAfectado').removeClass('colapsarDiv');
             $('#botonDatosAfectados').css('transform', 'rotate(-180deg)');
         } else {
             $('#datosAfectado').css('height', '0px');
             $('#datosAfectado').css('display', 'none');
+            $('#datosAfectado').addClass('colapsarDiv');
             $('#botonDatosAfectados').css('transform', 'rotate(0deg)');
         }
-    })
+    });
 
     $('#botonDatosIncidencia').on('click', function () {
         let divDatosAfectados = $('#datosIncidencia').css('height');
@@ -85,13 +93,15 @@ window.onload = function () {
         if (divDatosAfectados == '0px') {
             $('#datosIncidencia').css('height', 'auto');
             $('#datosIncidencia').css('display', 'block');
+            $('#datosIncidencia').removeClass('colapsarDiv');
             $('#botonDatosIncidencia').css('transform', 'rotate(-180deg)');
         } else {
             $('#datosIncidencia').css('height', '0px');
             $('#datosIncidencia').css('display', 'none');
+            $('#datosIncidencia').addClass('colapsarDiv');
             $('#botonDatosIncidencia').css('transform', 'rotate(0deg)');
         }
-    })
+    });
 
     $('#botonDatosResolucion').on('click', function () {
         let divDatosAfectados = $('.tipoResolucion').css('height');
@@ -99,13 +109,15 @@ window.onload = function () {
         if (divDatosAfectados == '0px') {
             $('.tipoResolucion').css('height', 'auto');
             $('.tipoResolucion').css('display', 'block');
+            $('.tipoResolucion').removeClass('colapsarDiv');
             $('#botonDatosResolucion').css('transform', 'rotate(-180deg)');
         } else {
             $('.tipoResolucion').css('height', '0px');
             $('.tipoResolucion').css('display', 'none');
+            $('.tipoResolucion').addClass('colapsarDiv');
             $('#botonDatosResolucion').css('transform', 'rotate(0deg)');
         }
-    })
+    });
 
     $('#botonDatosComentarios').on('click', function () {
         let divDatosAfectados = $('#datosComentarios').css('height');
@@ -113,11 +125,13 @@ window.onload = function () {
         if (divDatosAfectados == '0px') {
             $('#datosComentarios').css('height', 'auto');
             $('#datosComentarios').css('display', 'block');
+            $('#datosComentarios').removeClass('colapsarDiv');
             $('#botonDatosComentarios').css('transform', 'rotate(-180deg)');
         } else {
             $('#datosComentarios').css('height', '0px');
             $('#datosComentarios').css('display', 'none');
+            $('#datosComentarios').addClass('colapsarDiv');
             $('#botonDatosComentarios').css('transform', 'rotate(0deg)');
         }
-    })
+    });
 };
