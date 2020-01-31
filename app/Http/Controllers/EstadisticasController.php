@@ -31,7 +31,7 @@ class EstadisticasController extends Controller
             ->join('tecnicos', 'incidencias.tecnico_id', '=', 'tecnicos.id')
             ->select(DB::raw('ROUND(AVG(incidencias.updated_at-incidencias.created_at),0)/1000/60 as tiempoResolucion'),'tecnicos.nombre')
             ->where('incidencias.created_at','!=',null)
-            ->groupBy('incidencias.tecnico_id')->get();
+            ->groupBy('incidencias.tecnico_id','tecnicos.nombre')->get();
 
         return response()->json($incidenciasTiempos);
     }
