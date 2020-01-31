@@ -58,7 +58,7 @@ window.onload = function () {
                     )
                     $('#tablaTecnicos').after('<input type="submit" class="btn btn-primary w-50 " value="Asignar Tecnico">');
                 }
-                if ($('#tbodyTecnicos').children().length == 0) {
+                if ($('#tbodyTecnicos').children().length==0){
                     $('<h5>No hay técnicos disponibles</h5>').insertBefore($('#tablaTecnicos'));
                     $('#tablaTecnicos').remove();
                 }
@@ -111,9 +111,13 @@ window.onload = function () {
         let divDatosAfectados = $('#datosComentarios').css('height');
         $('#botonDatosComentarios').css('transition', 'all 0.4s ease-in-out');
         if (divDatosAfectados == '0px') {
+            $('#datosComentarios').css('height', 'auto');
+            $('#datosComentarios').css('display', 'block');
             $('#datosComentarios').removeClass('colapsarDiv');
             $('#botonDatosComentarios').css('transform', 'rotate(-180deg)');
         } else {
+            $('#datosComentarios').css('height', '0px');
+            $('#datosComentarios').css('display', 'none');
             $('#datosComentarios').addClass('colapsarDiv');
             $('#botonDatosComentarios').css('transform', 'rotate(0deg)');
         }
