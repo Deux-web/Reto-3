@@ -38280,12 +38280,12 @@ var staticRenderFns = [
           _vm._v("Estado")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_habilitado_t" } }, [
-          _vm._v("Habilitado")
-        ]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col", id: "th_centro_t" } }, [
           _vm._v("Centro")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_habilitado_t" } }, [
+          _vm._v("Habilitado")
         ]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col", id: "th_cambiarHablitado_t" } }, [

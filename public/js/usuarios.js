@@ -36,7 +36,7 @@ window.onload = function () {
 
     let columnas_tecnicos = [th_cod_t, th_nombre_t, th_apellidos_t, th_email_t, th_telefono_t, th_estado_t, th_centro_t,
         th_habilitado_t, th_cambiarHablitado_t];
-    let nombres_columnas_tecnicos = ['Cod. Usuario', 'Nombre', 'Apellidos', 'Email', 'Telefono', 'Estado', 'Habilitado', 'Centro', 'Cambiar Habilitado'];
+    let nombres_columnas_tecnicos = ['Cod. Usuario', 'Nombre', 'Apellidos', 'Email', 'Telefono', 'Estado', 'Centro', 'Habilitado', 'Cambiar Habilitado'];
     columnas_tecnicos.forEach((value, index) => {
         value.css('user_select', 'none');
         value.on('click', function (event) {

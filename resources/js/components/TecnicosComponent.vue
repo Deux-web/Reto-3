@@ -40,8 +40,8 @@
                 <th scope="col" id="th_email_t">Email</th>
                 <th scope="col" id="th_telefono_t">Telefono</th>
                 <th scope="col" id="th_estado_t">Estado</th>
-                <th scope="col" id="th_habilitado_t">Habilitado</th>
                 <th scope="col" id="th_centro_t">Centro</th>
+                <th scope="col" id="th_habilitado_t">Habilitado</th>
                 <th scope="col" id="th_cambiarHablitado_t">Cambiar Habilitado</th>
             </tr>
             </thead>
