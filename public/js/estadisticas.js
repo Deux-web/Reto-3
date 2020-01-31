@@ -57,6 +57,8 @@ function numIncidenciasPorTecnico() {
             vAxis: {
                 title: 'Técnico'
             },
+            colors: ['#343a40'],
+
             bars: 'vertical'
         };
         var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
@@ -89,6 +91,9 @@ function tiempoResolucion() {
             vAxis: {
                 title: 'Técnico'
             },
+
+            colors: ['#e0a800'],
+
             bars: 'horizontal'
         };
         var materialChart = new google.charts.Bar(document.getElementById('media_div'));
@@ -121,6 +126,10 @@ function tipoResolucion() {
         // Set chart options
         var options = {
             title: 'Resolución',
+            slices: {
+                0: { color: '#e0a800' },
+                1: { color: '#343a40' }
+            },
             is3D: true,
         };
         // Instantiate and draw the chart.
@@ -164,6 +173,12 @@ function zonasResolucion() {
 
         var options = {
             title: 'Nº Inc. por zonas',
+            slices: {
+                0: { color: '#e0a800' },
+                1: { color: '#343a40' },
+                2: { color: '#3490dc' },
+                3: { color: '#38c172' }
+            },
             pieHole: 0.3,
         };
 
@@ -202,21 +217,29 @@ function calendarioIncidencias() {
             title: 'Incidencias por día',
             height: 350,
             calendar: {
+                dayOfWeekLabel: {
+                    fontName: 'Heebo',
+                    fontSize: 12,
+                    color: 'black',
+                    bold: true,
+                },
+                dayOfWeekRightSpace: 10,
+                daysOfWeek: 'DLMXJVS',
                 monthLabel: {
                     fontName: 'Heebo',
                     fontSize: 8,
                     color: 'black'
                 }, noDataPattern: {
-                    backgroundColor: '#76a7fa',
-                    color: '#a0c3ff'
+                    backgroundColor: '#e0a800',
+                    color: '#f2cf66'
                 },
                 monthOutlineColor: {
-                    stroke: '#981b48',
+                    stroke: '#343a40',
                     strokeOpacity: 0.8,
                     strokeWidth: 2
                 },
                 unusedMonthOutlineColor: {
-                    stroke: '#bc5679',
+                    stroke: '#4c555e',
                     strokeOpacity: 0.8,
                     strokeWidth: 1
                 },
