@@ -55,8 +55,11 @@ class UserController extends Controller
         $usuarios = User::all();
         $tecnicos = Tecnico::orderBy('habilitado', 'desc')->orderBy('centro_id', 'asc')->get();
         $centros = Centro::all();
-
-        return view('view_usuarios_tecnicos', ['usuarios' => $usuarios, 'tecnicos' => $tecnicos, 'centros' => $centros, 'user' => $user]);
+        if ($user->rol === 'GERENTE' || $user->rol === 'COORDINADOR') {
+            return view('view_usuarios_tecnicos', ['usuarios' => $usuarios, 'tecnicos' => $tecnicos, 'centros' => $centros, 'user' => $user]);
+        } else {
+            return redirect(route('incidencia.index'));
+        }
     }
 
     /**

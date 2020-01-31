@@ -38106,7 +38106,7 @@ var render = function() {
       {
         staticClass:
           "mt-3 table table-striped table-hover pb-5 table-responsive-sm",
-        attrs: { id: "table_tecnicos" }
+        attrs: { id: "tabla_tecnicos" }
       },
       [
         _vm._m(2),
@@ -38131,11 +38131,11 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(tecnico.estado))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tecnico.centro_id.nombre))]),
+              _vm._v(" "),
               tecnico.habilitado == 1
                 ? _c("td", [_vm._v("Si")])
                 : _c("td", [_vm._v("No")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(tecnico.centro_id.nombre))]),
               _vm._v(" "),
               _c("td", [
                 _c("input", {
@@ -38248,39 +38248,39 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-dark text-white" }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col", id: "th_cod" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_cod_t" } }, [
           _vm._v("Cod. Usuario")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_nombre" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_nombre_t" } }, [
           _vm._v("Nombre")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_apellidos" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_apellidos_t" } }, [
           _vm._v("Apellidos")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_email" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_email_t" } }, [
           _vm._v("Email")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_telefono" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_telefono_t" } }, [
           _vm._v("Telefono")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_estado" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_estado_t" } }, [
           _vm._v("Estado")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_centro" } }, [
-          _vm._v("Centro")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_habilitado" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_habilitado_t" } }, [
           _vm._v("Habilitado")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "rol", id: "th_cambiarHablitado" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_centro_t" } }, [
+          _vm._v("Centro")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", id: "th_cambiarHablitado_t" } }, [
           _vm._v("Cambiar Habilitado")
         ])
       ])
@@ -38498,29 +38498,29 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-dark text-white" }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col", id: "th_cod" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_cod_u" } }, [
           _vm._v("Cod. Usuario")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_nombre" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_nombre_u" } }, [
           _vm._v("Nombre")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_apellidos" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_apellidos_u" } }, [
           _vm._v("Apellidos")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_email" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_email_u" } }, [
           _vm._v("Email")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_rol" } }, [_vm._v("Rol")]),
+        _c("th", { attrs: { scope: "col", id: "th_rol_u" } }, [_vm._v("Rol")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", id: "th_habilitado" } }, [
+        _c("th", { attrs: { scope: "col", id: "th_habilitado_u" } }, [
           _vm._v("Habilitado")
         ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "rol", id: "th_cambiarHablitado" } }, [
+        _c("th", { attrs: { scope: "rol", id: "th_cambiarHablitado_u" } }, [
           _vm._v("Cambiar Habilitado")
         ])
       ])
@@ -51000,8 +51000,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\jon\PhpstormProjects\Reto-3\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\jon\PhpstormProjects\Reto-3\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

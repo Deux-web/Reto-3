@@ -3,6 +3,7 @@
     <title>Gestión de usuarios</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/registro.js')}}"></script>
+    <script src="{{URL::asset('js/usuarios.js')}}"></script>
 @endsection
 @section('contenido')
     <div id="app" class="mt-1 mx-1">
@@ -18,12 +19,12 @@
                    aria-selected="false">Técnicos</a>
             </li>
             @if($user->rol === 'GERENTE' || $user->rol === 'COORDINADOR')
-            <li class="nav-item">
-                <a class="nav-link" id="crearUsuario-tab" data-toggle="tab" href="#crearUsuario" role="tab"
-                   aria-controls="crearUsuario"
-                   aria-selected="false">Crear Usuario</a>
-            </li>
-                @endif
+                <li class="nav-item">
+                    <a class="nav-link" id="crearUsuario-tab" data-toggle="tab" href="#crearUsuario" role="tab"
+                       aria-controls="crearUsuario"
+                       aria-selected="false">Crear Usuario</a>
+                </li>
+            @endif
         </ul>
         <div class="tab-content" id="tablesContent">
             <div class="tab-pane fade show active" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
