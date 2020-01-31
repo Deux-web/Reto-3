@@ -1,5 +1,5 @@
 <template>
-    <div class="pl-2 pr-2 overflow">
+    <div class="pl-2 pr-2 overflow" id="incidencias_div">
         <div class="row no-gutters">
             <div class="col-md-5 col-12 mb-1 row no-gutters" id="botones">
                 <a id="mis_incidencias" v-on:click=getMisIncidencias() class="btn btn-primary col-md-5 col-12 mb-1 mb-md-0" style="font-size: 125%;">Mis incidencias</a>
@@ -64,7 +64,7 @@
             </tbody>
         </table>
         <br><br>
-        <div class="pagination">
+        <div class="pagination" id="pagination_incidencias">
             <div class="d-block mx-auto">
                 <button class="btn btn-primary" v-on:click="fetchPaginateIncidencias(pagination.prev_page_url)"
                         :disabled="!pagination.prev_page_url">Anterior

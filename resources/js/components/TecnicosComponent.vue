@@ -31,18 +31,18 @@
                 </div>
             </div>
         </div>
-        <table id="table_tecnicos" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
+        <table id="tabla_tecnicos" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
             <thead class="bg-dark text-white">
             <tr>
-                <th scope="col" id="th_cod">Cod. Usuario</th>
-                <th scope="col" id="th_nombre">Nombre</th>
-                <th scope="col" id="th_apellidos">Apellidos</th>
-                <th scope="col" id="th_email">Email</th>
-                <th scope="col" id="th_telefono">Telefono</th>
-                <th scope="col" id="th_estado">Estado</th>
-                <th scope="col" id="th_centro">Centro</th>
-                <th scope="col" id="th_habilitado">Habilitado</th>
-                <th scope="rol" id="th_cambiarHablitado">Cambiar Habilitado</th>
+                <th scope="col" id="th_cod_t">Cod. Usuario</th>
+                <th scope="col" id="th_nombre_t">Nombre</th>
+                <th scope="col" id="th_apellidos_t">Apellidos</th>
+                <th scope="col" id="th_email_t">Email</th>
+                <th scope="col" id="th_telefono_t">Telefono</th>
+                <th scope="col" id="th_estado_t">Estado</th>
+                <th scope="col" id="th_habilitado_t">Habilitado</th>
+                <th scope="col" id="th_centro_t">Centro</th>
+                <th scope="col" id="th_cambiarHablitado_t">Cambiar Habilitado</th>
             </tr>
             </thead>
             <tbody>
@@ -53,9 +53,9 @@
                 <td>{{tecnico.email}}</td>
                 <td>{{tecnico.telefono}}</td>
                 <td>{{tecnico.estado}}</td>
+                <td>{{tecnico.centro_id.nombre}}</td>
                 <td v-if="tecnico.habilitado==1">Si</td>
                 <td v-else>No</td>
-                <td>{{tecnico.centro_id.nombre}}</td>
                 <td><input type="checkbox" :id="tecnico.id" v-on:click="cambiarHabilitado(tecnico.id)"></td>
             </tr>
             </tbody>
