@@ -1,9 +1,8 @@
 @extends('layout_html')
 @section('head')
     <title>Gestión de usuarios</title>
-    <script src="{{URL::asset('js/app.js')}}"></script>
-    <script src="{{URL::asset('js/registro.js')}}"></script>
     <script src="{{URL::asset('js/usuarios.js')}}"></script>
+    <script src="{{URL::asset('js/app.js')}}"></script>
 @endsection
 @section('contenido')
     <div id="app" class="mt-1 mx-1">
@@ -36,6 +35,7 @@
             @if($user->rol === 'GERENTE' || $user->rol === 'COORDINADOR')
                 <div class="tab-pane fade" id="crearUsuario" role="tabpanel" aria-labelledby="crearUsuario-tab">
                     @include('includes.crearUsuario')
+
                 </div>
             @endif
         </div>
