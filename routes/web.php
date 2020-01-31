@@ -38,6 +38,8 @@ Route::get('/incidencias/estadisticas', 'EstadisticasController@index')->name('e
 
 Route::get('/incidencias/tecnicos','EstadisticasController@estadisticasTecnicos')->name('estadistica.tecnicos')->middleware('auth');
 
+Route::get('/incidencias/tiempos','EstadisticasController@estadisticasTiempos')->name('estadistica.tiempos')->middleware('auth');
+
 Route::get('/incidencias/tipo_resolucion','EstadisticasController@estadisticasTipo_resolucion')->name('estadistica.tipo_resolucion')->middleware('auth');
 
 Route::get('/incidencias/provincias','EstadisticasController@estadisticasProvincias')->name('estadistica.provincias')->middleware('auth');

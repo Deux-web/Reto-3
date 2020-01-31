@@ -31,7 +31,10 @@
                 @php
                     $mensaje_resolucion=explode(',',$incidencia->mensaje_resolucion);
                     $taller=$mensaje_resolucion[0];
-                    $mensaje=$mensaje_resolucion[1];
+                    $mensaje='';
+                    for ($i=1;$i<sizeof($mensaje_resolucion);$i++){
+                        $mensaje=$mensaje.$mensaje_resolucion[$i].', ';
+                    }
                 @endphp
                 <div class="d-none form-group" id="res_taller">
                     <h4 class="mb-0"><label for="taller">Taller</label></h4>

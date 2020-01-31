@@ -37,7 +37,7 @@
                 <input type="hidden" id="tecnico_id" value="{{$tecnico->id}}">
                 <input type="hidden" id="ruta2" value="{{route('tecnico.cambiarestado')}}">
                 <input type="hidden" name="estado_t" id="estado_t" value="{{$tecnico->estado}}">
-                @if($tecnico->estado === 'Ocupado')
+                @if($inc_asignada !== null)
                     <input type="hidden" id="ruta_pendiente" value="{{route('incidencia.show', $inc_asignada->id)}}">
                 @endif
             @else

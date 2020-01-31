@@ -26,6 +26,16 @@ class EstadisticasController extends Controller
         return response()->json($inc_por_tecnico);
     }
 
+    public function estadisticasTiempos(){
+        $incidenciasTiempos=DB::table('incidencias')
+            ->select(DB::raw('ROUND(AVG(incidencias.updated_at-incidencias.created_at),0)/1000/60 as tiempoResolucion'),'tecnicos.nombre')
+            ->join('tecnicos', 'incidencias.tecnico_id', '=', 'tecnicos.id')
+            ->where('incidencias.created_at','!=',null)
+            ->groupBy('incidencias.tecnico_id')->get();
+
+        return response()->json($incidenciasTiempos);
+    }
+
     public function estadisticasTipo_resolucion()
     {
         $tipos_resolucion = DB::table('incidencias')->select(DB::raw('count(*) as numero_incidencias'), 'tipo_resolucion')->groupBy('tipo_resolucion')->get();

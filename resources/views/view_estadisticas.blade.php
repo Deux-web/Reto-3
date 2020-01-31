@@ -37,14 +37,17 @@
             </ul>
             <hr>
             <div class="card-body">
-
                 <div class="row d-flex justify-content-sm-around m-2">
                     <div class="col-12" id="grafico_tecnico">
                         <div id="chart_div"></div>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-sm-around m-2">
-
+                    <div class="col-12" id="grafico_horas">
+                        <div id="media_div"></div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-sm-around m-2">
                     <div class="col-12 col-lg-5 align-self-center" id="grafico_zonas">
                         <div id="donutchart"></div>
                     </div>
@@ -52,7 +55,6 @@
                         <div id="myPieChart"></div>
                     </div>
                 </div>
-
                 <div class="row d-flex justify-content-sm-around m-2">
                     <div class="col-12 col-lg-12" id="grafico_fechas">
                         <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
