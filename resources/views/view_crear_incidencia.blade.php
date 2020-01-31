@@ -71,8 +71,8 @@
                     </select>
                 </div>
                 <div class="col-lg-1  col-2 mb-2 mb-lg-0">
-                    <h4 class="d-inline mr-3">Taxi</h4>
-                    <input type="checkbox" name="taxi" value="1">
+                    <h4 class="d-inline mr-3"><label for="taxi">Taxi</label></h4>
+                    <input type="checkbox" name="taxi" value="1" id="taxi">
                 </div>
                 <div class="col-lg-5 col-12">
                     <h4 class="d-inline"><label for="rb_urbano" class="ml-lg-5 mt-1 mt-lg-0">Urbano</label></h4>
@@ -165,8 +165,8 @@
                 </div>
             </div>
 
-            <input type="submit" value="Registrar" class="btn btn-primary col-lg-6 col-md-9 mx-auto d-block"
-                   style="font-size: xx-large;">
+            <input type="submit" value="Registrar" class="btn btn-primary col-lg-6 col-md-9 mx-auto d-block mt-lg-5"
+                   style="font-size: x-large;">
         </form>
     </div>
 @endsection

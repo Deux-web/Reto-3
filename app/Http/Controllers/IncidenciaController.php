@@ -79,7 +79,7 @@ class IncidenciaController extends Controller
         $user = Auth::user();
         if ($user->rol === 'TECNICO') {
             $tecnico = DB::table('tecnicos')->where('email', '=', $user->email)->first();
-            $inc_asignada = DB::table('incidencias')->where('tecnico_id', '=', $tecnico->id)->where('estado', '=', 'PENDIENTE')->first();
+            $inc_asignada = DB::table('incidencias')->where('tecnico_id', '=', $tecnico->id)->where('estado', '<>', 'RESUELTA')->first();
             return view('view_incidencias', ['user' => $user, 'tecnico' => $tecnico, 'inc_asignada' => $inc_asignada]);
         } else {
             return view('view_incidencias', ['user' => $user], []);

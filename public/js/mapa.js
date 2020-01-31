@@ -7,7 +7,7 @@ function initMap() {
         mapTypeControl: false,
         streetViewControl: false
     });
-    centros = ['agurain', 'basauri', 'durango', 'usurbil', 'azkoitia', 'baranyain', 'tafalla'];
+    centros = ['Agurain', 'Basauri', 'Durango', 'Usurbil', 'Azkoitia', 'Baranyain', 'Tafalla'];
 
     var image = {
         url: 'https://image.flaticon.com/icons/svg/814/814406.svg',
