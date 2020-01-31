@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EstadisticasController extends Controller
 {
     public function index()
     {
-        return view('view_estadisticas');
+        $user = Auth::user();
+        if ($user->rol === 'GERENTE' || $user->rol === 'COORDINADOR') {
+            return view('view_estadisticas', ['user' => $user]);
+        } else {
+            return redirect(route('incidencia.index'));
+        }
     }
 
     public function estadisticasTecnicos()
@@ -50,5 +56,17 @@ class EstadisticasController extends Controller
         return response()->json($provincias);
     }
 
+    public function estadisticasCalendario()
+    {
+        //select count(*) as numero,fecha_resolucion from incidencias group by fecha_resolucion;
+
+
+        $calendario = DB::table('incidencias')->select(DB::raw('count(*) as num_inc'), 'fecha_resolucion')
+            ->where('fecha_resolucion', '!=', null)
+            ->groupBy('fecha_resolucion')->get();
+
+
+        return response()->json($calendario);
+    }
 }
 
