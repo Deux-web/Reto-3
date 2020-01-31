@@ -143,32 +143,32 @@ function tipoResolucion() {
  */
 function zonasResolucion() {
     axios.get('/incidencias/provincias').then(res => {
-        var araba;
-        var gipuzkoa;
-        var bizkaia;
-        var nafarroa;
+        var araba=0;
+        var gipuzkoa=0;
+        var bizkaia=0;
+        var nafarroa=0;
         $.each(res.data, function (i, obj) {
             switch (obj.direccion) {
                 case 'Araba':
-                    araba = obj.numero_incidencias;
-                    break;
-                case 'Bizkaia':
-                    gipuzkoa = obj.numero_incidencias;
+                    araba = araba+1;
                     break;
                 case 'Gipuzkoa':
-                    bizkaia = obj.numero_incidencias;
+                    gipuzkoa = gipuzkoa+1;
+                    break;
+                case 'Bizkaia':
+                    bizkaia = bizkaia+1;
                     break;
                 case 'Nafarroa':
-                    nafarroa = obj.numero_incidencias;
+                    nafarroa = nafarroa+1;
                     break;
             }
         });
         var data = google.visualization.arrayToDataTable([
             ['Provincia', 'Nº Inc.'],
-            ['Alava', araba],
-            ['Vizcaya', bizkaia],
-            ['Gipuzcoa', gipuzkoa],
-            ['Navarra', nafarroa]
+            ['Araba', araba],
+            ['Bizkaia', bizkaia],
+            ['Gipuzkoa', gipuzkoa],
+            ['Nafarroa', nafarroa]
         ]);
 
         var options = {

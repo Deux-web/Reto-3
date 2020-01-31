@@ -50,12 +50,11 @@ class EstadisticasController extends Controller
         $bizkaia = 'Bizkaia';
         $nafarroa = 'Nafarroa';
 
-        $provincias = DB::table('incidencias')->select(DB::raw('count(*) as numero_incidencias'), 'direccion')
-            ->where('direccion', 'like', "%{$bizkaia}%")
-            ->orWhere('direccion', 'like', "%{$gipuzkoa}%")
-            ->orWhere('direccion', 'like', "%{$araba}%")
-            ->orWhere('direccion', 'like', "%{$nafarroa}%")
-            ->groupBy('direccion')->get();
+        $provincias = DB::table('incidencias')->select('direccion')
+            ->where('direccion', 'like', "%$bizkaia%")
+            ->orWhere('direccion', 'like', "%$gipuzkoa%")
+            ->orWhere('direccion', 'like', "%$araba%")
+            ->orWhere('direccion', 'like', "%$nafarroa%")->get();
 
         foreach ($provincias as $provincia) {
             $lugar = explode(',', $provincia->direccion);
