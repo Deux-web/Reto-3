@@ -118,8 +118,9 @@
                                   style="resize: none;"
                                   placeholder="La incidencia ha sido resuelta..."></textarea>
                     </div>
+                    <input type="submit" value="Resolver incidencia" class="btn btn-primary w-100">
                 </div>
-                <input type="submit" value="Resolver incidencia" class="btn btn-primary w-100">
+
             </form>
         </div>
     @endif
