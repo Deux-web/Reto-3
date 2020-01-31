@@ -32,13 +32,13 @@
         <table id="tabla_usuarios" class="mt-3 table table-striped table-hover pb-5 table-responsive-sm">
             <thead class="bg-dark text-white">
             <tr>
-                <th scope="col" id="th_cod">Cod. Usuario</th>
-                <th scope="col" id="th_nombre">Nombre</th>
-                <th scope="col" id="th_apellidos">Apellidos</th>
-                <th scope="col" id="th_email">Email</th>
-                <th scope="col" id="th_rol">Rol</th>
-                <th scope="col" id="th_habilitado">Habilitado</th>
-                <th scope="rol" id="th_cambiarHablitado">Cambiar Habilitado</th>
+                <th scope="col" id="th_cod_u">Cod. Usuario</th>
+                <th scope="col" id="th_nombre_u">Nombre</th>
+                <th scope="col" id="th_apellidos_u">Apellidos</th>
+                <th scope="col" id="th_email_u">Email</th>
+                <th scope="col" id="th_rol_u">Rol</th>
+                <th scope="col" id="th_habilitado_u">Habilitado</th>
+                <th scope="rol" id="th_cambiarHablitado_u">Cambiar Habilitado</th>
             </tr>
             </thead>
             <tbody>
