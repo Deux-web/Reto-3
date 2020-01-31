@@ -8,4 +8,4 @@
 - Julen Prieto
 
 ## Link al servidor
-http://reto3.herokuapp.com
+http://reto3-master.herokuapp.com
