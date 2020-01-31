@@ -29,7 +29,7 @@ class EstadisticasController extends Controller
     public function estadisticasTiempos(){
         $incidenciasTiempos=DB::table('incidencias')
             ->join('tecnicos', 'incidencias.tecnico_id', '=', 'tecnicos.id')
-            ->select(DB::raw('ROUND(AVG(incidencias.updated_at-incidencias.created_at),0)/1000/60 as tiempoResolucion'),'tecnicos.nombre')
+            ->select(DB::raw('ROUND(AVG(TIMESTAMPDIFF(MINUTE,incidencias.created_at,incidencias.updated_at)),0) as tiempoResolucion'),'tecnicos.nombre')
             ->where('incidencias.created_at','!=',null)
             ->groupBy('incidencias.tecnico_id','tecnicos.nombre')->get();
 
