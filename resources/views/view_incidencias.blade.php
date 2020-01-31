@@ -3,27 +3,6 @@
     <title>Todas las incidencias</title>
     <script src="{{URL::asset('js/app.js')}}"></script>
     <script src="{{URL::asset('js/incidencias.js')}}"></script>
-    <style>
-        .pagination {
-            position: absolute;
-            bottom: 0;
-            left: 30%;
-            right: 30%;
-        }
-
-        div.overflow table {
-            height: 90%;
-        }
-
-        div.overflow {
-            position: relative;
-        }
-
-        #app {
-            height: 100%;
-            width: 100%;
-        }
-    </style>
 @endsection
 @section('contenido')
     <div id="app" class="pt-2 pb-2">

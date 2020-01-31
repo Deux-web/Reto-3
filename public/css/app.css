@@ -2,6 +2,17 @@
 
 /* Cambios de DEUX*/
 
+#pagination_incidencias {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  right: 30%;
+}
+
+#incidencias_div {
+  position: relative;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

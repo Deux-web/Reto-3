@@ -37746,202 +37746,210 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "pl-2 pr-2 overflow" }, [
-    _c("div", { staticClass: "row no-gutters" }, [
+  return _c(
+    "div",
+    { staticClass: "pl-2 pr-2 overflow", attrs: { id: "incidencias_div" } },
+    [
+      _c("div", { staticClass: "row no-gutters" }, [
+        _c(
+          "div",
+          {
+            staticClass: "col-md-5 col-12 mb-1 row no-gutters",
+            attrs: { id: "botones" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary col-md-5 col-12 mb-1 mb-md-0",
+                staticStyle: { "font-size": "125%" },
+                attrs: { id: "mis_incidencias" },
+                on: {
+                  click: function($event) {
+                    return _vm.getMisIncidencias()
+                  }
+                }
+              },
+              [_vm._v("Mis incidencias")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-md-7 col-12 d-flex justify-content-end align-items-center row"
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-4 pl-1 pr-0 row no-gutters" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-6 d-block mx-auto",
+                  staticStyle: { "font-size": "125%" },
+                  on: {
+                    click: function($event) {
+                      return _vm.getIncidenciasBusqueda()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-search" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-5 d-block mx-auto",
+                  staticStyle: { "font-size": "125%" },
+                  on: {
+                    click: function($event) {
+                      return _vm.refrescar()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-undo-alt" })]
+              )
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c(
-        "div",
+        "table",
         {
-          staticClass: "col-md-5 col-12 mb-1 row no-gutters",
-          attrs: { id: "botones" }
+          staticClass:
+            "mt-3 table table-striped table-hover pb-5 table-responsive-sm",
+          attrs: { id: "tabla_incidencias" }
         },
         [
+          _vm._m(2),
+          _vm._v(" "),
           _c(
-            "a",
-            {
-              staticClass: "btn btn-primary col-md-5 col-12 mb-1 mb-md-0",
-              staticStyle: { "font-size": "125%" },
-              attrs: { id: "mis_incidencias" },
-              on: {
-                click: function($event) {
-                  return _vm.getMisIncidencias()
-                }
-              }
-            },
-            [_vm._v("Mis incidencias")]
+            "tbody",
+            _vm._l(_vm.incidencias, function(incidencia) {
+              return _c(
+                "tr",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.verIncidencia(incidencia.id)
+                    }
+                  }
+                },
+                [
+                  _c("td", [_vm._v(_vm._s(incidencia.id))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        incidencia.conductor_id.nombre +
+                          " " +
+                          incidencia.conductor_id.apellido_p
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(incidencia.conductor_id.telefono))]),
+                  _vm._v(" "),
+                  incidencia.tecnico_id !== null
+                    ? _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            incidencia.tecnico_id.nombre +
+                              " " +
+                              incidencia.tecnico_id.apellido_p
+                          ) + "\n            "
+                        )
+                      ])
+                    : _c("td", { staticClass: "text-danger" }, [
+                        _vm._v("Sin técnico asignado")
+                      ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.dividirDireccion(incidencia.direccion)))
+                  ]),
+                  _vm._v(" "),
+                  incidencia.estado === "ACTIVA"
+                    ? _c("td", { staticStyle: { color: "cornflowerblue" } }, [
+                        _vm._v(_vm._s(incidencia.estado))
+                      ])
+                    : incidencia.estado === "PENDIENTE"
+                    ? _c("td", { staticStyle: { color: "red" } }, [
+                        _vm._v(_vm._s(incidencia.estado))
+                      ])
+                    : _c("td", { staticStyle: { color: "darkgreen" } }, [
+                        _vm._v(_vm._s(incidencia.estado))
+                      ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(incidencia.created_at))])
+                ]
+              )
+            }),
+            0
           )
         ]
       ),
       _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass:
-            "col-md-7 col-12 d-flex justify-content-end align-items-center row"
-        },
+        { staticClass: "pagination", attrs: { id: "pagination_incidencias" } },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-4 pl-1 pr-0 row no-gutters" }, [
+          _c("div", { staticClass: "d-block mx-auto" }, [
             _c(
               "button",
               {
-                staticClass: "btn btn-primary col-6 d-block mx-auto",
-                staticStyle: { "font-size": "125%" },
+                staticClass: "btn btn-primary",
+                attrs: { disabled: !_vm.pagination.prev_page_url },
                 on: {
                   click: function($event) {
-                    return _vm.getIncidenciasBusqueda()
+                    return _vm.fetchPaginateIncidencias(
+                      _vm.pagination.prev_page_url
+                    )
                   }
                 }
               },
-              [_c("i", { staticClass: "fas fa-search" })]
+              [_vm._v("Anterior\n            ")]
             ),
+            _vm._v(" "),
+            _c("span", [
+              _vm._v(
+                "Page " +
+                  _vm._s(_vm.pagination.current_page) +
+                  " of " +
+                  _vm._s(_vm.pagination.last_page)
+              )
+            ]),
             _vm._v(" "),
             _c(
               "button",
               {
-                staticClass: "btn btn-primary col-5 d-block mx-auto",
-                staticStyle: { "font-size": "125%" },
+                staticClass: "btn btn-primary",
+                attrs: { disabled: !_vm.pagination.next_page_url },
                 on: {
                   click: function($event) {
-                    return _vm.refrescar()
+                    return _vm.fetchPaginateIncidencias(
+                      _vm.pagination.next_page_url
+                    )
                   }
                 }
               },
-              [_c("i", { staticClass: "fas fa-undo-alt" })]
+              [_vm._v("Siguiente\n            ")]
             )
           ])
         ]
       )
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      {
-        staticClass:
-          "mt-3 table table-striped table-hover pb-5 table-responsive-sm",
-        attrs: { id: "tabla_incidencias" }
-      },
-      [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.incidencias, function(incidencia) {
-            return _c(
-              "tr",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.verIncidencia(incidencia.id)
-                  }
-                }
-              },
-              [
-                _c("td", [_vm._v(_vm._s(incidencia.id))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      incidencia.conductor_id.nombre +
-                        " " +
-                        incidencia.conductor_id.apellido_p
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(incidencia.conductor_id.telefono))]),
-                _vm._v(" "),
-                incidencia.tecnico_id !== null
-                  ? _c("td", [
-                      _vm._v(
-                        _vm._s(
-                          incidencia.tecnico_id.nombre +
-                            " " +
-                            incidencia.tecnico_id.apellido_p
-                        ) + "\n            "
-                      )
-                    ])
-                  : _c("td", { staticClass: "text-danger" }, [
-                      _vm._v("Sin técnico asignado")
-                    ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(incidencia.tipo))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.dividirDireccion(incidencia.direccion)))
-                ]),
-                _vm._v(" "),
-                incidencia.estado === "ACTIVA"
-                  ? _c("td", { staticStyle: { color: "cornflowerblue" } }, [
-                      _vm._v(_vm._s(incidencia.estado))
-                    ])
-                  : incidencia.estado === "PENDIENTE"
-                  ? _c("td", { staticStyle: { color: "red" } }, [
-                      _vm._v(_vm._s(incidencia.estado))
-                    ])
-                  : _c("td", { staticStyle: { color: "darkgreen" } }, [
-                      _vm._v(_vm._s(incidencia.estado))
-                    ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(incidencia.created_at))])
-              ]
-            )
-          }),
-          0
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c("br"),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "pagination" }, [
-      _c("div", { staticClass: "d-block mx-auto" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { disabled: !_vm.pagination.prev_page_url },
-            on: {
-              click: function($event) {
-                return _vm.fetchPaginateIncidencias(
-                  _vm.pagination.prev_page_url
-                )
-              }
-            }
-          },
-          [_vm._v("Anterior\n            ")]
-        ),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Page " +
-              _vm._s(_vm.pagination.current_page) +
-              " of " +
-              _vm._s(_vm.pagination.last_page)
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { disabled: !_vm.pagination.next_page_url },
-            on: {
-              click: function($event) {
-                return _vm.fetchPaginateIncidencias(
-                  _vm.pagination.next_page_url
-                )
-              }
-            }
-          },
-          [_vm._v("Siguiente\n            ")]
-        )
-      ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

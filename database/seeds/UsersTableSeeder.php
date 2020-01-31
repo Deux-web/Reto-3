@@ -43,5 +43,13 @@ class UsersTableSeeder extends Seeder
             'apellido_s' => 'Barata',
             'rol' => 'COORDINADOR'
         ]);
+        DB::table('users')->insert([
+            'email' => 'julen.prieto@ikasle.egibide.org',
+            'name' => 'Julen',
+            'password' => \Illuminate\Support\Facades\Hash::make('jonjonjon'),
+            'apellido_p' => 'Prieto',
+            'apellido_s' => 'Nino',
+            'rol' => 'TECNICO'
+        ]);
     }
 }
