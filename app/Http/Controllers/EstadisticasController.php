@@ -33,7 +33,7 @@ class EstadisticasController extends Controller
             ->where('incidencias.created_at','!=',null)
             ->where('incidencias.estado','=','RESUELTA')
             ->groupBy('incidencias.tecnico_id','tecnicos.nombre')
-            ->orderBy('tiempoResolucion','ASC')->get();
+            ->orderBy('tiempoResolucion','ASC')->get()->take(10);
 
         return response()->json($incidenciasTiempos);
     }
